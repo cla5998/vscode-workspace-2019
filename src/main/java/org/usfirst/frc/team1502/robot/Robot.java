@@ -12,8 +12,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
+import org.usfirst.frc.team1502.robot.commands.IntakeCommands;
+import org.usfirst.frc.team1502.robot.commands.TankCommands;
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 
 /**
@@ -28,6 +32,7 @@ public class Robot extends TimedRobot {
 	public static OI m_oi; 
 	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
 	public static TankDrive m_tankDrive = new TankDrive(null, null, null, null);
+	public static Intake intake = null;
 	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -113,6 +118,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
 	}
 
 	/**

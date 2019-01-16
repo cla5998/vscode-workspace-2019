@@ -33,8 +33,11 @@ public class RobotMap {
 	public static final int MANIP_JOYSTICK = 2;
 	
 	//Solenoids
-	public static final int ARM_SOLENOID_OPEN = 0;
-	public static final int ARM_SOLENOID_CLOSE = 1;
+	// public static final int ARM_SOLENOID_OPEN = 0;
+	// public static final int ARM_SOLENOID_CLOSE = 1;
+
+	//PWM
+	public static final int INTAKE_SPARK = 1;
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

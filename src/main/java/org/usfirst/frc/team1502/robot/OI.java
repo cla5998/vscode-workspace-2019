@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -17,7 +18,7 @@ public class OI {
 	
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
-	public Joystick manipJoystick = new Joystick(RobotMap.MANIP_JOYSTICK);
+	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a

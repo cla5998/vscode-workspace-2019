@@ -5,6 +5,7 @@ import org.usfirst.frc.team1502.robot.commands.ArcadeCommands;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -20,6 +21,8 @@ public class Drivetrain extends Subsystem {
 	TalonSRX leftBackTalon = null;
 	TalonSRX rightFrontTalon = null;
 	TalonSRX rightBackTalon = null;
+
+	Spark intake = null;
 	
 	ArcadeDrive arcadeDrive = null;
 	TankDrive tankDrive = null;
@@ -35,8 +38,6 @@ public class Drivetrain extends Subsystem {
 		//Drive Systems
 		arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
 		tankDrive = new TankDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
-		
-		//Components		
 		
 		
 	}
