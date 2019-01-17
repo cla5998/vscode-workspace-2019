@@ -8,15 +8,13 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.Intake;
-
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IntakeCommands extends Command {
   public IntakeCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires (Robot.intake);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +25,7 @@ public class IntakeCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double intakeSpeed = Robot.m_oi.manipJoystick.getTriggerAxis(Hand.kLeft);
+    double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(11);
 
     Robot.intake.setSpeed(intakeSpeed);
   }
@@ -48,5 +46,6 @@ public class IntakeCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

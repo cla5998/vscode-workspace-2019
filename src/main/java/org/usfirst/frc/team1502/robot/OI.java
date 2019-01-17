@@ -7,8 +7,12 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import org.usfirst.frc.team1502.robot.commands.*;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -16,6 +20,10 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class OI {
 	
+	/**
+	 *
+	 */
+
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
@@ -31,6 +39,12 @@ public class OI {
 	// There are a few additional built in buttons you can use. Additionally,
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
+
+	Trigger leftTrigger = new JoystickButton(manipJoystick, 11);
+
+	public OI() {
+		leftTrigger.whileActive(new IntakeCommands());
+	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
 	// Once you have a button, it's trivial to bind it to a button in one of
