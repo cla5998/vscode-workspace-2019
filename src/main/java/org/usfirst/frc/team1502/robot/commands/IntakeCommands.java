@@ -25,9 +25,9 @@ public class IntakeCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(11);
+    double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(2);
 
-    Robot.intake.setSpeed(intakeSpeed);
+    Robot.intake.setSpeed(.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()

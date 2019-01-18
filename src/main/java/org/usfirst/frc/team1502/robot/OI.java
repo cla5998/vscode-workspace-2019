@@ -40,7 +40,7 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	Trigger leftTrigger = new JoystickButton(manipJoystick, 11);
+	Trigger leftTrigger = new JoystickButton(manipJoystick, 2);
 
 	public OI() {
 		leftTrigger.whileActive(new IntakeCommands());

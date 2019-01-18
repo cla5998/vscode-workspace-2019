@@ -28,7 +28,7 @@ import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 public class Robot extends TimedRobot {
 	public static Drivetrain drivetrain = null;
 	public static OI m_oi; 
-	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
+	//public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
 	public static TankDrive m_tankDrive = new TankDrive(null, null, null, null);
 	public static Intake intake = new Intake(null);
 	

@@ -24,10 +24,10 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 	
 	//Talons
-	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 0;
-	public static final int DRIVETRAIN_LEFT_BACK_TALON = 1;
+	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 1;
+	public static final int DRIVETRAIN_LEFT_BACK_TALON = 3;
 	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 2;
-	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 3;
+	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 4;
 	
 	//Joysticks
 	public static final int LEFT_JOYSTICK = 0;
@@ -39,7 +39,7 @@ public class RobotMap {
 	// public static final int ARM_SOLENOID_CLOSE = 1;
 
 	//PWM
-	public static final Spark INTAKE_SPARK = new Spark(1);
+	public static final Spark INTAKE_SPARK = new Spark(0);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

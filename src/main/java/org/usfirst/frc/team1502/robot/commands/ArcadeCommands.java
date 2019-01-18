@@ -27,7 +27,7 @@ public class ArcadeCommands extends Command {
     	double moveSpeed = Drivetrain.expRate(Robot.m_oi.leftJoystick.getY(), 3);
     	double rotateSpeed = -Drivetrain.expRate(Robot.m_oi.rightJoystick.getX(), 3);;
     	
-    	Robot.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
+    	Robot.drivetrain.tankDrive(moveSpeed, rotateSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class ArcadeCommands extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.arcadeDrive(0, 0);
+    //	Robot.drivetrain.arcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

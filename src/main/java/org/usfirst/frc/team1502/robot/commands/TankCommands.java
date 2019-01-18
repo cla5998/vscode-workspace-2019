@@ -3,6 +3,7 @@ package org.usfirst.frc.team1502.robot.commands;
 import org.usfirst.frc.team1502.robot.Robot;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -25,7 +26,7 @@ public class TankCommands extends Command {
     protected void execute() {
     	//Set Drive Values - Cubic Control
     	double leftStick = Drivetrain.expRate(Robot.m_oi.leftJoystick.getY(), 3);
-    	double rightStick = -Drivetrain.expRate(Robot.m_oi.leftJoystick.getY(), 3);
+    	double rightStick = Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 3);
     	
     	Robot.drivetrain.tankDrive(leftStick, rightStick);
     }

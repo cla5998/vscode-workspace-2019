@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1502.robot.subsystems;
 
 import org.usfirst.frc.team1502.robot.RobotMap;
-import org.usfirst.frc.team1502.robot.commands.ArcadeCommands;
+import org.usfirst.frc.team1502.robot.commands.TankCommands;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -24,7 +24,7 @@ public class Drivetrain extends Subsystem {
 
 	Spark intake = null;
 	
-	ArcadeDrive arcadeDrive = null;
+	//ArcadeDrive arcadeDrive = null;
 	TankDrive tankDrive = null;
 	
 	
@@ -36,15 +36,14 @@ public class Drivetrain extends Subsystem {
 		rightBackTalon = new TalonSRX(RobotMap.DRIVETRAIN_RIGHT_BACK_TALON); 
 		
 		//Drive Systems
-		arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
+		//arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
 		tankDrive = new TankDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
-		
 		
 	}
 	
-	public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-		arcadeDrive.move(moveSpeed, rotateSpeed);
-	}
+	// public void arcadeDrive(double moveSpeed, double rotateSpeed) {
+	// 	arcadeDrive.move(moveSpeed, rotateSpeed);
+	// }
 	
 	public void tankDrive(double leftSpeed, double rightSpeed) {
 		tankDrive.move(leftSpeed, rightSpeed);
@@ -61,7 +60,7 @@ public class Drivetrain extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new ArcadeCommands());
+    	setDefaultCommand(new TankCommands());
     }
 }
 

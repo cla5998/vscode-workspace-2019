@@ -29,8 +29,8 @@ public class TankDrive extends Subsystem {
 		double leftPwr = leftSpeed;
 		double rightPwr = rightSpeed;
 		
-		leftFront.set(ControlMode.PercentOutput, leftPwr);
-		leftBack.set(ControlMode.PercentOutput, leftPwr);
+		leftFront.set(ControlMode.PercentOutput, -1 * leftPwr);
+		leftBack.set(ControlMode.PercentOutput, -1 * leftPwr);
 		rightFront.set(ControlMode.PercentOutput, rightPwr);
 		rightBack.set(ControlMode.PercentOutput, rightPwr);
 	}
