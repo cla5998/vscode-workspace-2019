@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
@@ -36,6 +37,10 @@ public class RobotMap {
 	public static final int MANIP_JOYSTICK = 2;
 	
 	//Solenoids
+	public static final Solenoid SOLENOID_1 = new Solenoid(11, 1);
+	public static final Solenoid SOLENOID_2 = new Solenoid(11, 2);
+	public static final Solenoid SOLENOID_3 = new Solenoid(11, 3);
+
 	// public static final int ARM_SOLENOID_OPEN = 0;
 	// public static final int ARM_SOLENOID_CLOSE = 1;
 
