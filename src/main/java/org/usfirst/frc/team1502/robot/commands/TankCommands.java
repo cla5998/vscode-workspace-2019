@@ -3,7 +3,6 @@ package org.usfirst.frc.team1502.robot.commands;
 import org.usfirst.frc.team1502.robot.Robot;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
