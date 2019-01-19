@@ -15,6 +15,7 @@ public class VacuumCommands extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires (Robot.vacuum);
+
   }
 
   // Called just before this Command runs the first time
@@ -25,7 +26,7 @@ public class VacuumCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.vacuum.run(1);
+    Robot.vacuum.setSpeed(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +38,7 @@ public class VacuumCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.vacuum.run(0);
+    Robot.vacuum.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
