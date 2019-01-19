@@ -17,6 +17,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
@@ -34,8 +35,8 @@ public class Robot extends TimedRobot {
 	//public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
 	public static TankDrive m_tankDrive = new TankDrive(null, null, null, null);
 	public static Intake intake = new Intake(null);
+	public static HatchRelease release = new HatchRelease(null, null, null);
 	public static Vacuum vacuum = new Vacuum(null);
-	
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -47,8 +48,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		drivetrain = new Drivetrain();
 		intake = new Intake(RobotMap.INTAKE_SPARK);
+		release = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 		vacuum = new Vacuum(new TalonSRX(RobotMap.VACUUM_TALON));
-
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);

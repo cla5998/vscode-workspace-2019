@@ -44,8 +44,11 @@ public class OI {
 	Trigger leftTrigger = new JoystickButton(manipJoystick, 2);
 	Button one = new JoystickButton(manipJoystick, 1);
 
+	Button x = new JoystickButton(manipJoystick, 3);
+
 	public OI() {
 		leftTrigger.whileActive(new IntakeCommands());
+		x.whileHeld(new ReleaseCommands());
 		one.whileActive(new VacuumCommands());
 	}
 
