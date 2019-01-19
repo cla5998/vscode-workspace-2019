@@ -36,8 +36,4 @@ public class Vacuum extends Subsystem {
      vacuum.set(ControlMode.PercentOutput, speed);
   }
 
-  public void motorRun() { 
-    vacuum.set(ControlMode.PercentOutput, 1);
-  }
-
 }

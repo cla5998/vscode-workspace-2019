@@ -17,6 +17,7 @@ public class PlatformLiftCommands extends Command {
     this.go = go;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires (Robot.lift);
   }
 
   // Called just before this Command runs the first time
