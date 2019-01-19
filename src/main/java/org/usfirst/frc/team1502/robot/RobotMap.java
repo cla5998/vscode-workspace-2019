@@ -30,6 +30,8 @@ public class RobotMap {
 	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 2;
 	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 4;
 	public static final int VACUUM_TALON = 5;
+	public static final int PLATFORM_TALON_LEFT = 6;
+	public static final int PLATFORM_TALON_RIGHT = 7;
 
 	//Joysticks
 	public static final int LEFT_JOYSTICK = 0;

@@ -7,34 +7,34 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class Rack extends Subsystem {
-
-  Spark pinion = null;
-
-public Rack(Spark pinion){
-
-  this.pinion = pinion;
-
-}
-public void setSpeed(double speedInput){
-  double speed = speedInput;
-  pinion.set(speed);
-
-}
+public class PlatformLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  TalonSRX left;
+  TalonSRX right;
+
+  public PlatformLift(TalonSRX left, TalonSRX right) {
+    this.left = left;
+    this.right = right;
+  }
+
+  public void setSpeed(double speed){
+    this.left.set(ControlMode.PercentOutput, speed);
+    this.right.set(ControlMode.PercentOutput, speed);
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-
-
   }
 }
