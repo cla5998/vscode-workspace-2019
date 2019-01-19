@@ -52,7 +52,7 @@ public class Robot extends TimedRobot {
 		intake = new Intake(RobotMap.INTAKE_SPARK);
 		release = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 		vacuum = new Vacuum(new TalonSRX(RobotMap.VACUUM_TALON));
-		lift = new PlatformLift(PLATFORM_TALON_LEFT, PLATFORM_TALON_RIGHT)
+		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
