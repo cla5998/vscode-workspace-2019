@@ -21,6 +21,7 @@ import org.usfirst.frc.team1502.robot.subsystems.Intake;
 
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.Rack;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
 
@@ -41,6 +42,7 @@ public class Robot extends TimedRobot {
 	public static Vacuum vacuum = new Vacuum(null);
 	public static Rack rack = new Rack(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
+	public static Sonar sonar = new Sonar(null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -56,11 +58,11 @@ public class Robot extends TimedRobot {
 		vacuum = new Vacuum(new TalonSRX(RobotMap.VACUUM_TALON));
 		rack = new Rack(RobotMap.RACK_SPARK);
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
+		sonar = new Sonar(RobotMap.SONAR_SPARK);
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 	}
-
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when

@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 public class OI {
 	
 	/**
-	 *
+	 * 
 	 */
 
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
@@ -46,18 +46,21 @@ public class OI {
 	Button b = new JoystickButton(manipJoystick, 2);
 	Button x = new JoystickButton(manipJoystick, 3);
 
-	Button triggerRightOne = new JoystickButton(rightJoystick, 1);
-	Button triggerLeftOne = new JoystickButton(leftJoystick, 1);
+	//not final. this is a click to check the lift application
+	Button y = new JoystickButton(manipJoystick, 4);
+
+	Button tr = new JoystickButton(rightJoystick, 1);
+	Button tl = new JoystickButton(leftJoystick, 1);
 	Button rb = new JoystickButton(manipJoystick, 9);
 	Button lb = new JoystickButton(manipJoystick,10);
 	public OI() {
 		x.whileHeld(new IntakeCommands());
 		b.whileHeld(new ReleaseCommands());
-		a.whileActive(new VacuumCommands());
+		a.toggleWhenActive(new VacuumCommands());
 		rb.whileActive(new RackCommands(true));
 		lb.whileActive(new RackCommands(false));
-		triggerRightOne.whileHeld(new PlatformLiftCommands(true));
-		triggerLeftOne.whileHeld(new PlatformLiftCommands(false));
+		tr.whileHeld(new PlatformLiftCommands(true));
+		tl.whileHeld(new PlatformLiftCommands(false));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

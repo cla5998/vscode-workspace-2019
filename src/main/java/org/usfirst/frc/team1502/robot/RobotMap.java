@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
@@ -49,6 +50,9 @@ public class RobotMap {
 	//PWM
 	public static final Spark INTAKE_SPARK = new Spark(0);
 	public static final Spark RACK_SPARK = new Spark(1);
+
+	//this isnt real im just being stupid
+	public static final AnalogInput SONAR_SPARK = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
