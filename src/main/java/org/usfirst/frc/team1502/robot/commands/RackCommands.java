@@ -18,7 +18,7 @@ public class RackCommands extends Command {
     this.forward = forward;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-
+    requires(Robot.rack);
   }
 
   // Called just before this Command runs the first time
