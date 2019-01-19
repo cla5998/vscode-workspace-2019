@@ -54,8 +54,8 @@ public class OI {
 		x.whileHeld(new IntakeCommands());
 		b.whileHeld(new ReleaseCommands());
 		a.whileActive(new VacuumCommands());
-		rb.whileActive(new RackCommands());
-		lb.whileActive(new RackCommands());
+		rb.whileActive(new RackCommands(true));
+		lb.whileActive(new RackCommands(false));
 		triggerRightOne.whileHeld(new PlatformLiftCommands(true));
 		triggerLeftOne.whileHeld(new PlatformLiftCommands(false));
 	}

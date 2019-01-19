@@ -7,12 +7,15 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
-import java.awt.Robot;
+import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class RackCommands extends Command {
-  public RackCommands() {
+  
+  boolean forward;
+  public RackCommands(boolean forward) {
+    this.forward = forward;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
@@ -26,6 +29,12 @@ public class RackCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    if(forward == true){
+      Robot.rack.setSpeed(1);
+    }
+    else{
+      Robot.rack.setSpeed(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
