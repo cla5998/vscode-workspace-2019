@@ -12,7 +12,9 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PlatformLiftCommands extends Command {
-  public PlatformLiftCommands() {
+  boolean go;
+  public PlatformLiftCommands(boolean go) {
+    this.go = go;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,7 +27,12 @@ public class PlatformLiftCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.lift.setSpeed(1);
+    if(go == true){
+      Robot.lift.setSpeed(1);
+    }
+    else if(go == false){
+      Robot.lift.setSpeed(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

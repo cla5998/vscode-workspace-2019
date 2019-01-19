@@ -46,8 +46,8 @@ public class OI {
 	Button b = new JoystickButton(manipJoystick, 2);
 	Button x = new JoystickButton(manipJoystick, 3);
 
-	Button triggerRightOne = new JoystickButton(manipJoystick, 1);
-	Button triggerLeftOne = new JoystickButton(manipJoystick, 1);
+	Button triggerRightOne = new JoystickButton(rightJoystick, 1);
+	Button triggerLeftOne = new JoystickButton(leftJoystick, 1);
 	Button rb = new JoystickButton(manipJoystick, 9);
 	Button lb = new JoystickButton(manipJoystick,10);
 	public OI() {
@@ -56,7 +56,8 @@ public class OI {
 		a.whileActive(new VacuumCommands());
 		rb.whileActive(new RackCommands());
 		lb.whileActive(new RackCommands());
-
+		triggerRightOne.whileHeld(new PlatformLiftCommands(true));
+		triggerLeftOne.whileHeld(new PlatformLiftCommands(false));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
