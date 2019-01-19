@@ -27,14 +27,18 @@ public class Vacuum extends Subsystem {
   }
 
   TalonSRX vacuum = null;
-  
   public Vacuum(TalonSRX motorNum) { 
     vacuum = motorNum;
   }
+    double speed = 0;
+  public void setSpeed(double speed) {
+     this.speed = speed;
 
-  public void run(int speed) {
-    vacuum.set(ControlMode.PercentOutput, speed);
+     vacuum.set(ControlMode.PercentOutput, speed);
   }
 
+  public void motorRun() { 
+    vacuum.set(ControlMode.PercentOutput, 1);
+  }
 
 }
