@@ -28,6 +28,7 @@ public class OI {
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
+
 	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
@@ -41,17 +42,21 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	Trigger leftTrigger = new JoystickButton(manipJoystick, 2);
-	Button one = new JoystickButton(manipJoystick, 1);
-
+	Button a = new JoystickButton(manipJoystick, 1);
+	Button b = new JoystickButton(manipJoystick, 2);
 	Button x = new JoystickButton(manipJoystick, 3);
 
 	Button triggerRightOne = new JoystickButton(manipJoystick, 1);
 	Button triggerLeftOne = new JoystickButton(manipJoystick, 1);
+	Button rb = new JoystickButton(manipJoystick, 9);
+	Button lb = new JoystickButton(manipJoystick,10);
 	public OI() {
-		leftTrigger.whileActive(new IntakeCommands());
-		x.whileHeld(new ReleaseCommands());
-		one.whileActive(new VacuumCommands());
+		x.whileHeld(new IntakeCommands());
+		b.whileHeld(new ReleaseCommands());
+		a.whileActive(new VacuumCommands());
+		rb.whileActive(new RackCommands());
+		lb.whileActive(new RackCommands());
+
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
