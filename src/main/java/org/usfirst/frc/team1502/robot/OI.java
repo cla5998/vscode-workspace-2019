@@ -11,6 +11,7 @@ import org.usfirst.frc.team1502.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 
@@ -42,8 +43,11 @@ public class OI {
 
 	Trigger leftTrigger = new JoystickButton(manipJoystick, 2);
 
+	Button x = new JoystickButton(manipJoystick, 3);
+
 	public OI() {
 		leftTrigger.whileActive(new IntakeCommands());
+		x.whileHeld(new ReleaseCommands());
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
