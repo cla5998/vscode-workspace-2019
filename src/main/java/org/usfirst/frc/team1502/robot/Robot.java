@@ -19,6 +19,7 @@ import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
+import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
 
@@ -51,6 +52,7 @@ public class Robot extends TimedRobot {
 		intake = new Intake(RobotMap.INTAKE_SPARK);
 		release = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 		vacuum = new Vacuum(new TalonSRX(RobotMap.VACUUM_TALON));
+		lift = new PlatformLift(PLATFORM_TALON_LEFT, PLATFORM_TALON_RIGHT)
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
