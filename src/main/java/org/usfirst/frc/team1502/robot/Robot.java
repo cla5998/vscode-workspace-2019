@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
