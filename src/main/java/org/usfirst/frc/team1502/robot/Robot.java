@@ -37,6 +37,7 @@ public class Robot extends TimedRobot {
 	public static Intake intake = new Intake(null);
 	public static HatchRelease release = new HatchRelease(null, null, null);
 	public static Vacuum vacuum = new Vacuum(null);
+	public static PlatformLift lift =  new PlatformLift(null, null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
