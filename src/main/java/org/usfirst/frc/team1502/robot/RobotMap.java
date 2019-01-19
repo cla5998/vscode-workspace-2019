@@ -46,6 +46,7 @@ public class RobotMap {
 
 	//PWM
 	public static final Spark INTAKE_SPARK = new Spark(0);
+	public static final Spark RACK_SPARK = new Spark(1);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:
