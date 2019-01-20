@@ -12,9 +12,9 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PlatformLiftCommands extends Command {
-  boolean go;
-  public PlatformLiftCommands(boolean go) {
-    this.go = go;
+  boolean dir; //True = Up; False = Down
+  public PlatformLiftCommands(boolean direction) {
+    this.dir = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires (Robot.lift);
@@ -28,10 +28,10 @@ public class PlatformLiftCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(go == true){
+    if(dir == true){
       Robot.lift.setSpeed(1);
     }
-    else if(go == false){
+    else if(dir == false){
       Robot.lift.setSpeed(-1);
     }
   }
@@ -52,5 +52,6 @@ public class PlatformLiftCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

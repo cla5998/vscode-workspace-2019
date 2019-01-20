@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class Rack extends Subsystem {
+public class HorizontalSlide extends Subsystem {
 
-  Spark pinion = null;
+Spark pinion = null;
 
-public Rack(Spark pinion) {
+public HorizontalSlide(Spark pinion) {
 
   this.pinion = pinion;
 
@@ -25,7 +25,6 @@ public Rack(Spark pinion) {
 public void setSpeed(double speedInput){
   double speed = speedInput;
   pinion.set(speed);
-
 }
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
@@ -34,7 +33,6 @@ public void setSpeed(double speedInput){
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-
 
   }
 }

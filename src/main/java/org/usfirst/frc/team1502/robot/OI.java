@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.Trigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -42,25 +41,27 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	Button a = new JoystickButton(manipJoystick, 1);
-	Button b = new JoystickButton(manipJoystick, 2);
-	Button x = new JoystickButton(manipJoystick, 3);
-
+	/*X-Box Controller*/
+	Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
+	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
+	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
 	//not final. this is a click to check the lift application
-	Button y = new JoystickButton(manipJoystick, 4);
+	//Button y = new JoystickButton(manipJoystick, 4);
+	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
+	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 
-	Button tr = new JoystickButton(rightJoystick, 1);
-	Button tl = new JoystickButton(leftJoystick, 1);
-	Button rb = new JoystickButton(manipJoystick, 9);
-	Button lb = new JoystickButton(manipJoystick,10);
+	/*Drive Joysticks*/
+	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
+	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
+	
 	public OI() {
 		x.whileHeld(new IntakeCommands());
-		b.whileHeld(new ReleaseCommands());
-		a.toggleWhenActive(new VacuumCommands());
-		rb.whileActive(new RackCommands(true));
-		lb.whileActive(new RackCommands(false));
-		tr.whileHeld(new PlatformLiftCommands(true));
-		tl.whileHeld(new PlatformLiftCommands(false));
+		b.whenPressed(new HatchReleaseCommands());
+		a.toggleWhenPressed(new VacuumCommands());
+		rb.whileHeld(new HorizontalSlideCommands(true));
+		lb.whileHeld(new HorizontalSlideCommands(false));
+		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
+		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

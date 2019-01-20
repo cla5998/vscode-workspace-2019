@@ -12,9 +12,19 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SonarCommands extends Command {
+  /*
+
+
+
+  I don't think file needs to exist, as the sensor should just output a value for now not be an automatic system
+
+
+
+  */
   public SonarCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.sonar);
   }
 
   // Called just before this Command runs the first time
@@ -23,20 +33,9 @@ public class SonarCommands extends Command {
   }
 
   // Called repeatedly when this Command is scheduled to run
-
   @Override
   protected void execute() { 
-    while (true) { 
-      double cm = Robot.sonar.readSensor();
-
-      if (cm < 10) {
-        // move robot backward
-      } else if (cm > 25) {
-        // move robot forward
-      } else break;
-    }
-    //Robot.PlatformLiftCommands();
-    // lift up
+      
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -54,5 +53,6 @@ public class SonarCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

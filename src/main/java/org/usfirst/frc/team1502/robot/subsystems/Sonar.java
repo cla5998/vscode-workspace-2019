@@ -18,31 +18,29 @@ public class Sonar extends Subsystem {
   // here. Call these from Commands.
 
   AnalogInput sonar;
-  public Sonar(AnalogInput fake){
-    sonar = fake;
-  }
 
-  double anVolt;
+  double analogVolts;
+  double cm;
 
-  public void setup(){
-    Serial.begin(9600);
+  public Sonar(AnalogInput sonar){
+    this.sonar = sonar;
   }
 
   public double readSensor() {
-    anVolt = sonar.getVoltage();
-    double cm = anVolt/2;
+    analogVolts = sonar.getVoltage();
+    cm = analogVolts / 2;
+    printRange();
     return cm;
   }
 
   public void printRange(){
-    Serial.println(cm);
+    System.out.println(cm);
   }
-
-  
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    readSensor();
   }
 }
