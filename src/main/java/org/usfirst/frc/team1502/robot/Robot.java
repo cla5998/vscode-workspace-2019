@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -62,6 +64,8 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+
+		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
