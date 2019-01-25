@@ -8,26 +8,33 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeCommands extends Command {
-  public IntakeCommands() {
+public class HorizontalSlideCommands extends Command {
+  
+  boolean forward;
+  public HorizontalSlideCommands(boolean forward) {
+    this.forward = forward;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires (Robot.intake);
+    requires(Robot.horizontalSlide);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
-  
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(2); // Set Intake Speed = Manip Left Trigger
-
-    Robot.intake.setSpeed(.5);
+    if(forward == true){
+      Robot.horizontalSlide.setSpeed(1);
+    }
+    else{
+      Robot.horizontalSlide.setSpeed(-1);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +46,7 @@ public class IntakeCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.setSpeed(0);
+    Robot.horizontalSlide.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

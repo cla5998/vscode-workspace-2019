@@ -8,26 +8,25 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeCommands extends Command {
-  public IntakeCommands() {
+public class HatchReleaseCommands extends Command {
+  public HatchReleaseCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires (Robot.intake);
+    requires(Robot.hatchRelease);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
   }
-  
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(2); // Set Intake Speed = Manip Left Trigger
-
-    Robot.intake.setSpeed(.5);
+    Robot.hatchRelease.push();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,7 +38,7 @@ public class IntakeCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.intake.setSpeed(0);
+    Robot.hatchRelease.pull();
   }
 
   // Called when another command which requires one or more of the same

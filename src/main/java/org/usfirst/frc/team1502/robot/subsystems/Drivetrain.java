@@ -38,7 +38,6 @@ public class Drivetrain extends Subsystem {
 		//Drive Systems
 		//arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
 		tankDrive = new TankDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
-		
 	}
 	
 	// public void arcadeDrive(double moveSpeed, double rotateSpeed) {

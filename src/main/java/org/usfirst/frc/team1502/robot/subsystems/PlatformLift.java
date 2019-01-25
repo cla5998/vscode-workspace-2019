@@ -28,8 +28,8 @@ public class PlatformLift extends Subsystem {
   }
 
   public void setSpeed(double speed){
-    this.left.set(ControlMode.PercentOutput, speed);
-    this.right.set(ControlMode.PercentOutput, speed);
+    left.set(ControlMode.PercentOutput, speed);
+    right.set(ControlMode.PercentOutput, -speed);
   }
 
   @Override

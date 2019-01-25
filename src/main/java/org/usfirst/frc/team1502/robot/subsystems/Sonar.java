@@ -7,34 +7,40 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class Vacuum extends Subsystem {
+public class Sonar extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+
+  AnalogInput sonar;
+
+  double analogVolts;
+  double cm;
+
+  public Sonar(AnalogInput sonar){
+    this.sonar = sonar;
+  }
+
+  public double readSensor() {
+    analogVolts = sonar.getVoltage();
+    cm = analogVolts / 2;
+    printRange();
+    return cm;
+  }
+
+  public void printRange(){
+    System.out.println(cm);
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    readSensor();
   }
-
-  TalonSRX vacuum = null;
-  double speed = 0;
-
-  public Vacuum(TalonSRX vacuum) { 
-    this.vacuum = vacuum;
-  }
-    
-  public void setSpeed(double speed) {
-     this.speed = speed;
-     vacuum.set(ControlMode.PercentOutput, speed);
-  }
-
 }

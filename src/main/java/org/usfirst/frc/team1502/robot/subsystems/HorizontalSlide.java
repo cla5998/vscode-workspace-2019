@@ -7,15 +7,25 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class Vacuum extends Subsystem {
+public class HorizontalSlide extends Subsystem {
+
+Spark pinion = null;
+
+public HorizontalSlide(Spark pinion) {
+
+  this.pinion = pinion;
+
+}
+public void setSpeed(double speedInput){
+  double speed = speedInput;
+  pinion.set(speed);
+}
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -23,18 +33,6 @@ public class Vacuum extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-  }
 
-  TalonSRX vacuum = null;
-  double speed = 0;
-
-  public Vacuum(TalonSRX vacuum) { 
-    this.vacuum = vacuum;
   }
-    
-  public void setSpeed(double speed) {
-     this.speed = speed;
-     vacuum.set(ControlMode.PercentOutput, speed);
-  }
-
 }
