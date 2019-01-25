@@ -18,6 +18,8 @@ public class LinearSlide extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
+  public static int distance = 0;
+
   TalonSRX left;
   TalonSRX right;
   boolean toggled = true;
@@ -28,8 +30,17 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input){
-    for(int distance = 0; distance < input; distance++){
+    if(distance < input){
+      for(this.distance; this.distance < input; distance++) {
+
+      }
     }
+    else if(this.distance > input){
+      for(this.distance; this.distance > input; distance--) {
+
+      }
+    }
+    this.distance = input;
   }
 
   public void toggleChange(){
