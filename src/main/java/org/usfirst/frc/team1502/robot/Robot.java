@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
 	public static Sonar sonar = new Sonar(null);
-	public static LinearSlide slide = new LinearSlide(null, null, true, 0);
+	public static LinearSlide slide = new LinearSlide(null, null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 

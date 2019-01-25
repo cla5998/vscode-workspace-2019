@@ -11,10 +11,14 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class HatchSlide extends Command {
-  public HatchSlide() {
+public class LinearSlideCommands extends Command {
+
+  String level;
+
+  public LinearSlideCommands(String place) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.level = place;
     requires(Robot.slide);
   }
 
@@ -26,9 +30,19 @@ public class HatchSlide extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    String [] places = {"ground", "first", "second", "top"};
+    for(int i = 0; i<places.length; i++){
+      if(this.level.equals(places[i]) && Robot.slide.getToggle() == true){
+        double [] distance = {0 , 1, 2, 3}; //placeholder distances because we dont know how to do that
+        Robot.slide.move(distance[i]);
+      }
+      else if(this.level.equals(places[i]) && Robot.slide.getToggle() == false){
+        double [] distance = {0 , 1, 2, 3};
+        Robot.slide.move(distance[i]);
+      }
+    }
   }
 
-  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

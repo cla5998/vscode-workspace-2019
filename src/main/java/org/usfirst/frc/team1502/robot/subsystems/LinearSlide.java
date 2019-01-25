@@ -20,17 +20,23 @@ public class LinearSlide extends Subsystem {
 
   TalonSRX left;
   TalonSRX right;
-  boolean toggled;
-  int value;
+  boolean toggled = true;
 
-  public LinearSlide(TalonSRX left, TalonSRX right, boolean toggled, int value){
+  public LinearSlide(TalonSRX left, TalonSRX right){
     this.left = left;
     this.right = right;
-    this.toggled = toggled;
-    this.value = value;
   }
 
-  public void move(){
+  public void move(double input){
+    for(int distance = 0; distance < input; distance++){
+    }
+  }
+
+  public void toggleChange(){
+    toggled = !toggled;
+  }
+  public boolean getToggle(){
+    return this.toggled;
   }
 
   @Override

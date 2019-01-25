@@ -50,6 +50,13 @@ public class OI {
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 
+	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers. evan dont yell at me
+	Button dpRight = new JoystickButton(manipJoystick, 6);
+	Button dpDown = new JoystickButton(manipJoystick, 7);
+	Button dpUp = new JoystickButton(manipJoystick, 8);
+
+	Button back = new JoystickButton(manipJoystick, 24);
+
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
@@ -62,6 +69,12 @@ public class OI {
 		lb.whileHeld(new HorizontalSlideCommands(false));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+
+		back.whenPressed(new ToggleSlideCommands());
+		dpLeft.whenPressed(new LinearSlideCommands("first"));
+		dpRight.whenPressed(new LinearSlideCommands("second"));
+		dpDown.whenPressed(new LinearSlideCommands("ground"));
+		dpUp.whenPressed(new LinearSlideCommands("top"));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
