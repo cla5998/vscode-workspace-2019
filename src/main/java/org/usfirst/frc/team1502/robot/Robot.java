@@ -63,7 +63,7 @@ public class Robot extends TimedRobot {
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		sonar = new Sonar(RobotMap.SONAR_SPARK);
 		m_oi = new OI();
-		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT),)
+		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 

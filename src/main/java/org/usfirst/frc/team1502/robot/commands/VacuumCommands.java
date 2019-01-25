@@ -15,7 +15,6 @@ public class VacuumCommands extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires (Robot.vacuum);
-
   }
 
   // Called just before this Command runs the first time
