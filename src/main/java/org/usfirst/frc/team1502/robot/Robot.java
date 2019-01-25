@@ -20,7 +20,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
-
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.HorizontalSlide;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
 	public static Sonar sonar = new Sonar(null);
+	public static LinearSlide slide = new LinearSlide(null, null, true, 0);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -62,6 +63,7 @@ public class Robot extends TimedRobot {
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		sonar = new Sonar(RobotMap.SONAR_SPARK);
 		m_oi = new OI();
+		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT),)
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 

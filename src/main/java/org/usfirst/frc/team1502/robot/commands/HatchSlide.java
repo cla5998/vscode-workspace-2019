@@ -11,20 +11,11 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class SonarCommands extends Command {
-  /*
-
-
-
-  I don't think file needs to exist, as the sensor should just output a value for now not be an automatic system
-
-
-
-  */
-  public SonarCommands() {
+public class HatchSlide extends Command {
+  public HatchSlide() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.sonar);
+    requires(Robot.slide);
   }
 
   // Called just before this Command runs the first time
@@ -34,9 +25,10 @@ public class SonarCommands extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() { 
-      
+  protected void execute() {
   }
+
+  
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -53,6 +45,5 @@ public class SonarCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
