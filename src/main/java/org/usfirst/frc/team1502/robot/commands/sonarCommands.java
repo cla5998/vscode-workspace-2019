@@ -9,18 +9,18 @@ package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
 
-import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SonarCommands extends Command {
-  double smallBoundary;
-  double largeBoundary;
-  public SonarCommands(double boundS, double boundL) {
+  double minDistance;
+  double maxDistance;
+  public SonarCommands(double minDistance, double maxDistance) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.smallBoundary = boundS;
-    this.largeBoundary = boundL;
+    this.minDistance = minDistance;
+    this.maxDistance = maxDistance;
+
 
     requires(Robot.sonar);
   }
@@ -34,10 +34,10 @@ public class SonarCommands extends Command {
   @Override
   protected void execute() {
     double cm = Robot.sonar.readSensor();
-    while(cm < smallBoundary) {
+    while(cm < minDistance) {
       SmartDashboard.putBoolean("close", true);
     }
-    while(cm > largeBoundary) {
+    while(cm > maxDistance) {
       SmartDashboard.putBoolean("far", true);
     }
   }
