@@ -46,7 +46,6 @@ public class LinearSlide extends Subsystem {
         right.set(ControlMode.PercentOutput, -1);
       }
     }
-
   }
 
   public void toggleChange() {

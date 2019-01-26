@@ -14,12 +14,17 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LinearSlideCommands extends Command {
 
   String level;
-
+  boolean toggle = true;
+  int set = 0;
   public LinearSlideCommands(String place) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     this.level = place;
     requires(Robot.slide);
+  }
+
+  public LinearSlideCommands(int set){
+    this.set = set;
   }
   
   // Called just before this Command runs the first time
@@ -30,18 +35,25 @@ public class LinearSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String [] places = {"ground", "low", "middle", "high"};
-    for (int i = 0; i < places.length; i++) {
-      if (this.level.equals(places[i]) && Robot.slide.getToggle() == true) {
-        double [] distance = {0, 1, 2, 3}; //placeholder distances because we dont know how to do that
-        Robot.slide.move(distance[i]);
-      }
-      else if (this.level.equals(places[i]) && Robot.slide.getToggle() == false) {
-        double [] distance = {0, 1, 2, 3};
-        Robot.slide.move(distance[i]);
+    if(set == 0){
+      String [] places = {"ground", "low", "middle", "high"};
+      for (int i = 0; i < places.length; i++) {
+        if (this.level.equals(places[i]) && toggle == true) {
+          double [] distance = {0, 1, 2, 3}; //placeholder distances because we dont know how to do that
+          Robot.slide.move(distance[i]);
+        }
+        else if (this.level.equals(places[i]) && toggle == false) {
+          double [] distance = {0, 1, 2, 3};
+          Robot.slide.move(distance[i]);
+        }
       }
     }
+    else if(set == 1){
+      toggle = !toggle;
+      set = 0;
+    }
   }
+  
 
 
   // Make this return true when this Command no longer needs to run execute()

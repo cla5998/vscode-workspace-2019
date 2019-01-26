@@ -70,7 +70,7 @@ public class OI {
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
-		back.whenPressed(new ToggleSlideCommands());
+		back.whenPressed(new LinearSlideCommands(1));
 		dpLeft.whenPressed(new LinearSlideCommands("first"));
 		dpRight.whenPressed(new LinearSlideCommands("low"));
 		dpDown.whenPressed(new LinearSlideCommands("middle"));
