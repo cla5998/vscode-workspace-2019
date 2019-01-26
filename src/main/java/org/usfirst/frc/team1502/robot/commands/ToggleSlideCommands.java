@@ -20,13 +20,13 @@ public class ToggleSlideCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.slide.toggleChange();
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.slide.toggleChange();
-  }   
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
