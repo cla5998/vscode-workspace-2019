@@ -12,10 +12,10 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SonarCommands extends Command {
+public class sonarCommands extends Command {
   double minDistance;
   double maxDistance;
-  public SonarCommands(double minDistance, double maxDistance) {
+  public sonarCommands(double minDistance, double maxDistance) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     this.minDistance = minDistance;
