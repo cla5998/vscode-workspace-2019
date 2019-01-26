@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.Sendable;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class sonarCommands extends Command {
+public class SonarCommands extends Command {
   double smallBoundary;
   double largeBoundary;
-  public sonarCommands(double boundS, double boundL) {
+  public SonarCommands(double boundS, double boundL) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     this.smallBoundary = boundS;
