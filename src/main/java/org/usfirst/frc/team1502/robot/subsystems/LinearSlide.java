@@ -7,11 +7,12 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import org.usfirst.frc.team1502.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
@@ -58,6 +59,24 @@ public class LinearSlide extends Subsystem {
       left.set(ControlMode.PercentOutput, -1);
       right.set(ControlMode.PercentOutput, 1);
     }
+  }
+
+  Map<Level, Integer> mapA = new HashMap <Level, Integer>();
+
+  public double getDistance2(Level place, LoadType load) {
+    switch(load) {
+      case Cargo:
+        mapA.put(Level.Ground, 1);
+        mapA.put(Level.Low, 2);
+        mapA.put(Level.Middle, 3);
+        mapA.put(Level.High, 4);
+      case Hatch:
+        mapA.put(Level.Ground, 1);
+        mapA.put(Level.Low, 2);
+        mapA.put(Level.Middle, 3);
+        mapA.put(Level.High, 4);
+    }
+    return (double) mapA.get(place);
   }
 
   // public void getDistance(String level) {
