@@ -49,6 +49,7 @@ public class OI {
 	//Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
+	Button idk = new JoystickButton(manipJoystick, 11);
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers. evan dont yell at me
 	Button dpRight = new JoystickButton(manipJoystick, 6);
@@ -69,6 +70,9 @@ public class OI {
 		lb.whileHeld(new HorizontalSlideCommands(false));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+
+		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
+		idk.toggleWhenPressed(new sonarCommands(10, 15));
 
 		back.whenPressed(new LinearSlideCommands(1));
 		dpLeft.whenPressed(new LinearSlideCommands("first"));

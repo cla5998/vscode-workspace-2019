@@ -53,7 +53,7 @@ public class RobotMap {
 	public static final Spark INTAKE_SPARK = new Spark(0);
 	public static final Spark RACK_SPARK = new Spark(1);
 
-	//this isnt real im just being stupid
+	//sonar motor
 	public static final AnalogInput SONAR_SPARK = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port

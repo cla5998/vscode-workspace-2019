@@ -22,14 +22,14 @@ public class Sonar extends Subsystem {
   double analogVolts;
   double cm;
 
-  public Sonar(AnalogInput sonar){
+  public Sonar(AnalogInput sonar) {
     this.sonar = sonar;
   }
 
   public double readSensor() {
     analogVolts = sonar.getVoltage();
     cm = analogVolts / 2;
-    printRange();
+    //printRange();
     return cm;
   }
 
