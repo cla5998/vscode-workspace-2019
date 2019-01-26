@@ -55,7 +55,7 @@ public class OI {
 	Button dpDown = new JoystickButton(manipJoystick, 7);
 	Button dpUp = new JoystickButton(manipJoystick, 8);
 
-	Button back = new JoystickButton(manipJoystick, 24);
+	Button back = new JoystickButton(manipJoystick, 13);
 
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP

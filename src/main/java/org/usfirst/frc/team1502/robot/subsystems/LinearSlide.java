@@ -9,6 +9,9 @@ package org.usfirst.frc.team1502.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import org.usfirst.frc.team1502.robot.Robot;
+
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -18,7 +21,6 @@ public class LinearSlide extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  public static int distance = 0;
 
   TalonSRX left;
   TalonSRX right;
@@ -30,17 +32,17 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input){
-    if(distance < input){
-      for(this.distance; this.distance < input; distance++) {
+    Robot.enc.setDistancePerPulse(1);
+    if(Robot.enc.getDistance() < input){
+      // while(Robot.enc.getDistance() < input) {
 
-      }
+      // }
     }
-    else if(this.distance > input){
-      for(this.distance; this.distance > input; distance--) {
+    else if(Robot.enc.getDistance() > input){
+      // while(Robot.enc.getDistance() > input) {
 
-      }
+      // }
     }
-    this.distance = input;
   }
 
   public void toggleChange(){

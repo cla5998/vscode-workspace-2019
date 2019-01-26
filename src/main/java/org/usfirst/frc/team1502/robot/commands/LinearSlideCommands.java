@@ -21,7 +21,7 @@ public class LinearSlideCommands extends Command {
     this.level = place;
     requires(Robot.slide);
   }
-
+  
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -31,12 +31,12 @@ public class LinearSlideCommands extends Command {
   @Override
   protected void execute() {
     String [] places = {"ground", "first", "second", "top"};
-    for(int i = 0; i<places.length; i++){
-      if(this.level.equals(places[i]) && Robot.slide.getToggle() == true){
+    for(int i = 0; i < places.length; i++) {
+      if(this.level.equals(places[i]) && Robot.slide.getToggle() == true) {
         double [] distance = {0 , 1, 2, 3}; //placeholder distances because we dont know how to do that
         Robot.slide.move(distance[i]);
       }
-      else if(this.level.equals(places[i]) && Robot.slide.getToggle() == false){
+      else if(this.level.equals(places[i]) && Robot.slide.getToggle() == false) {
         double [] distance = {0 , 1, 2, 3};
         Robot.slide.move(distance[i]);
       }
@@ -53,13 +53,11 @@ public class LinearSlideCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.slide.move("ground");
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

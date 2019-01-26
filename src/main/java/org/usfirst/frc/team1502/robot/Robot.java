@@ -9,6 +9,7 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -49,12 +50,15 @@ public class Robot extends TimedRobot {
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+	public static Encoder enc;
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		drivetrain = new Drivetrain();
 		intake = new Intake(RobotMap.INTAKE_SPARK);
 		hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
@@ -67,6 +71,7 @@ public class Robot extends TimedRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 
+		enc.reset();
 		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
 	}
 	/**
