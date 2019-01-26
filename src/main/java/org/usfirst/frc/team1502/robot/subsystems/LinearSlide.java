@@ -47,6 +47,55 @@ public class LinearSlide extends Subsystem {
     }
   }
 
+  public void getDistance(String level) {
+    String[] places = { "ground", "low", "middle", "high" }; //the levels
+    for (int i = 0; i < places.length; i++) { // runs levels
+      if (level.equals(places[i]) && getToggle() == true) {  //checks to see if levels is equal and tggle is on
+        double[] distance = { 0, 1, 2, 3 }; // placeholder distances because we dont know how to do that
+        move(distance[i]); // returns the distance if it runs
+      } else if (level.equals(places[i]) && getToggle() == false) { //checks to see if level is equal and toggle is off
+        double[] distance = { 0, 1, 2, 3 }; 
+        move(distance[i]);
+      }
+    }
+  }
+
+  // enum Level {
+  //   Ground, Low, Middle, High;
+  // };
+
+  // enum LoadType {
+  //   Hatch, Cargo
+  // };
+
+  // public static final double HATCH_GROUND = 0;
+  // public static final double HATCH_LOW = 0;
+  // public static final double HATCH_MIDDLE = 0;
+  // public static final double HATCH_HIGH = 0;
+  // public static final double CARGO_GROUND = 0;
+  // public static final double CARGO_LOW = 0;
+  // public static final double CARGO_MIDDLE = 0;
+  // public static final double CARGO_HIGH = 0;
+
+  // public double getDistance2(Level level, LoadType load) {
+  //   switch (level) {
+  //     case Ground:
+  //       if (load == LoadType.Hatch) return HATCH_GROUND;
+  //       if (load == LoadType.Cargo) return CARGO_GROUND;
+  //     case Low:
+  //       if (load == LoadType.Hatch) return HATCH_LOW;
+  //       if (load == LoadType.Cargo) return CARGO_LOW;
+  //     case Middle:
+  //       if (load == LoadType.Hatch) return HATCH_MIDDLE;
+  //       if (load == LoadType.Cargo) return CARGO_MIDDLE;
+  //     case High:
+  //       if (load == LoadType.Hatch) return HATCH_HIGH;
+  //       if (load == LoadType.Cargo) return CARGO_HIGH;
+  //     default:
+  //       return 0.0; // This won't happen
+  //   }
+  // }
+
   public void toggleChange() {
     toggled = !toggled;
   }

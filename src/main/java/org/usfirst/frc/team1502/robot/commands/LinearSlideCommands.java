@@ -31,17 +31,18 @@ public class LinearSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    String [] places = {"ground", "low", "middle", "high"};
-    for (int i = 0; i < places.length; i++) {
-      if (this.level.equals(places[i]) && Robot.slide.getToggle() == true) {
-        double [] distance = {0, 1, 2, 3}; //placeholder distances because we dont know how to do that
-        Robot.slide.move(distance[i]);
-      }
-      else if (this.level.equals(places[i]) && Robot.slide.getToggle() == false) {
-        double [] distance = {0, 1, 2, 3};
-        Robot.slide.move(distance[i]);
-      }
-    }
+    Robot.slide.getDistance(level);
+    // String [] places = {"ground", "low", "middle", "high"};
+    // for (int i = 0; i < places.length; i++) {
+    //   if (this.level.equals(places[i]) && Robot.slide.getToggle() == true) {
+    //     double [] distance = {0, 1, 2, 3}; //placeholder distances because we dont know how to do that
+    //     Robot.slide.move(distance[i]);
+    //   }
+    //   else if (this.level.equals(places[i]) && Robot.slide.getToggle() == false) {
+    //     double [] distance = {0, 1, 2, 3};
+    //     Robot.slide.move(distance[i]);
+    //   }
+    // }
   }
   
 
