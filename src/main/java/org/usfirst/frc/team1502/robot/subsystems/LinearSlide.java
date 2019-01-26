@@ -26,25 +26,24 @@ public class LinearSlide extends Subsystem {
   TalonSRX left;
   TalonSRX right;
   boolean toggled = true;
-
+  double distance;
   public LinearSlide(TalonSRX left, TalonSRX right) {
     this.left = left;
     this.right = right;
   }
+  public LinearSlide(double distance){
+    this.distance = distance;
+  }
 
   public void move(double input) {
     Robot.enc.setDistancePerPulse(1);
-    if (Robot.enc.getDistance() < input) {
-      while (Robot.enc.getDistance() < input) {
-        left.set(ControlMode.PercentOutput, 1);
-        right.set(ControlMode.PercentOutput, -1);
-      }
+    while (Robot.enc.getDistance() < input) {
+      left.set(ControlMode.PercentOutput, 1);
+      right.set(ControlMode.PercentOutput, -1);
     }
-    else if (Robot.enc.getDistance() > input) {
-      while (Robot.enc.getDistance() > input) {
-        left.set(ControlMode.PercentOutput, 1);
-        right.set(ControlMode.PercentOutput, -1);
-      }
+    while (Robot.enc.getDistance() > input) {
+      left.set(ControlMode.PercentOutput, 1);
+      right.set(ControlMode.PercentOutput, -1);
     }
   }
 
