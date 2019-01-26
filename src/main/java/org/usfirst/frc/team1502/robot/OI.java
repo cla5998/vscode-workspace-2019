@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -75,10 +76,10 @@ public class OI {
 		idk.toggleWhenPressed(new SonarCommands(10, 15));
 
 		back.whenPressed(new ToggleSlideCommands());
-		dpLeft.whenPressed(new LinearSlideCommands("first"));
-		dpRight.whenPressed(new LinearSlideCommands("low"));
-		dpDown.whenPressed(new LinearSlideCommands("middle"));
-		dpUp.whenPressed(new LinearSlideCommands("high"));
+		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
+		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
+		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+		dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

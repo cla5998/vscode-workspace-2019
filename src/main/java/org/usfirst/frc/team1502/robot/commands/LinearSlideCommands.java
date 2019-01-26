@@ -8,18 +8,19 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class LinearSlideCommands extends Command {
 
-  String level;
-  boolean toggle = true;
-  int set = 0;
-  public LinearSlideCommands(String place) {
+  // String level;
+  LinearSlide.Level level;
+  
+  public LinearSlideCommands(LinearSlide.Level level) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.level = place;
+    this.level = level;
     requires(Robot.slide);
   }
 
@@ -31,7 +32,8 @@ public class LinearSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.slide.getDistance(level);
+    // Robot.slide.getDistance(level);
+    Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
     // String [] places = {"ground", "low", "middle", "high"};
     // for (int i = 0; i < places.length; i++) {
     //   if (this.level.equals(places[i]) && Robot.slide.getToggle() == true) {
