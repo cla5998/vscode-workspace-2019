@@ -31,6 +31,7 @@ public class RobotMap {
 	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 2;
 	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 4;
 	public static final int VACUUM_TALON = 5;
+	
 	public static final int PLATFORM_TALON_LEFT = 6;
 	public static final int PLATFORM_TALON_RIGHT = 7;
 	public static final int LINEAR_SLIDE_TALON_LEFT = 8;
@@ -52,6 +53,9 @@ public class RobotMap {
 	//PWM
 	public static final Spark INTAKE_SPARK = new Spark(0);
 	public static final Spark RACK_SPARK = new Spark(1);
+
+	public static final Spark VACUUM_SPARK1 = new Spark(4);
+	public static final Spark VACUUM_SPARK2 = new Spark(5);
 
 	//this isnt real im just being stupid
 	public static final AnalogInput SONAR_SPARK = new AnalogInput(3);

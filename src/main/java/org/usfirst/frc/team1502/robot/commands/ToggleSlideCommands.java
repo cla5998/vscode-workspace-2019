@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
+import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ToggleSlideCommands extends Command {
@@ -24,7 +26,7 @@ public class ToggleSlideCommands extends Command {
   @Override
   protected void execute() {
     Robot.slide.toggleChange();
-  }
+  }   
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -35,7 +37,7 @@ public class ToggleSlideCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-  }
+  }               
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
