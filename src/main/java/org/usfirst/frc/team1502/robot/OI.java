@@ -72,9 +72,9 @@ public class OI {
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		idk.toggleWhenPressed(new sonarCommands(10, 15));
+		idk.toggleWhenPressed(new SonarCommands(10, 15));
 
-		back.whenPressed(new LinearSlideCommands(1));
+		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands("first"));
 		dpRight.whenPressed(new LinearSlideCommands("low"));
 		dpDown.whenPressed(new LinearSlideCommands("middle"));
