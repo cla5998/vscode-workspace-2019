@@ -9,11 +9,8 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
-<<<<<<< HEAD
 import edu.wpi.first.wpilibj.Spark;
-=======
 import edu.wpi.first.wpilibj.Encoder;
->>>>>>> 9e62840810f0a136a71d1b6603f0774ddf230508
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
