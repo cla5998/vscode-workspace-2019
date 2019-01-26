@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc.team1502.robot.Robot;
@@ -26,29 +27,32 @@ public class LinearSlide extends Subsystem {
   TalonSRX right;
   boolean toggled = true;
 
-  public LinearSlide(TalonSRX left, TalonSRX right){
+  public LinearSlide(TalonSRX left, TalonSRX right) {
     this.left = left;
     this.right = right;
   }
 
-  public void move(double input){
+  public void move(double input) {
     Robot.enc.setDistancePerPulse(1);
-    if(Robot.enc.getDistance() < input){
-      // while(Robot.enc.getDistance() < input) {
-
-      // }
+    if (Robot.enc.getDistance() < input) {
+      while (Robot.enc.getDistance() < input) {
+        left.set(ControlMode.PercentOutput, 1);
+        right.set(ControlMode.PercentOutput, 1);
+      }
     }
-    else if(Robot.enc.getDistance() > input){
-      // while(Robot.enc.getDistance() > input) {
-
-      // }
+    else if (Robot.enc.getDistance() > input) {
+      while (Robot.enc.getDistance() > input) {
+        left.set(ControlMode.PercentOutput, -1);
+        right.set(ControlMode.PercentOutput, -1);
+      }
     }
+
   }
 
-  public void toggleChange(){
+  public void toggleChange() {
     toggled = !toggled;
   }
-  public boolean getToggle(){
+  public boolean getToggle() {
     return this.toggled;
   }
 

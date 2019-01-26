@@ -55,7 +55,7 @@ public class OI {
 	Button dpDown = new JoystickButton(manipJoystick, 7);
 	Button dpUp = new JoystickButton(manipJoystick, 8);
 
-	Button back = new JoystickButton(manipJoystick, 13);
+	Button back = new JoystickButton(manipJoystick, 7);
 
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
@@ -72,9 +72,9 @@ public class OI {
 
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands("first"));
-		dpRight.whenPressed(new LinearSlideCommands("second"));
-		dpDown.whenPressed(new LinearSlideCommands("ground"));
-		dpUp.whenPressed(new LinearSlideCommands("top"));
+		dpRight.whenPressed(new LinearSlideCommands("low"));
+		dpDown.whenPressed(new LinearSlideCommands("middle"));
+		dpUp.whenPressed(new LinearSlideCommands("high"));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
