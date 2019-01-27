@@ -91,7 +91,7 @@ public class LinearSlide extends Subsystem {
   //     }
   //   }
   // }
-
+  
   public double getDistance(Level level, LoadType load) {
     switch (level) {
       case Ground:

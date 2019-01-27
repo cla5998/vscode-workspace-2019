@@ -9,6 +9,7 @@ package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -50,14 +51,14 @@ public class OI {
 	//Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
-	Button idk = new JoystickButton(manipJoystick, 11);
+	Button idk = new JoystickButton(manipJoystick, 11);//sonar platform. numbers undefined.
 
-	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers. evan dont yell at me
-	Button dpRight = new JoystickButton(manipJoystick, 6);
+	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
+	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
 	Button dpUp = new JoystickButton(manipJoystick, 8);
 
-	Button back = new JoystickButton(manipJoystick, 7);
+	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
 
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
@@ -73,7 +74,7 @@ public class OI {
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		idk.toggleWhenPressed(new sonarCommands(10, 15));
+		idk.toggleWhenPressed(new sonarCommands(Type.PlatForm));
 
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
