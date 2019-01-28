@@ -43,8 +43,7 @@ public class Robot extends TimedRobot {
 	public static TankDrive m_tankDrive = new TankDrive(null, null, null, null);
 	public static Intake intake = new Intake(null);
 	public static HatchRelease hatchRelease = new HatchRelease(null, null, null);
-	public static Vacuum vacuum1 = new Vacuum(null);
-	public static Vacuum vacuum2 = new Vacuum(null);
+	public static Vacuum vacuum = new Vacuum(null, null);
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
 	public static Sonar sonar = new Sonar(null);
@@ -60,18 +59,22 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-		drivetrain = new Drivetrain();
-		intake = new Intake(RobotMap.INTAKE_SPARK);
-		hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
-		vacuum1 = new Vacuum(RobotMap.VACUUM_SPARK1);
-		vacuum1 = new Vacuum(RobotMap.VACUUM_SPARK2);
-		horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
-		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
-		sonar = new Sonar(RobotMap.SONAR_SPARK);
 		m_oi = new OI();
+		drivetrain = new Drivetrain();
+
+		sonar = new Sonar(RobotMap.SONAR_SPARK);
+		intake = new Intake(RobotMap.INTAKE_SPARK);
+		vacuum = new Vacuum(RobotMap.VACUUM_SPARK_LEFT, RobotMap.VACUUM_SPARK_RIGHT);
+		//vacuum2 = new Vacuum(RobotMap.VACUUM_SPARK2);
+		horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
+		
+		hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
+
+		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
+			//linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
-		// chooser.addObject("My Auto", new MyAutoCommand());
+		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+				// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 
 		enc.reset();

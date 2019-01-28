@@ -61,22 +61,22 @@ public class LinearSlide extends Subsystem {
     }
   }
 
-  Map<Level, Integer> mapA = new HashMap <Level, Integer>();
+  Map<Level, Double> Heights = new HashMap <Level, Double>();
 
   public double getDistance2(Level place, LoadType load) {
     switch(load) {
       case Cargo:
-        mapA.put(Level.Ground, 1);
-        mapA.put(Level.Low, 2);
-        mapA.put(Level.Middle, 3);
-        mapA.put(Level.High, 4);
+        Heights.put(Level.Ground, 1.0);
+        Heights.put(Level.Low, 2.0);
+        Heights.put(Level.Middle, 3.0);
+        Heights.put(Level.High, 4.0);
       case Hatch:
-        mapA.put(Level.Ground, 1);
-        mapA.put(Level.Low, 2);
-        mapA.put(Level.Middle, 3);
-        mapA.put(Level.High, 4);
+        Heights.put(Level.Ground, 1.0);
+        Heights.put(Level.Low, 2.0);
+        Heights.put(Level.Middle, 3.0);
+        Heights.put(Level.High, 4.0);
     }
-    return (double) mapA.get(place);
+    return (double) Heights.get(place);
   }
 
   // public void getDistance(String level) {
