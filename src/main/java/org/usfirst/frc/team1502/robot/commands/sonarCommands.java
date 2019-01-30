@@ -7,18 +7,19 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
-import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar.Distance;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar.Type;
+import java.util.Map;
 
+import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Boundaries;
 
-public class sonarCommands extends Command {
 
-  Type place;
+public class SonarCommands extends Command {
 
-  public sonarCommands(Type place) {
+  Map<Boundaries, Double> place;
+
+  public SonarCommands(Map<Boundaries, Double> place) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     this.place = place;
@@ -35,10 +36,10 @@ public class sonarCommands extends Command {
   @Override
   protected void execute() {
     double cm = Robot.sonar.readSensor(); // gets distance from object
-    while(cm < Robot.sonar.getBoundary(place, Distance.low)) { // gets what distance and bound were looking for
+    while(cm < Robot.sonar.getBound(place, Boundaries.low)) { // gets what distance and bound were looking for
       SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
     }
-    while(cm > Robot.sonar.getBoundary(place, Distance.high)) {
+    while(cm > Robot.sonar.getBound(place, Boundaries.high)) {
       SmartDashboard.putBoolean("far", true);
     }
   }
