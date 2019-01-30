@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -25,7 +22,13 @@ public class Sonar extends Subsystem {
 
   public enum Type {
     LinearSlide, PlatForm;
-  }; //this is the way to differentiate between what the boundaries are for. might be unneeded, but its here
+  }
+
+  private static final double LINEAR_SLIDE_HIGH = 0;
+  private static final double LINEAR_SLIDE_LOW = 0;
+  private static final double PLATFORM_HIGH = 0;
+  private static final double PLATFORM_LOW = 0;; // this is the way to differentiate between what the boundaries
+                                                      // are for. might be unneeded, but its here
 
   AnalogInput analogSonar;
 
@@ -36,18 +39,17 @@ public class Sonar extends Subsystem {
     this.analogSonar = analogSonar;
   }
 
-  Map<Distance, Double> SonarDistance = new HashMap<Distance, Double>();
-
-  public double getBoundary(Type value, Distance boundary) {
-    switch(value) {
+  public double getBoundary(Type type, Distance distance) {
+    switch (type) {
       case LinearSlide:
-        SonarDistance.put(Distance.high, 0.0);
-        SonarDistance.put(Distance.low, 0.0);
+      if (distance == Distance.high) return LINEAR_SLIDE_HIGH;
+      if(distance == Distance.low) return LINEAR_SLIDE_LOW;
       case PlatForm:
-        SonarDistance.put(Distance.high, 0.0);
-        SonarDistance.put(Distance.low, 0.0);
+      if (distance == Distance.high) return PLATFORM_HIGH;
+      if (distance == Distance.low) return PLATFORM_LOW;
+    default:
+      return 0.0; // This won't happen
     }
-    return (double) SonarDistance.get(boundary);
   }
 
   public double readSensor() {

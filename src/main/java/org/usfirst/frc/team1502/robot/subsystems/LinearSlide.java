@@ -7,13 +7,18 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide.LoadType;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+
 /**
  * Add your docs here.
  */
@@ -36,13 +41,12 @@ public class LinearSlide extends Subsystem {
   public static final double CARGO_HIGH = 0;
 
   public enum Level {
-    Ground, Low, Middle, High;
+    Ground, Low, Middle, High
   };
 
   public enum LoadType {
     Hatch, Cargo
   };
-
 
   public LinearSlide(TalonSRX left, TalonSRX right) {
     this.left = left;
@@ -61,23 +65,27 @@ public class LinearSlide extends Subsystem {
     }
   }
 
-  Map<Level, Double> Heights = new HashMap <Level, Double>();
 
-  public double getDistance2(Level place, LoadType load) {
-    switch(load) {
-      case Cargo:
-        Heights.put(Level.Ground, 1.0);
-        Heights.put(Level.Low, 2.0);
-        Heights.put(Level.Middle, 3.0);
-        Heights.put(Level.High, 4.0);
-      case Hatch:
-        Heights.put(Level.Ground, 1.0);
-        Heights.put(Level.Low, 2.0);
-        Heights.put(Level.Middle, 3.0);
-        Heights.put(Level.High, 4.0);
-    }
-    return (double) Heights.get(place);
-  }
+
+  // Map <Level, Double> Heights = new HashMap <Level, Double>();
+  // Map<Level, Double> heights = new EnumMap<Level, Double>(Level.class);
+
+
+  // public double getDistance2(Level place, LoadType load) {
+  //   switch (load) {
+  //   case Cargo:
+  //       heights.put(Level.Ground, 0.0);
+  //       heights.put(Level.Low, 1.0);
+  //       heights.put(Level.Middle, 2.0);
+  //       heights.put(Level.High, 3.0);
+  //     case Hatch:
+  //       heights.put(Level.Ground, 1.0);
+  //       heights.put(Level.Low, 2.0);
+  //       heights.put(Level.Middle, 3.0);
+  //       heights.put(Level.High, 4.0);
+  //   }
+  //   return (double) heights.get(place);
+  // }
 
   // public void getDistance(String level) {
   //   String[] places = {"ground", "low", "middle", "high"}; //the levels

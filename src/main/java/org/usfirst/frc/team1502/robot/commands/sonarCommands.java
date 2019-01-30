@@ -38,7 +38,7 @@ public class sonarCommands extends Command {
     while(cm < Robot.sonar.getBoundary(place, Distance.low)) { // gets what distance and bound were looking for
       SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
     }
-    while(cm > Robot.sonar.getBoundary(place, Distance. high)) {
+    while(cm > Robot.sonar.getBoundary(place, Distance.high)) {
       SmartDashboard.putBoolean("far", true);
     }
   }

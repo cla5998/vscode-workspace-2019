@@ -9,7 +9,7 @@ package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar.*;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -74,7 +74,7 @@ public class OI {
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		idk.toggleWhenPressed(new sonarCommands(Type.PlatForm));
+		idk.toggleWhenPressed(new sonarCommands(Sonar.Type.PlatForm));
 
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
