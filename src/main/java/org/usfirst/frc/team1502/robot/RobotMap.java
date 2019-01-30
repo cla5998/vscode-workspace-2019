@@ -37,6 +37,14 @@ public class RobotMap {
 	// public static final int LINEAR_SLIDE_TALON_LEFT = 8;
 	// public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
 
+	public static final int VACUUM_TALON = 5;
+	
+	public static final int PLATFORM_TALON_LEFT = 6;
+	public static final int PLATFORM_TALON_RIGHT = 7;
+	
+	public static final int LINEAR_SLIDE_TALON_LEFT = 8;
+	public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
+
 	//Joysticks
 	public static final int LEFT_JOYSTICK = 0;
 	public static final int RIGHT_JOYSTICK = 1;
@@ -56,9 +64,11 @@ public class RobotMap {
 
 	// public static final Spark VACUUM_SPARK1 = new Spark(4);
 	// public static final Spark VACUUM_SPARK2 = new Spark(5);
+	public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
+	public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
 
 	//this isnt real im just being stupid
-	// public static final AnalogInput SONAR_SPARK = new AnalogInput(3);
+	public static final AnalogInput SONAR = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with a rangefinder:

@@ -8,20 +8,22 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Distance;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Type;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LinearSlideCommands extends Command {
+public class sonarCommands extends Command {
 
-  // String level;
-  LinearSlide.Level level;
-  
-  public LinearSlideCommands(LinearSlide.Level level) {
+  Type place;
+
+  public sonarCommands(Type place) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.level = level;
-    requires(Robot.slide);
+    this.place = place;
+
+    requires(Robot.sonar);
   }
 
   // Called just before this Command runs the first time
@@ -32,11 +34,14 @@ public class LinearSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
-    //Robot.slide.move(Robot.slide.getDistance2(level, Robot.slide.load));
+    double cm = Robot.sonar.readSensor(); // gets distance from object
+    while(cm < Robot.sonar.getBoundary(place, Distance.low)) { // gets what distance and bound were looking for
+      SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
+    }
+    while(cm > Robot.sonar.getBoundary(place, Distance. high)) {
+      SmartDashboard.putBoolean("far", true);
+    }
   }
-  
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

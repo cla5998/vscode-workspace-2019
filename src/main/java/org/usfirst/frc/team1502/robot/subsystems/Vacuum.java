@@ -17,6 +17,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Vacuum extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  
+  Spark vacuumLeft = null;
+  Spark vacuumRight = null;
+  double speed = 0;
 
   @Override
   public void initDefaultCommand() {
@@ -24,16 +28,15 @@ public class Vacuum extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  Spark vacuum = null;
-  double speed = 0;
-
-  public Vacuum(Spark vacuum) { 
-    this.vacuum = vacuum;
+  public Vacuum(Spark vacuumLeft, Spark vacuumRight) { 
+    this.vacuumLeft = vacuumLeft;
+    this.vacuumRight = vacuumRight;
   }
     
   public void setSpeed(double speed) {
      this.speed = speed;
-     vacuum.set(speed);
+     vacuumLeft.set(speed);
+     vacuumRight.set(speed);
   }
 
 }
