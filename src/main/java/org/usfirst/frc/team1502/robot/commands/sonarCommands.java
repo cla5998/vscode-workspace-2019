@@ -7,14 +7,26 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import java.util.Map;
 
-public class VacuumCommands extends Command {
-  public VacuumCommands() {
+import org.usfirst.frc.team1502.robot.Robot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Boundaries;
+
+
+public class SonarCommands extends Command {
+
+  Map<Boundaries, Double> place;
+
+  public SonarCommands(Map<Boundaries, Double> place) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires (Robot.vacuum);
+    this.place = place;
+
+    requires(Robot.sonar);
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -23,7 +35,13 @@ public class VacuumCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.vacuum.setSpeed(1);
+    double cm = Robot.sonar.readSensor(); // gets distance from object
+    while(cm < Robot.sonar.getBound(place, Boundaries.low)) { // gets what distance and bound were looking for
+      SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
+    }
+    while(cm > Robot.sonar.getBound(place, Boundaries.high)) {
+      SmartDashboard.putBoolean("far", true);
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -35,13 +53,11 @@ public class VacuumCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.vacuum.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

@@ -7,14 +7,23 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
+import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class VacuumCommands extends Command {
-  public VacuumCommands() {
+public class LinearSlideCommands extends Command {
+
+  // String level;
+  LinearSlide.Level level;
+  
+  public LinearSlideCommands(LinearSlide.Level level) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires (Robot.vacuum);
+    this.level = level;
+    requires(Robot.slide);
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -23,8 +32,11 @@ public class VacuumCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.vacuum.setSpeed(1);
+    Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
+    //Robot.slide.move(Robot.slide.getDistance2(level, Robot.slide.load));
   }
+  
+
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -35,13 +47,11 @@ public class VacuumCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    //Robot.vacuum.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }
