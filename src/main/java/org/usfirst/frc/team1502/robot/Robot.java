@@ -9,7 +9,9 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -48,6 +50,11 @@ public class Robot extends TimedRobot {
 	public static LinearSlide slide = new LinearSlide(null, null, true, 0);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	// NetworkTable networkTable;
+
+	public Robot() {
+		// networkTable = NetworkTable.getTable("GRIP/test");
+	}
 
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -63,11 +70,23 @@ public class Robot extends TimedRobot {
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		sonar = new Sonar(RobotMap.SONAR_SPARK);
 		m_oi = new OI();
-		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
+		//pslide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT), m_apFirstsRun, m_notifier);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 
-		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+
+		// NetworkTable test code
+		// double[] defaultValue = new double[0];
+		// while (true) {
+		// 	double[] areas = networkTable.getNumberArray("area", defaultValue);
+		// 	System.out.println("areas: ");
+		// 	for (double area: areas) {
+		// 		System.out.print(area + " ");
+		// 	}
+		// 	System.out.println();
+		// 	Timer.delay(1);
+		// }
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
