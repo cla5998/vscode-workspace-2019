@@ -43,15 +43,16 @@ public class Sonar extends Subsystem {
   }
 
   public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class) {{ //"error" is because i havent set a serial number for it
-    PlatForm.put(Boundaries.high, 0.0); 
-    PlatForm.put(Boundaries.low, 1.0);
-  }};
-  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {{
-    Rocket.put(Boundaries.high, 0.0);
-    Rocket.put(Boundaries.low, 1.0);
+    put(Boundaries.high, 0.0); 
+    put(Boundaries.low, 1.0);
   }};
 
-  public double getBound(Map<Boundaries, Double> type, Boundaries distance){ //simple get function. its slick
+  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {{
+    put(Boundaries.high, 0.0);
+    put(Boundaries.low, 1.0);
+  }};
+
+  public double getBound(Map<Boundaries, Double> type, Boundaries distance) { //simple get function. its slick
     return (double) type.get(distance);
   }
 
