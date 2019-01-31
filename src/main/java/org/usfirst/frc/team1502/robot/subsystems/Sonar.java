@@ -30,24 +30,26 @@ public class Sonar extends Subsystem {
 
   AnalogInput analogSonar;
 
-  double analogVolts; // raw output
-  double cm; 
+  double analogVolts; //raw output
+  double cm;
 
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
     
-    PlatForm.put(Boundaries.high, 0.0); //initiates the values for the different maps, the names are pretty explanatory for what is what
+    PlatForm.put(Boundaries.high, 0.0); 
     PlatForm.put(Boundaries.low, 1.0);
     Rocket.put(Boundaries.high, 0.0);
     Rocket.put(Boundaries.low, 1.0);
   }
 
-  public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class); // initiates the map itself
-  // {{ different way to initiate the values, but it sucks. still cool
-  //   put(Distance.high, 0.0);
-  //   put(Distance.low, 1.0);
-  // }};
-  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class);
+  public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class) {{ //"error" is because i havent set a serial number for it
+    PlatForm.put(Boundaries.high, 0.0); 
+    PlatForm.put(Boundaries.low, 1.0);
+  }};
+  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {{
+    Rocket.put(Boundaries.high, 0.0);
+    Rocket.put(Boundaries.low, 1.0);
+  }};
 
   public double getBound(Map<Boundaries, Double> type, Boundaries distance){ //simple get function. its slick
     return (double) type.get(distance);
@@ -69,18 +71,12 @@ public class Sonar extends Subsystem {
   public double readSensor() {
     analogVolts = analogSonar.getVoltage(); 
     cm = analogVolts / 2;
-    //printRange();
     return cm;
-  }
-
-  public void printRange(){
-    System.out.println(cm);
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    readSensor();
   }
 }
