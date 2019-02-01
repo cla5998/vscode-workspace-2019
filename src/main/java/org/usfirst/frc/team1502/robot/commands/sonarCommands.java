@@ -9,8 +9,6 @@ package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar.Distance;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar.Type;
 import java.util.Map;
 
 import org.usfirst.frc.team1502.robot.Robot;

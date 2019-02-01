@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
 	// public static Vacuum vacuum = new Vacuum(null, null);
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
-	// public static Sonar sonar;
+	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -83,7 +83,7 @@ public class Robot extends TimedRobot {
 		m_oi = new OI();
 		drivetrain = new Drivetrain();
 
-		// sonar = new Sonar(RobotMap.SONAR);
+		sonar = new Sonar(RobotMap.SONAR);
 		intake = new Intake(RobotMap.INTAKE_SPARK);
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK2);
