@@ -18,6 +18,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+import edu.wpi.first.wpilibj.vision.VisionRunner;
+
+import java.util.ArrayList;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -30,6 +34,10 @@ import org.usfirst.frc.team1502.robot.subsystems.HorizontalSlide;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
+import org.opencv.core.MatOfPoint;
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
+import org.usfirst.frc.team1502.robot.GripPipeline;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -49,11 +57,15 @@ public class Robot extends TimedRobot {
 	// public static Vacuum vacuum = new Vacuum(null, null);
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift =  new PlatformLift(null, null);
-	public static Sonar sonar = new Sonar(null);
+	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	// NetworkTable networkTable;
+	VisionThread visionThread;
+	final Object imgLock = new Object(); // Synchronizes access to the data being simultaneously updated with each image acquisition pass and the code that's processing the coordinates and steering the robot.
+	int targetCenterX;
+	boolean targetDetected;
 
 	public Robot() {
 		// networkTable = NetworkTable.getTable("GRIP/test");
@@ -95,6 +107,18 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		camera.setResolution(320, 240);
+		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+			ArrayList<MatOfPoint> contours = pipeline.filterContoursOutput();
+			if (pipeline.filterContoursOutput().size() >= 2) {
+				targetDetected = true;
+				Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+				synchronized (imgLock) {
+					targetCenterX = r.x + (r.width / 2);
+				}
+			} else targetDetected = false;
+		});
+		visionThread.start();
 
 		// NetworkTable test code
 		// double[] defaultValue = new double[0];
@@ -177,6 +201,8 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		//sonar.readSensor();
+		System.out.println("Target detected: " + targetDetected);
+		System.out.println("Target x on screen: " + targetCenterX);
 	}
 
 	/**
