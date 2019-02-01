@@ -51,7 +51,7 @@ public class OI {
 	//Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
-	Button idk = new JoystickButton(manipJoystick, 11);//sonar platform. numbers undefined.
+	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
