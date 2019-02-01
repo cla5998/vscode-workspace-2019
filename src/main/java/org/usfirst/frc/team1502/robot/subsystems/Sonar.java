@@ -12,6 +12,7 @@ import java.util.Map;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -21,8 +22,13 @@ public class Sonar extends Subsystem {
   // here. Call these from Commands.
   public enum Boundaries {
     high, low;
-  }; //these are the boundaries for the sonar to detect
+  }; // these are the boundaries for the sonar to detect
 
+  private static final double LINEAR_SLIDE_HIGH = 0;
+  private static final double LINEAR_SLIDE_LOW = 0;
+  private static final double PLATFORM_HIGH = 5;
+  private static final double PLATFORM_LOW = 10;; // this is the way to differentiate between what the boundaries
+                                                      // are for. might be unneeded, but its here
   // private static final double LINEAR_SLIDE_HIGH = 0;
   // private static final double LINEAR_SLIDE_LOW = 0;
   // private static final double PLATFORM_HIGH = 0;
@@ -30,29 +36,47 @@ public class Sonar extends Subsystem {
 
   AnalogInput analogSonar;
 
-  double analogVolts; //raw output
+  double analogVolts; // raw output
   double cm;
 
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
-    
-    PlatForm.put(Boundaries.high, 0.0); 
+
+    PlatForm.put(Boundaries.high, 0.0);
     PlatForm.put(Boundaries.low, 1.0);
     Rocket.put(Boundaries.high, 0.0);
     Rocket.put(Boundaries.low, 1.0);
   }
 
-  public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class) {{ //"error" is because i havent set a serial number for it
-    PlatForm.put(Boundaries.high, 0.0); 
-    PlatForm.put(Boundaries.low, 1.0);
-  }};
-  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {{
-    Rocket.put(Boundaries.high, 0.0);
-    Rocket.put(Boundaries.low, 1.0);
-  }};
+  public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class) {
+    { // "error" is because i havent set a serial number for it
+      put(Boundaries.high, 0.0);
+      put(Boundaries.low, 1.0);
+    }
+  };
 
-  public double getBound(Map<Boundaries, Double> type, Boundaries distance){ //simple get function. its slick
+  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {
+    {
+      put(Boundaries.high, 0.0);
+      put(Boundaries.low, 1.0);
+    }
+  };
+
+  public double getBound(Map<Boundaries, Double> type, Boundaries distance) { // simple get function. its slick
     return (double) type.get(distance);
+  }
+
+  public void check(Map<Boundaries, Double> type) {
+    double place = readSensor();
+    if (place < getBound(type, Boundaries.low)) {
+      SmartDashboard.putBoolean("close", true);
+    }
+    else if(place > getBound(type, Boundaries.high)){
+      SmartDashboard.putBoolean("far", true);
+    }
+    else {
+      SmartDashboard.putBoolean("just right", true);
+    }
   }
 
   // public double getBoundary(Type type, Distance distance) {
@@ -69,7 +93,7 @@ public class Sonar extends Subsystem {
   // }
 
   public double readSensor() {
-    analogVolts = analogSonar.getVoltage(); 
+    analogVolts = analogSonar.getVoltage();
     cm = analogVolts / 2;
     return cm;
   }

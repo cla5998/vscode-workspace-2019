@@ -7,11 +7,14 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
+import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Distance;
+import org.usfirst.frc.team1502.robot.subsystems.Sonar.Type;
 import java.util.Map;
 
 import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar.Boundaries;
 
 
@@ -35,13 +38,14 @@ public class SonarCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double cm = Robot.sonar.readSensor(); // gets distance from object
-    while(cm < Robot.sonar.getBound(place, Boundaries.low)) { // gets what distance and bound were looking for
-      SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
-    }
-    while(cm > Robot.sonar.getBound(place, Boundaries.high)) {
-      SmartDashboard.putBoolean("far", true);
-    }
+    Robot.sonar.check(place);
+  //   double cm = Robot.sonar.readSensor(); // gets distance from object
+  //   while(cm < Robot.sonar.getBound(place, Boundaries.low)) { // gets what distance and bound were looking for
+  //     SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard
+  //   }
+  //   while(cm > Robot.sonar.getBound(place, Boundaries.high)) {
+  //     SmartDashboard.putBoolean("far", true);
+  //   }
   }
 
   // Make this return true when this Command no longer needs to run execute()

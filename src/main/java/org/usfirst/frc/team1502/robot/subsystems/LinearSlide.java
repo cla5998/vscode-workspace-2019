@@ -73,7 +73,7 @@ public class LinearSlide extends Subsystem {
     put(Level.High, 3.0);
   }};
   public double getDistance2(Map<Level, Double> load, Level place) { //this is just me messing around, it works but not to be used.
-    return load.get(place);
+    return (double) load.get(place);
   }
   
   public double getDistance(Level level, LoadType load) {
