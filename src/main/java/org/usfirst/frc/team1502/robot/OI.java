@@ -74,7 +74,7 @@ public class OI {
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm));
+		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
 
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
