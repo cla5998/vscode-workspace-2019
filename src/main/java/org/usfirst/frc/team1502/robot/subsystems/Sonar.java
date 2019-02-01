@@ -24,11 +24,6 @@ public class Sonar extends Subsystem {
     high, low;
   }; // these are the boundaries for the sonar to detect
 
-  private static final double LINEAR_SLIDE_HIGH = 0;
-  private static final double LINEAR_SLIDE_LOW = 0;
-  private static final double PLATFORM_HIGH = 5;
-  private static final double PLATFORM_LOW = 10;; // this is the way to differentiate between what the boundaries
-                                                      // are for. might be unneeded, but its here
   // private static final double LINEAR_SLIDE_HIGH = 0;
   // private static final double LINEAR_SLIDE_LOW = 0;
   // private static final double PLATFORM_HIGH = 0;
