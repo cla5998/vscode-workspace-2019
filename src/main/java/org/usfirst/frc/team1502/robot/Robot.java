@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.vision.VisionThread;
-import edu.wpi.first.wpilibj.vision.VisionRunner;
+import edu.wpi.first.vision.VisionThread;
+import edu.wpi.first.vision.VisionRunner;
 
 import java.util.ArrayList;
 
@@ -63,8 +63,9 @@ public class Robot extends TimedRobot {
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 	// NetworkTable networkTable;
 	VisionThread visionThread;
+	public static final int IMG_WIDTH = 160, IMG_HEIGHT = 120;
 	final Object imgLock = new Object(); // Synchronizes access to the data being simultaneously updated with each image acquisition pass and the code that's processing the coordinates and steering the robot.
-	int targetCenterX;
+	int targetCenterX, leftTargetX, rightTargetX;
 	boolean targetDetected;
 
 	public Robot() {
@@ -107,14 +108,27 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putData("Auto mode", m_chooser);
 
 		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(320, 240);
-		visionThread = new VisionThread(camera, new GripPipeline(), pipeline -> {
+		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
+
+		visionThread = new VisionThread(camera, new GripPipeline(), (pipeline) -> {
 			ArrayList<MatOfPoint> contours = pipeline.filterContoursOutput();
-			if (pipeline.filterContoursOutput().size() >= 2) {
+			if (contours.size() == 2) {
 				targetDetected = true;
-				Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+				Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+				Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
+				Rect leftTarget;
+				Rect rightTarget;
+				if (r1.x + (r1.width / 2) < r2.x + (r2.width / 2)) {
+					leftTarget = r1;
+					rightTarget = r2;
+				} else {
+					rightTarget = r1;
+					leftTarget = r2;
+				}
 				synchronized (imgLock) {
-					targetCenterX = r.x + (r.width / 2);
+					leftTargetX = leftTarget.x + leftTarget.width / 2;
+					rightTargetX = rightTarget.x + rightTarget.width / 2;
+					targetCenterX = (leftTargetX + rightTargetX) / 2;
 				}
 			} else targetDetected = false;
 		});
@@ -201,8 +215,10 @@ public class Robot extends TimedRobot {
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		//sonar.readSensor();
-		System.out.println("Target detected: " + targetDetected);
-		System.out.println("Target x on screen: " + targetCenterX);
+		SmartDashboard.putBoolean("Target detected", targetDetected);
+		SmartDashboard.putNumber("Target x", targetCenterX);
+		SmartDashboard.putNumber("Left target X", leftTargetX);
+		SmartDashboard.putNumber("Right target X", rightTargetX);
 	}
 
 	/**

@@ -56,7 +56,7 @@ public class OI {
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
-	Button dpUp = new JoystickButton(manipJoystick, 8);
+	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
 	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
 
@@ -80,7 +80,7 @@ public class OI {
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
-		dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
+		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
