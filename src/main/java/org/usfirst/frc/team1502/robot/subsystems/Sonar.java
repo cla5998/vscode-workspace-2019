@@ -66,7 +66,7 @@ public class Sonar extends Subsystem {
     if (place < getBound(type, Boundaries.low)) {
       SmartDashboard.putBoolean("close", true);
     }
-    else if(place > getBound(type, Boundaries.high)){
+    else if(place > getBound(type, Boundaries.high)) {
       SmartDashboard.putBoolean("far", true);
     }
     else {
