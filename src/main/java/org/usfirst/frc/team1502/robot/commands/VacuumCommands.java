@@ -7,7 +7,6 @@
 
 package org.usfirst.frc.team1502.robot.commands;
 
-import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class VacuumCommands extends Command {

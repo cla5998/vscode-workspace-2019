@@ -8,14 +8,11 @@
 package org.usfirst.frc.team1502.robot.subsystems;
 
 import java.util.EnumMap;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.LinearSlide.LoadType;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -27,11 +24,9 @@ public class LinearSlide extends Subsystem {
   // here. Call these from Commands.
   TalonSRX left;
   TalonSRX right;
-  boolean toggled = true;
-  double distance;
-  public LoadType load = LoadType.Hatch;
+  public LoadType load = LoadType.Hatch; //Defualt linear slide position is hatch, because of this
 
-  public static final double HATCH_GROUND = 0;
+  public static final double HATCH_GROUND = 0;    //Constants for getDistance. These are how far it moves
   public static final double HATCH_LOW = 0;
   public static final double HATCH_MIDDLE = 0;
   public static final double HATCH_HIGH = 0;
@@ -54,9 +49,9 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input) {
-    Robot.enc.setDistancePerPulse(1);
+    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
     while (Robot.enc.getDistance() < input) {
-      left.set(ControlMode.PercentOutput, 1);
+      left.set(ControlMode.PercentOutput, 1); //these two moves could be wrong, will follow up with keppler to get the answer soon
       right.set(ControlMode.PercentOutput, -1);
     }
     while (Robot.enc.getDistance() > input) {
@@ -65,40 +60,21 @@ public class LinearSlide extends Subsystem {
     }
   }
 
-
-
-  // Map <Level, Double> Heights = new HashMap <Level, Double>();
-  // Map<Level, Double> heights = new EnumMap<Level, Double>(Level.class);
-
-
-  // public double getDistance2(Level place, LoadType load) {
-  //   switch (load) {
-  //   case Cargo:
-  //       heights.put(Level.Ground, 0.0);
-  //       heights.put(Level.Low, 1.0);
-  //       heights.put(Level.Middle, 2.0);
-  //       heights.put(Level.High, 3.0);
-  //     case Hatch:
-  //       heights.put(Level.Ground, 1.0);
-  //       heights.put(Level.Low, 2.0);
-  //       heights.put(Level.Middle, 3.0);
-  //       heights.put(Level.High, 4.0);
-  //   }
-  //   return (double) heights.get(place);
-  // }
-
-  // public void getDistance(String level) {
-  //   String[] places = {"ground", "low", "middle", "high"}; //the levels
-  //   for (int i = 0; i < places.length; i++) { // runs levels
-  //     if (level.equals(places[i]) && toggled) {  //checks to see if levels is equal and tggle is on
-  //       double[] distance = { 0, 1, 2, 3 }; // placeholder distances because we dont know how to do that
-  //       move(distance[i]); // returns the distance if it runs
-  //     } else if (level.equals(places[i]) && !toggled) { //checks to see if level is equal and toggle is off
-  //       double[] distance = { 0, 1, 2, 3 }; 
-  //       move(distance[i]);
-  //     }
-  //   }
-  // }
+  public static Map <Level, Double> Cargo = new EnumMap<Level, Double>(Level.class) {{ //the "error" is saying that these arent set as a constant, if you wanted to make a serial number, then if its changed so is the map value.
+    put(Level.Ground, 0.0);     //goes without saying that you cant change these numbers anywhere but in this
+    put(Level.Low, 1.0);
+    put(Level.Middle, 2.0);
+    put(Level.High, 3.0);
+  }};
+  public static Map<Level, Double> Hatch = new EnumMap<Level, Double>(Level.class) {{ 
+    put(Level.Ground, 0.0);
+    put(Level.Low, 1.0);
+    put(Level.Middle, 2.0);
+    put(Level.High, 3.0);
+  }};
+  public double getDistance2(Map<Level, Double> load, Level place) { //this is just me messing around, it works but not to be used.
+    return (double) load.get(place);
+  }
   
   public double getDistance(Level level, LoadType load) {
     switch (level) {
@@ -115,17 +91,13 @@ public class LinearSlide extends Subsystem {
         if (load == LoadType.Hatch) return HATCH_HIGH;
         if (load == LoadType.Cargo) return CARGO_HIGH;
       default:
-        return 0.0; // This won't happen
+        return 0.0; // Needed because theres return statements inside the cases. wont happen
     }
   }
 
-  // public void toggleChange() {
-  //   toggled = !toggled;
-  // }
-
   public void toggleChange() {
     load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;
-  }
+  } //if load type is hatch, then its cargo, else its changes to cargo
   
   @Override
   public void initDefaultCommand() {

@@ -9,9 +9,11 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -51,6 +53,11 @@ public class Robot extends TimedRobot {
 	public static LinearSlide slide = new LinearSlide(null, null);
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	// NetworkTable networkTable;
+
+	public Robot() {
+		// networkTable = NetworkTable.getTable("GRIP/test");
+	}
 
 	public static Encoder enc;
 
@@ -87,8 +94,19 @@ public class Robot extends TimedRobot {
 				// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 
-		//enc.reset();
-		//UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
+
+		// NetworkTable test code
+		// double[] defaultValue = new double[0];
+		// while (true) {
+		// 	double[] areas = networkTable.getNumberArray("area", defaultValue);
+		// 	System.out.println("areas: ");
+		// 	for (double area: areas) {
+		// 		System.out.print(area + " ");
+		// 	}
+		// 	System.out.println();
+		// 	Timer.delay(1);
+		// }
 	}
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
