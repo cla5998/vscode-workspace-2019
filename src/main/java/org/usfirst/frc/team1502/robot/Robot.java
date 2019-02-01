@@ -67,6 +67,11 @@ public class Robot extends TimedRobot {
 	int targetCenterX;
 	boolean targetDetected;
 
+	public PIDController safeDrivePID;
+	static final double P = 1.325;
+	static final double I = 9.49e-4;
+	static final double D = 320;
+
 	public Robot() {
 		// networkTable = NetworkTable.getTable("GRIP/test");
 	}
@@ -98,6 +103,7 @@ public class Robot extends TimedRobot {
 		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
 		
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
+		this.safeDrivePID = new PIDController(P, I, D);
 
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 			//linear slide objects
