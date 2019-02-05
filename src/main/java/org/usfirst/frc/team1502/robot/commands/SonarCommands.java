@@ -33,7 +33,7 @@ public class SonarCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.sonar.check(place);
+    //Robot.sonar.check(place);
   //   double cm = Robot.sonar.readSensor(); // gets distance from object
   //   while(cm < Robot.sonar.getBound(place, Boundaries.low)) { // gets what distance and bound were looking for
   //     SmartDashboard.putBoolean("close", true); //prints it out to smartDashboard

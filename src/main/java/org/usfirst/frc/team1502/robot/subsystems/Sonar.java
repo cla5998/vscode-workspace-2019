@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Sonar extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  boolean enabled = false;
   public enum Boundaries {
     high, low;
   }; // these are the boundaries for the sonar to detect
@@ -52,17 +53,32 @@ public class Sonar extends Subsystem {
     return (double) type.get(distance);
   }
 
-  public void check(Map<Boundaries, Double> type) {
+  // public void check(Map<Boundaries, Double> type) {
+  //   double place = readSensor();
+  //   if (place < getBound(type, Boundaries.low)) {
+  //     SmartDashboard.putBoolean("close", true);
+  //   }
+  //   else if(place > getBound(type, Boundaries.high)) {
+  //     SmartDashboard.putBoolean("far", true);
+  //   }
+  //   else {
+  //     SmartDashboard.putBoolean("just right", true);
+  //   }
+  // }
+
+  public boolean check() {
     double place = readSensor();
-    if (place < getBound(type, Boundaries.low)) {
-      SmartDashboard.putBoolean("close", true);
-    }
-    else if(place > getBound(type, Boundaries.high)) {
-      SmartDashboard.putBoolean("far", true);
-    }
-    else {
-      SmartDashboard.putBoolean("just right", true);
-    }
+    return !(enabled && place < .3);
+    // if (enabled && place < .3) {
+    //   return false;
+    // }
+    // else {
+    //   return true;
+    // }
+  }
+
+  public void softStopToggle() {
+    enabled = !enabled;
   }
 
   // public double getBoundary(Type type, Distance distance) {
