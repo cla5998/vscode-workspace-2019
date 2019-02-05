@@ -7,14 +7,8 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import java.util.Collections;
-import java.util.EnumMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -28,6 +22,8 @@ public class Sonar extends Subsystem {
   }; // these are the boundaries for the sonar to detect
 
   AnalogInput analogSonar;
+  AnalogInput analogSonar1;
+  AnalogInput analogSonar2;
 
   double analogVolts; // raw output
   double cm;
@@ -35,47 +31,15 @@ public class Sonar extends Subsystem {
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
   }
-
-  public static Map<Boundaries, Double> PlatForm = new EnumMap<Boundaries, Double>(Boundaries.class) {{ // "error" is because i havent set a serial number for it
-    put(Boundaries.high, 0.0);
-    put(Boundaries.low, 1.0);
-  }};
-
-  public static Map<Boundaries, Double> Rocket = new EnumMap<Boundaries, Double>(Boundaries.class) {{
-    put(Boundaries.high, 0.0);
-    put(Boundaries.low, 1.0);
-  }};
-  
-  Map<Boundaries, Double> PlatFormRef = Collections.unmodifiableMap(new LinkedHashMap<Boundaries, Double>(PlatForm));
-  Map<Boundaries, Double> RocketRef = Collections.unmodifiableMap(new LinkedHashMap<Boundaries, Double>(Rocket));
-
-  public double getBound(Map<Boundaries, Double> type, Boundaries distance) { // simple get function. its slick
-    return (double) type.get(distance);
-  }
-
-  // public void check(Map<Boundaries, Double> type) {
-  //   double place = readSensor();
-  //   if (place < getBound(type, Boundaries.low)) {
-  //     SmartDashboard.putBoolean("close", true);
-  //   }
-  //   else if(place > getBound(type, Boundaries.high)) {
-  //     SmartDashboard.putBoolean("far", true);
-  //   }
-  //   else {
-  //     SmartDashboard.putBoolean("just right", true);
-  //   }
-  // }
-
   public boolean check() {
     double place = readSensor();
-    return !(enabled && place < .3);
-    // if (enabled && place < .3) {
-    //   return false;
-    // }
-    // else {
-    //   return true;
-    // }
+    return enabled && place < .3 ? true : false;
+    //returns true if the stop is on, and it needs to stop
   }
+
+  //checks both sonar distances.
+  //if one doesnt equal the other, then it takes the smaller one and makes that its bound
+  //moves longer one to the smaller bound by shutting off the smaller ones wheels.
 
   public void softStopToggle() {
     enabled = !enabled;
