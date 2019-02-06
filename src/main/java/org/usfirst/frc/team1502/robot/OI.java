@@ -53,6 +53,8 @@ public class OI {
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
 
+	
+
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
@@ -75,7 +77,7 @@ public class OI {
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
-
+		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
