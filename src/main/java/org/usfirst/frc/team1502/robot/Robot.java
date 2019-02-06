@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.vision.VisionThread;
-import edu.wpi.first.vision.VisionRunner;
+import edu.wpi.first.wpilibj.vision.VisionThread;
+// import edu.wpi.first.vision.VisionRunner;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.HorizontalSlide;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
-import org.usfirst.frc.team1502.robot.subsystems.TankDrive;
+import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
@@ -50,7 +50,7 @@ public class Robot extends TimedRobot {
 	public static Drivetrain drivetrain = null;
 	public static OI m_oi; 
 	//public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
-	public static TankDrive m_tankDrive = new TankDrive(null, null, null, null);
+	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
 	public static Intake intake = new Intake(null);
 	public static HatchRelease hatchRelease = new HatchRelease(null, null, null);
 	// public static Vacuum vacuum = new Vacuum(null);

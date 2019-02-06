@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 
-import edu.wpi.first.vision.VisionPipeline;
+import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 import org.opencv.core.*;
 import org.opencv.core.Core.*;
@@ -44,8 +44,8 @@ public class GripPipeline implements VisionPipeline {
 		// Step HSV_Threshold0:
 		Mat hsvThresholdInput = source0;
 		double[] hsvThresholdHue = {74.46043165467627, 98.60068259385666};
-		double[] hsvThresholdSaturation = {41.276978417266186, 167.96928327645048};
-		double[] hsvThresholdValue = {222.4370503597122, 255.0};
+		double[] hsvThresholdSaturation = {84.84712230215827, 185.3754266211604};
+		double[] hsvThresholdValue = {206.3848920863309, 255.0};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
 		// Step Blur0:
