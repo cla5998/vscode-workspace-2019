@@ -59,23 +59,6 @@ public class LinearSlide extends Subsystem {
       right.set(ControlMode.PercentOutput, 1);
     }
   }
-
-  public static Map <Level, Double> Cargo = new EnumMap<Level, Double>(Level.class) {{ //the "error" is saying that these arent set as a constant, if you wanted to make a serial number, then if its changed so is the map value.
-    put(Level.Ground, 0.0);     //goes without saying that you cant change these numbers anywhere but in this
-    put(Level.Low, 1.0);
-    put(Level.Middle, 2.0);
-    put(Level.High, 3.0);
-  }};
-  public static Map<Level, Double> Hatch = new EnumMap<Level, Double>(Level.class) {{ 
-    put(Level.Ground, 0.0);
-    put(Level.Low, 1.0);
-    put(Level.Middle, 2.0);
-    put(Level.High, 3.0);
-  }};
-  Map <Level, Double> load2 = Cargo;
-  public double getDistance2(Map<Level, Double> load, Level place) { //this is just me messing around, it works but not to be used.
-    return (double) load.get(place);
-  }
   
   public double getDistance(Level level, LoadType load) {
     switch (level) {
@@ -98,9 +81,33 @@ public class LinearSlide extends Subsystem {
 
   public void toggleChange() {
     load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;
-    load2 = load2 == Hatch ? Cargo : Hatch;
+    // load2 = load2 == Hatch ? Cargo : Hatch;
   } //if load type is hatch, then its cargo, else its changes to cargo
   
+  public static Map<Level, Double> Cargo = new EnumMap<Level, Double>(Level.class) {
+    { // the "error" is saying that these arent set as a constant, if you wanted to
+      // make a serial number, then if its changed so is the map value.
+      put(Level.Ground, 0.0); // goes without saying that you cant change these numbers anywhere but in this
+      put(Level.Low, 1.0);
+      put(Level.Middle, 2.0);
+      put(Level.High, 3.0);
+    }
+  };
+  public static Map<Level, Double> Hatch = new EnumMap<Level, Double>(Level.class) {
+    {
+      put(Level.Ground, 0.0);
+      put(Level.Low, 1.0);
+      put(Level.Middle, 2.0);
+      put(Level.High, 3.0);
+    }
+  };
+  Map<Level, Double> load2 = Cargo;
+
+  public double getDistance2(Map<Level, Double> load, Level place) { // this is just me messing around, it works but not
+                                                                     // to be used.
+    return (double) load.get(place);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
