@@ -24,10 +24,10 @@ public class ArcadeCommands extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	//Set Drive Values - Cubic Control
-    	double moveSpeed = Drivetrain.expRate(Robot.m_oi.leftJoystick.getY(), 3);
-    	double rotateSpeed = -Drivetrain.expRate(Robot.m_oi.rightJoystick.getX(), 3);;
+    	double moveSpeed = Drivetrain.expRate(Robot.m_oi.leftJoystick.getX(), 3);
+    	double rotateSpeed = -Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 3);;
     	
-    	Robot.drivetrain.tankDrive(moveSpeed, rotateSpeed);
+    	Robot.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class ArcadeCommands extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    //	Robot.drivetrain.arcadeDrive(0, 0);
+    	// Robot.drivetrain.arcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

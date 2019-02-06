@@ -27,7 +27,7 @@ public class TankCommands extends Command {
     	double leftStick = Drivetrain.expRate(Robot.m_oi.leftJoystick.getY(), 3);
     	double rightStick = Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 3);
     	
-    	Robot.drivetrain.tankDrive(leftStick, rightStick);
+    //	Robot.drivetrain.tankDrive(leftStick, rightStick);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,7 +37,7 @@ public class TankCommands extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.drivetrain.tankDrive(0, 0);
+    //	Robot.drivetrain.tankDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same

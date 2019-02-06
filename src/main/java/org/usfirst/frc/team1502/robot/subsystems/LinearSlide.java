@@ -24,13 +24,12 @@ public class LinearSlide extends Subsystem {
   // here. Call these from Commands.
   TalonSRX left;
   TalonSRX right;
-  public LoadType load = LoadType.Hatch; //Defualt linear slide position is hatch, because of this
+  public LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
 
-  public static final double HATCH_GROUND = 0;    //Constants for getDistance. These are how far it moves
+  public static final double GROUND = 0; // Constants for getDistance. These are how far it moves
   public static final double HATCH_LOW = 0;
   public static final double HATCH_MIDDLE = 0;
   public static final double HATCH_HIGH = 0;
-  public static final double CARGO_GROUND = 0;
   public static final double CARGO_LOW = 0;
   public static final double CARGO_MIDDLE = 0;
   public static final double CARGO_HIGH = 0;
@@ -51,7 +50,8 @@ public class LinearSlide extends Subsystem {
   public void move(double input) {
     Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
     while (Robot.enc.getDistance() < input) {
-      left.set(ControlMode.PercentOutput, 1); //these two moves could be wrong, will follow up with keppler to get the answer soon
+      left.set(ControlMode.PercentOutput, 1); // these two moves could be wrong, will follow up with keppler to get the
+                                              // answer soon
       right.set(ControlMode.PercentOutput, -1);
     }
     while (Robot.enc.getDistance() > input) {
@@ -61,21 +61,27 @@ public class LinearSlide extends Subsystem {
   }
   
   public double getDistance(Level level, LoadType load) {
+    if (level == Level.Ground) {
+      return GROUND;
+    }
     switch (level) {
-      case Ground:
-        if (load == LoadType.Hatch) return HATCH_GROUND;
-        if (load == LoadType.Cargo) return CARGO_GROUND;
-      case Low:
-        if (load == LoadType.Hatch) return HATCH_LOW;
-        if (load == LoadType.Cargo) return CARGO_LOW;
-      case Middle:
-        if (load == LoadType.Hatch) return HATCH_MIDDLE;
-        if (load == LoadType.Cargo) return CARGO_MIDDLE;
-      case High:
-        if (load == LoadType.Hatch) return HATCH_HIGH;
-        if (load == LoadType.Cargo) return CARGO_HIGH;
-      default:
-        return 0.0; // Needed because theres return statements inside the cases. wont happen
+    case Low:
+      if (load == LoadType.Hatch)
+        return HATCH_LOW;
+      if (load == LoadType.Cargo)
+        return CARGO_LOW;
+    case Middle:
+      if (load == LoadType.Hatch)
+        return HATCH_MIDDLE;
+      if (load == LoadType.Cargo)
+        return CARGO_MIDDLE;
+    case High:
+      if (load == LoadType.Hatch)
+        return HATCH_HIGH;
+      if (load == LoadType.Cargo)
+        return CARGO_HIGH;
+    default:
+      return 0.0; // Needed because there are return statements inside the cases. wont happen
     }
   } 
 
