@@ -72,9 +72,7 @@ public class LinearSlide extends Subsystem {
     put(Level.Middle, 2.0);
     put(Level.High, 3.0);
   }};
-  
-  public static Map<Level, Double> opperationalMap = Cargo;
-
+  Map <Level, Double> load2 = Cargo;
   public double getDistance2(Map<Level, Double> load, Level place) { //this is just me messing around, it works but not to be used.
     return (double) load.get(place);
   }
@@ -96,14 +94,12 @@ public class LinearSlide extends Subsystem {
       default:
         return 0.0; // Needed because theres return statements inside the cases. wont happen
     }
-  }
+  } 
 
   public void toggleChange() {
     load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;
-    //opperationalMap = opperationalMap == Cargo ? Hatch : Cargo;
-    //thats the map route. still works fine. If you want to make good code then youd refer to that map in the execution, but its not really needed.
+    load2 = load2 == Hatch ? Cargo : Hatch;
   } //if load type is hatch, then its cargo, else its changes to cargo
-
   
   @Override
   public void initDefaultCommand() {

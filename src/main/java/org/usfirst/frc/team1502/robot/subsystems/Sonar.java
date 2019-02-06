@@ -31,9 +31,9 @@ public class Sonar extends Subsystem {
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
   }
-  public boolean check() {
+  public boolean isCloseToWall() {
     double place = readSensor();
-    return enabled && place < .3 ? true : false;
+    return enabled && place < .5;
     //returns true if the stop is on, and it needs to stop
   }
 
@@ -59,9 +59,7 @@ public class Sonar extends Subsystem {
   // }
 
   public double readSensor() {
-    analogVolts = analogSonar.getVoltage();
-    cm = analogVolts / 2;
-    return cm;
+    return analogSonar.getVoltage();
   }
 
   @Override
