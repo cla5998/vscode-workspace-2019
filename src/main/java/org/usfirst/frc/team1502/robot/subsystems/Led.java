@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Add your docs here.
+ * youre gonna have a good time
  */
 public class Led extends Subsystem {
   // Put methods for controlling this subsystem
@@ -23,13 +23,14 @@ public class Led extends Subsystem {
   Spark LEDSpark;
 
   public enum Color {
-    Red, Green
+    Red, Green, Fire
   };
   Color current = Color.Red;
 
   Map<Color, Double> ledMap = new EnumMap<Color, Double> (Color.class){{
     put(Color.Red, .61);
     put(Color.Green, .77);
+    put(Color.Fire, -.39);
   }};
 
   public Led(Spark LEDSpark) {
@@ -41,7 +42,7 @@ public class Led extends Subsystem {
   }
 
   public void colorChange() {
-    current = current == Color.Red ? Color.Green : Color.Red;
+    current = current == Color.Red ? Color.Green : Color.Fire;
   }
 
   @Override

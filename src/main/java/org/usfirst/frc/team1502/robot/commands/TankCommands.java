@@ -6,7 +6,7 @@ import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * PLEASE NOTE: TANK HAS BEEN DEPERCIATED IN FAVOR OF ARCADE FOR EASIER MANAGABILITY FOR THE 2019 SEASON.
  */
 public class TankCommands extends Command {
 
