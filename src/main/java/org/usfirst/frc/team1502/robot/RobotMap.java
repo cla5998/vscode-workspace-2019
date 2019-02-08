@@ -8,7 +8,6 @@
 package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
