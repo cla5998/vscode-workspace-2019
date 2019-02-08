@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -35,6 +38,20 @@ public class Sonar extends Subsystem {
     double place = readSensor();
     return enabled && place < .5;
     //returns true if the stop is on, and it needs to stop
+  }
+
+  public boolean isOutBound() {
+    double place = readSensor();
+    return place < .5 || place > 1.5;
+  }
+
+  public void ledOn() {
+    if (isOutBound()) {
+      Robot.led.setColor(Color.Red);
+    }
+    else { 
+      Robot.led.setColor(Color.Green);
+    }
   }
 
   //checks both sonar distances.

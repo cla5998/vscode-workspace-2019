@@ -141,6 +141,7 @@ public class Robot extends TimedRobot {
 		});
 		visionThread.start();
 
+		
 		// NetworkTable test code
 		// double[] defaultValue = new double[0];
 		// while (true) {
