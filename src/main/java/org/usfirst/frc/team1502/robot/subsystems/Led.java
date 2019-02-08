@@ -23,40 +23,20 @@ public class Led extends Subsystem {
   Spark LEDSpark;
 
   public enum Color {
-    Red, Green, Blue, Strobe
+    Green, Red
   };
 
-  Color target = Color.Red;
-
   Map<Color, Double> ledMap = new EnumMap<Color, Double> (Color.class){{
-    put(Color.Red, .61);
     put(Color.Green, .77);
-    put(Color.Blue, .87);
-    put(Color.Strobe, .35);
+    put(Color.Red, .61);
   }};
 
   public Led(Spark LEDSpark) {
     this.LEDSpark = LEDSpark;
   }
 
-  public void setColor() {
+  public void setColor(Color target) {
     LEDSpark.set(ledMap.get(target));
-  }
-
-  public void colorChange() {
-    if (target == Color.Red){
-      target = Color.Green;
-    }
-    else if (target == Color.Green) {
-      target = Color.Blue;
-    }
-
-    else if (target == Color.Blue) {
-      target = Color.Strobe;
-    }
-    else if (target == Color.Strobe) {
-      target = Color.Red;
-    }
   }
 
   @Override

@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,6 +20,9 @@ public class Sonar extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   boolean enabled = false;
+  public static final double BOUND_LOW = .5;
+  public static final double BOUND_HIGH = 1.5;
+
   public enum Boundaries {
     high, low;
   }; // these are the boundaries for the sonar to detect
@@ -31,10 +37,24 @@ public class Sonar extends Subsystem {
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
   }
-  public boolean isCloseToWall() {
+  public boolean isClose() {
     double place = readSensor();
-    return enabled && place < .5;
+    return !(enabled && place < .5);
     //returns true if the stop is on, and it needs to stop
+  }
+
+  public boolean isOutOfBounds() {
+    double place = readSensor();
+    return !(place < BOUND_LOW || place > BOUND_HIGH);
+  }
+
+  public void linearSlideCheck() {
+    if(isOutOfBounds()){
+      Robot.led.setColor(Color.Red);
+    }
+    else{
+      Robot.led.setColor(Color.Green);
+    }
   }
 
   //checks both sonar distances.
