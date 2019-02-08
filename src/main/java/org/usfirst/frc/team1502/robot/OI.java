@@ -43,16 +43,16 @@ public class OI {
 	// commands the same as any other Button.
 
 	/*X-Box Controller*/
-	Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
-	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
+	//Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
+	//Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
 	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
 	//not final. this is a click to check the lift application
 	//Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
-	Button LEDButton = new JoystickButton(manipJoystick, 11);
-	Button LEDToggle = new JoystickButton(manipJoystick, 12);
+	Button LEDButton = new JoystickButton(manipJoystick, 1);
+	Button LEDToggle = new JoystickButton(manipJoystick, 2);
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
@@ -67,7 +67,7 @@ public class OI {
 	
 	public OI() {
 		x.whileHeld(new IntakeCommands());
-		b.whenPressed(new HatchReleaseCommands());
+		//b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
 		rb.whileHeld(new HorizontalSlideCommands(true));
 		lb.whileHeld(new HorizontalSlideCommands(false));
