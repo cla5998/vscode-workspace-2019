@@ -9,7 +9,7 @@ package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar;
+import org.usfirst.frc.team1502.robot.subsystems.Led;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -52,8 +52,8 @@ public class OI {
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
-
-	
+	Button LEDButton = new JoystickButton(manipJoystick, 11);
+	Button LEDToggle = new JoystickButton(manipJoystick, 12);
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
@@ -82,6 +82,8 @@ public class OI {
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+		LEDButton.whenPressed(new LedCommands());
+		LEDToggle.whenPressed(new ToggleLed());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
