@@ -32,7 +32,7 @@ public class ArcadeDrive extends Subsystem{
 
 	public void move(double moveSpeed, double rotateSpeed) {
         double leftPwr = moveSpeed + rotateSpeed;
-        double rightPwr = moveSpeed - rotateSpeed;
+        double rightPwr = - moveSpeed + rotateSpeed;
         
         leftFront.set(ControlMode.PercentOutput, leftPwr);
         leftBack.set(ControlMode.PercentOutput, leftPwr);
