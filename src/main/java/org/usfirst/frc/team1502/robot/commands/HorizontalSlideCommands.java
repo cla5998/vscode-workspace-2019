@@ -14,6 +14,8 @@ import edu.wpi.first.wpilibj.command.Command;
 public class HorizontalSlideCommands extends Command {
   
   boolean forward;
+  double speed = .7;
+  int i = 0;
   public HorizontalSlideCommands(boolean forward) {
     this.forward = forward;
     // Use requires() here to declare subsystem dependencies
@@ -29,11 +31,18 @@ public class HorizontalSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(forward == true){
-      Robot.horizontalSlide.setSpeed(1);
+    if(i == 5 && speed > .4){
+      speed -= .1;
+      i = 0;
     }
     else{
-      Robot.horizontalSlide.setSpeed(-1);
+      i++;
+    }
+    if(forward == true){
+      Robot.horizontalSlide.setSpeed(speed);
+    }
+    else{
+      Robot.horizontalSlide.setSpeed(-speed);
     }
   }
 

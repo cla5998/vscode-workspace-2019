@@ -101,10 +101,10 @@ public class LinearSlide extends Subsystem {
   // };
   // public static Map<Level, Double> Hatch = new EnumMap<Level, Double>(Level.class) {
   //   {
-  //     put(Level.Ground, 0.0);
-  //     put(Level.Low, 1.0);
-  //     put(Level.Middle, 2.0);
-  //     put(Level.High, 3.0);
+      // put(Level.Ground, 0.0);
+      // put(Level.Low, 1.0);
+      // put(Level.Middle, 2.0);
+      // put(Level.High, 3.0);
   //   }
   // };
   // Map<Level, Double> load2 = Cargo;
