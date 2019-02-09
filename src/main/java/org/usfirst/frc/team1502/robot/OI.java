@@ -62,16 +62,18 @@ public class OI {
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
+	Button nineRight = new JoystickButton(rightJoystick, 9);
 	
 	public OI() {
 		x.whileHeld(new IntakeCommands());
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
-		a.toggleWhenPressed(new LedInitCommands());
+		//a.toggleWhenPressed(new LedInitCommands());
 		rb.whileHeld(new HorizontalSlideCommands(true));
 		lb.whileHeld(new HorizontalSlideCommands(false));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+		nineRight.whileHeld(new LedInitCommands());
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
