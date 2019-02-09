@@ -3,9 +3,9 @@ package org.usfirst.frc.team1502.robot;
 import java.util.ArrayList;
 
 public class PIDController {
-	double P;
-	double I;
-	double D;
+	public double P;
+	public double I;
+	public double D;
 	ArrayList<Point> points = new ArrayList<Point>();
 	
 	public PIDController(final double p, final double i, final double d) {
@@ -70,7 +70,7 @@ public class PIDController {
 	public Point latest() {
 		try {
 			return points.get(points.size() - 1);
-		} catch (ArrayIndexOutOfBoundsException e) {
+		} catch (IndexOutOfBoundsException e) {
 			return new Point(System.currentTimeMillis(), 0);
 		}
 	}

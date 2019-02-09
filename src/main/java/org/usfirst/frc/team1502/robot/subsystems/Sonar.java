@@ -22,8 +22,6 @@ public class Sonar extends Subsystem {
   }; // these are the boundaries for the sonar to detect
 
   AnalogInput analogSonar;
-  AnalogInput analogSonar1;
-  AnalogInput analogSonar2;
 
   double analogVolts; // raw output
   double cm;

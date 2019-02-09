@@ -19,38 +19,37 @@ import edu.wpi.first.wpilibj.Spark;
  */
 public class RobotMap {
 
-	
 	// For example to map the left and right motors, you could define the
 	// following variables to use with your drivetrain subsystem.
 	// public static int leftMotor = 1;
 	// public static int rightMotor = 2;
-	
-	//Talons
+
+	// Talons
 	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 1;
 	public static final int DRIVETRAIN_LEFT_BACK_TALON = 3;
 	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 2;
 	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 4;
 	// public static final int VACUUM_TALON = 5;
-	
+
 	// public static final int PLATFORM_TALON_LEFT = 6;
 	// public static final int PLATFORM_TALON_RIGHT = 7;
 	// public static final int LINEAR_SLIDE_TALON_LEFT = 8;
 	// public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
 
 	public static final int VACUUM_TALON = 5;
-	
+
 	public static final int PLATFORM_TALON_LEFT = 6;
 	public static final int PLATFORM_TALON_RIGHT = 7;
-	
+
 	public static final int LINEAR_SLIDE_TALON_LEFT = 8;
 	public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
 
-	//Joysticks
+	// Joysticks
 	public static final int LEFT_JOYSTICK = 0;
 	public static final int RIGHT_JOYSTICK = 1;
 	public static final int MANIP_JOYSTICK = 2;
-	
-	//Solenoids
+
+	// Solenoids
 	// public static final Solenoid SOLENOID_1 = new Solenoid(11, 1);
 	// public static final Solenoid SOLENOID_2 = new Solenoid(11, 2);
 	// public static final Solenoid SOLENOID_3 = new Solenoid(11, 3);
@@ -58,7 +57,7 @@ public class RobotMap {
 	// public static final int ARM_SOLENOID_OPEN = 0;
 	// public static final int ARM_SOLENOID_CLOSE = 1;
 
-	//PWM
+	// PWM
 	public static final Spark INTAKE_SPARK = new Spark(0);
 	// public static final Spark RACK_SPARK = new Spark(1);
 
@@ -67,7 +66,6 @@ public class RobotMap {
 	public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
 	public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
 
-	//this isnt real im just being stupid
 	public static final AnalogInput SONAR = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port

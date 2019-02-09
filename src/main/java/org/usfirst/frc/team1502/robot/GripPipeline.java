@@ -43,15 +43,15 @@ public class GripPipeline implements VisionPipeline {
 	@Override	public void process(Mat source0) {
 		// Step HSV_Threshold0:
 		Mat hsvThresholdInput = source0;
-		double[] hsvThresholdHue = {74.46043165467627, 98.60068259385666};
-		double[] hsvThresholdSaturation = {84.84712230215827, 185.3754266211604};
-		double[] hsvThresholdValue = {206.3848920863309, 255.0};
+		double[] hsvThresholdHue = {56.654676258992815, 86.31399317406145};
+		double[] hsvThresholdSaturation = {167.4010791366906, 255.0};
+		double[] hsvThresholdValue = {165.10791366906474, 255.0};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
 		// Step Blur0:
 		Mat blurInput = hsvThresholdOutput;
 		BlurType blurType = BlurType.get("Median Filter");
-		double blurRadius = 6.306306306306306;
+		double blurRadius = 1.8018018018018018;
 		blur(blurInput, blurType, blurRadius, blurOutput);
 
 		// Step Find_Contours0:
@@ -70,7 +70,7 @@ public class GripPipeline implements VisionPipeline {
 		double[] filterContoursSolidity = {0.0, 100.0};
 		double filterContoursMaxVertices = 1000000.0;
 		double filterContoursMinVertices = 0.0;
-		double filterContoursMinRatio = 0.5;
+		double filterContoursMinRatio = 0.2;
 		double filterContoursMaxRatio = 1.0;
 		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
 
