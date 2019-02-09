@@ -8,7 +8,6 @@
 package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
@@ -60,7 +59,7 @@ public class RobotMap {
 	// PWM
 	public static final Spark INTAKE_SPARK = new Spark(0);
 	// public static final Spark RACK_SPARK = new Spark(1);
-
+	public static final Spark BLINKIN_HUB = new Spark(1);
 	// public static final Spark VACUUM_SPARK1 = new Spark(4);
 	// public static final Spark VACUUM_SPARK2 = new Spark(5);
 	public static final Spark VACUUM_SPARK_LEFT = new Spark(4);

@@ -9,7 +9,6 @@ package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -52,8 +51,6 @@ public class OI {
 	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
-
-	
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined

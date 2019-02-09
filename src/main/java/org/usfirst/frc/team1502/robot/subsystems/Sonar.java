@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,6 +19,7 @@ public class Sonar extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   boolean enabled = false;
+
   public enum Boundaries {
     high, low;
   }; // these are the boundaries for the sonar to detect
@@ -29,10 +32,24 @@ public class Sonar extends Subsystem {
   public Sonar(AnalogInput analogSonar) {
     this.analogSonar = analogSonar;
   }
+
   public boolean isCloseToWall() {
     double place = readSensor();
     return enabled && place < .5;
-    //returns true if the stop is on, and it needs to stop
+    // returns true if the stop is on, and it needs to stop
+  }
+
+  public boolean isOutBound() {
+    double place = readSensor();
+    return place < .5 || place > 1.5;
+  }
+
+  public void ledOn() {
+    if (isOutBound()) {
+      Robot.led.setRed();
+    } else { 
+      Robot.led.setGreen();
+    }
   }
 
   //checks both sonar distances.
@@ -44,16 +61,16 @@ public class Sonar extends Subsystem {
   }
 
   // public double getBoundary(Type type, Distance distance) {
-  //   switch (type) {
-  //     case LinearSlide:
-  //     if (distance == Distance.high) return LINEAR_SLIDE_HIGH;
-  //     if(distance == Distance.low) return LINEAR_SLIDE_LOW;
-  //     case PlatForm:
-  //     if (distance == Distance.high) return PLATFORM_HIGH;
-  //     if (distance == Distance.low) return PLATFORM_LOW;
-  //   default:
-  //     return 0.0; // This won't happen
-  //   }
+  // switch (type) {
+  // case LinearSlide:
+  // if (distance == Distance.high) return LINEAR_SLIDE_HIGH;
+  // if(distance == Distance.low) return LINEAR_SLIDE_LOW;
+  // case PlatForm:
+  // if (distance == Distance.high) return PLATFORM_HIGH;
+  // if (distance == Distance.low) return PLATFORM_LOW;
+  // default:
+  // return 0.0; // This won't happen
+  // }
   // }
 
   public double readSensor() {
