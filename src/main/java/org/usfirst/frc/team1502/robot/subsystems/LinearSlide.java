@@ -42,6 +42,26 @@ public class LinearSlide extends Subsystem {
     Hatch, Cargo
   };
 
+  // public enum level {
+  //   Ground(1.0), Low(1.0), Middle(1.0), High(1.0);
+  //   private double value;
+  //   level(double value) {
+  //     this.value = value;
+  //   }
+
+  //   public double get() {
+  //     return value;
+  //   }
+  // }
+
+  // public enum Type {
+  //   Hatch, Cargo;
+
+  //   public double get(level target) {
+  //     return level.target.get();
+  //   }
+  // }
+
   public LinearSlide(TalonSRX left, TalonSRX right) {
     this.left = left;
     this.right = right;

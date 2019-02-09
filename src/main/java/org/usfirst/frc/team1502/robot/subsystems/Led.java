@@ -7,9 +7,6 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
-import java.util.EnumMap;
-import java.util.Map;
-
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -21,23 +18,35 @@ public class Led extends Subsystem {
   // here. Call these from Commands.
   
   Spark LEDSpark;
-
   public enum Color {
-    Red, Green
+    Red(.61), Green(.77);
+    private double value;
+
+    Color(double value) {
+      this.value = value;
+    }
+
+    public double get() {
+      return value;
+    }
   };
+
   Color current = Color.Red;
 
-  Map<Color, Double> ledMap = new EnumMap<Color, Double> (Color.class){{
-    put(Color.Red, .61);
-    put(Color.Green, .77);
-  }};
+  // Map<Color, Double> ledMap = new EnumMap<Color, Double> (Color.class){{
+  //   put(Color.Red, .61);
+  //   put(Color.Green, .77);
+  // }};
 
   public Led(Spark LEDSpark) {
     this.LEDSpark = LEDSpark;
   }
 
-  public void setColor(Color target) {
-    LEDSpark.set(ledMap.get(target));
+  public void setRed() {
+    LEDSpark.set(Color.Red.get());
+  }
+  public void setGreen() {
+    LEDSpark.set(Color.Green.get());
   }
 
   public void colorChange() {
