@@ -55,6 +55,8 @@ public class OI {
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
+
+	Button guidedDrivingButton = new JoystickButton(rightJoystick, 1);
 	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
 	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
@@ -62,16 +64,17 @@ public class OI {
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
-
 	
 	public OI() {
 		x.whileHeld(new IntakeCommands());
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
+		//a.toggleWhenPressed(new LedInitCommands());
 		rb.whileHeld(new HorizontalSlideCommands(true));
 		lb.whileHeld(new HorizontalSlideCommands(false));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+		nineRight.whileHeld(new LedInitCommands());
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
@@ -81,6 +84,8 @@ public class OI {
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
 		nineRight.whileHeld(new LidarCommands());
+
+		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 

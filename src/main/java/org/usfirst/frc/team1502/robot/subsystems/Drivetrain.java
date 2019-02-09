@@ -44,8 +44,8 @@ public class Drivetrain extends Subsystem {
 	// 	arcadeDrive.move(moveSpeed, rotateSpeed);
 	// }
 	
-	public void arcadeDrive(double leftSpeed, double rightSpeed) {
-		arcadeDrive.move(leftSpeed, rightSpeed);
+	public void arcadeDrive(double moveSpeed, double rotateSpeed) {
+		arcadeDrive.move(moveSpeed, rotateSpeed);
 	}
 
 	public static double expRate(double x, double exp) {

@@ -65,19 +65,6 @@ public class Robot extends TimedRobot {
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
-	// NetworkTable networkTable;
-	VisionThread visionThread;
-	public static final int IMG_WIDTH = 160, IMG_HEIGHT = 120;
-	final Object imgLock = new Object(); // Synchronizes access to the data being simultaneously updated with each image
-											// acquisition pass and the code that's processing the coordinates and
-											// steering the robot.
-	int targetCenterX, leftTargetX, rightTargetX;
-	boolean targetDetected;
-
-	public PIDController safeDrivePID;
-	static final double P = 1.325;
-	static final double I = 9.49e-4;
-	static final double D = 320;
 
 	public Robot() {
 		// networkTable = NetworkTable.getTable("GRIP/test");
@@ -117,7 +104,10 @@ public class Robot extends TimedRobot {
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
-		this.safeDrivePID = new PIDController(P, I, D);
+		//this.safeDrivePID = new PIDController(P, I, D);
+		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
+		
+		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT),
 				new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
@@ -127,35 +117,6 @@ public class Robot extends TimedRobot {
 		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-
-		UsbCamera camera = CameraServer.getInstance().startAutomaticCapture();
-		camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-
-		visionThread = new VisionThread(camera, new GripPipeline(), (pipeline) -> {
-			ArrayList<MatOfPoint> contours = pipeline.filterContoursOutput();
-			if (contours.size() == 2) {
-				targetDetected = true;
-				Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-				Rect r2 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(1));
-				Rect leftTarget;
-				Rect rightTarget;
-				if (r1.x + (r1.width / 2) < r2.x + (r2.width / 2)) {
-					leftTarget = r1;
-					rightTarget = r2;
-				} else {
-					rightTarget = r1;
-					leftTarget = r2;
-				}
-				synchronized (imgLock) {
-					leftTargetX = leftTarget.x + leftTarget.width / 2;
-					rightTargetX = rightTarget.x + rightTarget.width / 2;
-					targetCenterX = (leftTargetX + rightTargetX) / 2;
-				}
-			} else
-				targetDetected = false;
-		});
-		visionThread.start();
-
 		
 		// NetworkTable test code
 		// double[] defaultValue = new double[0];
@@ -185,6 +146,8 @@ public class Robot extends TimedRobot {
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
+
+
 
 	/**
 	 * This autonomous (along with the chooser code above) shows how to select
@@ -240,11 +203,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		// sonar.readSensor();
-		SmartDashboard.putBoolean("Target detected", targetDetected);
-		SmartDashboard.putNumber("Target x", targetCenterX);
-		SmartDashboard.putNumber("Left target X", leftTargetX);
-		SmartDashboard.putNumber("Right target X", rightTargetX);
 	}
 
 	/**

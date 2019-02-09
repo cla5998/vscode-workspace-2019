@@ -11,16 +11,10 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class HorizontalSlideCommands extends Command {
-  
-  boolean forward;
-  double speed = .7;
-  int i = 0;
-  public HorizontalSlideCommands(boolean forward) {
-    this.forward = forward;
+public class LedInitCommands extends Command {
+  public LedInitCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.horizontalSlide);
   }
 
   // Called just before this Command runs the first time
@@ -31,19 +25,7 @@ public class HorizontalSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(i == 5 && speed > .4){
-      speed -= .1;
-      i = 0;
-    }
-    else{
-      i++;
-    }
-    if(forward == true){
-      Robot.horizontalSlide.setSpeed(speed);
-    }
-    else{
-      Robot.horizontalSlide.setSpeed(-speed);
-    }
+    Robot.led.setRed();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -55,7 +37,7 @@ public class HorizontalSlideCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.horizontalSlide.setSpeed(0);
+    Robot.led.setGreen();
   }
 
   // Called when another command which requires one or more of the same
