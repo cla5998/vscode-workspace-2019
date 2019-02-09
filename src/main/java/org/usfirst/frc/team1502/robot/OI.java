@@ -9,7 +9,6 @@ package org.usfirst.frc.team1502.robot;
 
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
-import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
@@ -56,7 +55,7 @@ public class OI {
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
-	Button dpUp = new JoystickButton(manipJoystick, 8);
+	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
 	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
 
@@ -74,13 +73,13 @@ public class OI {
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm));
-
+		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
+		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
 		back.whenPressed(new ToggleSlideCommands());
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
-		dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
+		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
