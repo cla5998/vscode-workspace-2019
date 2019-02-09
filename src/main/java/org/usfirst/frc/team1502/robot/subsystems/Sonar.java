@@ -49,16 +49,15 @@ public class Sonar extends Subsystem {
   public void ledOn() {
     if (isOutBound()) {
       Robot.led.setRed();
-    } else {
+    }
+    else { 
       Robot.led.setGreen();
     }
   }
 
-  // checks both sonar distances.
-  // if one doesnt equal the other, then it takes the smaller one and makes that
-  // its bound
-  // moves longer one to the smaller bound by shutting off the smaller ones
-  // wheels.
+  //checks both sonar distances.
+  //if one doesnt equal the other, then it takes the smaller one and makes that its bound
+  //moves longer one to the smaller bound by shutting off the smaller ones wheels.
 
   public void softStopToggle() {
     enabled = !enabled;

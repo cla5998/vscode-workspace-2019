@@ -37,7 +37,7 @@ public class GuidedDrivingCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.sonar.isClose()) {
+    if (Robot.sonar.isCloseToWall()) {
       distanceController.input(Robot.sonar.readSensor() - TARGET_VALUE);
       double motorSpeed = distanceController.getCorrection();
 
