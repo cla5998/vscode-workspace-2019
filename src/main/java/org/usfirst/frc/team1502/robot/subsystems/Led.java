@@ -44,7 +44,7 @@ public class Led extends Subsystem {
   }
 
   public void setRed() {
-    LEDSpark.set(.61);
+    LEDSpark.set(Color.Red.get());
   }
   
   public void setGreen() {
