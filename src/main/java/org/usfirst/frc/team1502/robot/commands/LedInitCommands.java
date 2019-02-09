@@ -11,8 +11,8 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LedInitCommand extends Command {
-  public LedInitCommand() {
+public class LedInitCommands extends Command {
+  public LedInitCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
