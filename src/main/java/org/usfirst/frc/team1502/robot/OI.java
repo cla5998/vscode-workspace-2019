@@ -67,6 +67,7 @@ public class OI {
 		x.whileHeld(new IntakeCommands());
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
+		a.toggleWhenPressed(new LedInitCommand());
 		rb.whileHeld(new HorizontalSlideCommands(true));
 		lb.whileHeld(new HorizontalSlideCommands(false));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
