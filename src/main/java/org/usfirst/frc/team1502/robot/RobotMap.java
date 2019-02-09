@@ -58,13 +58,14 @@ public class RobotMap {
 	// public static final int ARM_SOLENOID_CLOSE = 1;
 
 	//PWM
-	public static final Spark INTAKE_SPARK = new Spark(0);
+	// public static final Spark INTAKE_SPARK = new Spark(0);
 	// public static final Spark RACK_SPARK = new Spark(1);
 	public static final Spark BLINKIN_HUB = new Spark(1);
 	// public static final Spark VACUUM_SPARK1 = new Spark(4);
 	// public static final Spark VACUUM_SPARK2 = new Spark(5);
-	public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
-	public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
+	// public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
+	// public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
+	public static final Spark HORIZ_SPARK = new Spark(4);
 
 	//this isnt real im just being stupid
 	public static final AnalogInput SONAR = new AnalogInput(3);

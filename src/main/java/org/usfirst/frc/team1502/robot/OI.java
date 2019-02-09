@@ -48,8 +48,8 @@ public class OI {
 	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
 	//not final. this is a click to check the lift application
 	//Button y = new JoystickButton(manipJoystick, 4);
-	Button rb = new JoystickButton(manipJoystick, 9); //Horizontal Slide OUT
-	Button lb = new JoystickButton(manipJoystick, 10); //Horizontal Slide IN
+	Button rb = new JoystickButton(manipJoystick, 5); //Horizontal Slide OUT
+	Button lb = new JoystickButton(manipJoystick, 6); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
 
 	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
@@ -58,10 +58,11 @@ public class OI {
 	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
 	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
-
+	Button nineRight = new JoystickButton(rightJoystick, 9);
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
+
 	
 	public OI() {
 		x.whileHeld(new IntakeCommands());
@@ -79,6 +80,7 @@ public class OI {
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+		nineRight.whileHeld(new LidarCommands());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
