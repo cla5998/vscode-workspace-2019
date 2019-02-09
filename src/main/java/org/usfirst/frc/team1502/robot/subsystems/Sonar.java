@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1502.robot.subsystems;
 
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -46,10 +47,10 @@ public class Sonar extends Subsystem {
 
   public void ledOn() {
     if (isOutBound()) {
-      Robot.led.setRed();
+      Robot.led.setColor(Color.Red);
     }
     else { 
-      Robot.led.setGreen();
+      Robot.led.setColor(Color.Green);
     }
   }
 
