@@ -76,7 +76,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void robotInit() {
 		// enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
-		m_oi = new OI();
 		drivetrain = new Drivetrain();
 
 		sonar = new Sonar(RobotMap.SONAR);
@@ -88,8 +87,8 @@ public class Robot extends TimedRobot {
 		// lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new
 		// TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		// sonar = new Sonar(RobotMap.SONAR_SPARK);
-		m_oi = new OI();
 		led = new Led(RobotMap.BLINKIN_HUB);
+		Robot.led.set(Led.Color.Blue);
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -105,6 +104,8 @@ public class Robot extends TimedRobot {
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+
+		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
