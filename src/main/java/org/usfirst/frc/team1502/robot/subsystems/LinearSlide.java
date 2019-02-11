@@ -62,7 +62,7 @@ public class LinearSlide extends Subsystem {
   
   public void move() {
     double speed = Robot.m_oi.leftJoystick.getY();
-    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
+    //Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
     left.set(ControlMode.PercentOutput, speed);
     right.set(ControlMode.PercentOutput, -speed);
   }
