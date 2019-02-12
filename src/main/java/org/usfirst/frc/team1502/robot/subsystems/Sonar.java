@@ -47,7 +47,8 @@ public class Sonar extends Subsystem {
   public void ledOn() {
     if (isOutBound()) {
       Robot.led.setRed();
-    } else { 
+    } 
+    else { 
       Robot.led.setGreen();
     }
   }
