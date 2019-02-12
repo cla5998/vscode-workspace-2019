@@ -72,17 +72,17 @@ public class OI {
 		//a.toggleWhenPressed(new LedInitCommands());
 		rb.whileHeld(new HorizontalSlideCommands(true));
 		lb.whileHeld(new HorizontalSlideCommands(false));
-		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
-		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
+		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 		nineRight.whileHeld(new LedInitCommands());
-
+		leftDriveTrigger.whileHeld(new LinearSlideCommands());
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
 		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
 		back.whenPressed(new ToggleSlideCommands());
-		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
-		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
-		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
+		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
+		// dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
 		nineRight.whileHeld(new LidarCommands());
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());

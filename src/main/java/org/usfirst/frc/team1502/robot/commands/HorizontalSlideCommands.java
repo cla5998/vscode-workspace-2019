@@ -10,12 +10,14 @@ package org.usfirst.frc.team1502.robot.commands;
 import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class HorizontalSlideCommands extends Command {
   
   boolean forward;
   double speed = .7;
   int i = 0;
+  int tickRate = 0;
   public HorizontalSlideCommands(boolean forward) {
     this.forward = forward;
     // Use requires() here to declare subsystem dependencies
@@ -31,14 +33,17 @@ public class HorizontalSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(i == 5 && speed > .4){
-      speed -= .1;
+    tickRate++;
+    SmartDashboard.putNumber("Tickrate", tickRate);
+    SmartDashboard.putNumber("Speed", speed);
+    if(i == 5 && speed > .4) {
+       speed -= .1;
       i = 0;
     }
     else{
       i++;
     }
-    if(forward == true){
+    if(forward == true) {
       Robot.horizontalSlide.setSpeed(speed);
     }
     else{

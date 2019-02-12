@@ -24,10 +24,10 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 
 	// Talons
-	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 1;
-	public static final int DRIVETRAIN_LEFT_BACK_TALON = 3;
-	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 2;
-	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 4;
+	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 8;
+	public static final int DRIVETRAIN_LEFT_BACK_TALON = 9;
+	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 10;
+	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 11;
 	// public static final int VACUUM_TALON = 5;
 
 	// public static final int PLATFORM_TALON_LEFT = 6;
@@ -40,8 +40,8 @@ public class RobotMap {
 	public static final int PLATFORM_TALON_LEFT = 6;
 	public static final int PLATFORM_TALON_RIGHT = 7;
 
-	public static final int LINEAR_SLIDE_TALON_LEFT = 8;
-	public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
+	public static final int LINEAR_SLIDE_TALON_LEFT = 1;
+	public static final int LINEAR_SLIDE_TALON_RIGHT = 2;
 
 	// Joysticks
 	public static final int LEFT_JOYSTICK = 0;
