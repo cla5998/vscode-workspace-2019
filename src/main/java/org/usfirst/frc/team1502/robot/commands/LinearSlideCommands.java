@@ -11,16 +11,17 @@ import org.usfirst.frc.team1502.robot.Robot;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LinearSlideCommands extends Command {
 
   // String level;
   LinearSlide.Level level;
-  
-  public LinearSlideCommands(LinearSlide.Level level) {
+  //LinearSlide.Level level
+  public LinearSlideCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.level = level;
+    //this.level = level;
     requires(Robot.slide);
   }
 
@@ -32,7 +33,10 @@ public class LinearSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
+    //Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
+    
+    Robot.slide.move();
+    SmartDashboard.putNumber("Enc value", Robot.enc.get());
     //Robot.slide.move(Robot.slide.getDistance2(level, Robot.slide.load));
   }
   
