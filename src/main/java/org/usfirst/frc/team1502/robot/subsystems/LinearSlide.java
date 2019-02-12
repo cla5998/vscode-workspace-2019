@@ -47,14 +47,18 @@ public class LinearSlide extends Subsystem {
     this.right = right;
   }
 
+  public boolean checkDistance() {
+    return Robot.encRight.getDistance() == Robot.encLeft.getDistance() ? true : false;
+  }
+
   public void move(double input) {
-    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
-    while (Robot.enc.getDistance() < input) {
+    Robot.encRight.setDistancePerPulse(1); // this needs to be tested, but obviously cant
+    while (Robot.encRight.getDistance() < input) {
       left.set(ControlMode.PercentOutput, 1); // these two moves could be wrong, will follow up with keppler to get the
                                               // answer soon
       right.set(ControlMode.PercentOutput, -1);
     }
-    while (Robot.enc.getDistance() > input) {
+    while (Robot.encRight.getDistance() > input) {
       left.set(ControlMode.PercentOutput, -1);
       right.set(ControlMode.PercentOutput, 1);
     }

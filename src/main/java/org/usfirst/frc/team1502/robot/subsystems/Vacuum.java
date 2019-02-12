@@ -34,6 +34,8 @@ public class Vacuum extends Subsystem {
   }
     
   public void setSpeed(double speed) {
+    vacuumRight.setVoltageRampRate(2.4);
+    vacuumLeft.setVoltageRampRate(2.4);
      this.speed = speed;
      vacuumLeft.set(speed);
      vacuumRight.set(speed);

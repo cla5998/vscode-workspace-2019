@@ -67,7 +67,8 @@ public class Robot extends TimedRobot {
 		// networkTable = NetworkTable.getTable("GRIP/test");
 	}
 
-	public static Encoder enc;
+	public static Encoder encRight;
+	public static Encoder encLeft;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -93,8 +94,8 @@ public class Robot extends TimedRobot {
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK_LEFT, RobotMap.VACUUM_SPARK_RIGHT);
-		// //vacuum2 = new Vacuum(RobotMap.VACUUM_SPARK2);
+		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK);
+		// vacuum = new Vacuum(RobotMap.VACUUM_TALON);
 		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
 		
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
@@ -104,7 +105,8 @@ public class Robot extends TimedRobot {
 		// linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
-		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		encRight = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		encLeft = new Encoder(2, 3, false, Encoder.EncodingType.k4X);
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
