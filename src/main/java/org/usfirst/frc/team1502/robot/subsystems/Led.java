@@ -47,10 +47,6 @@ public class Led extends Subsystem {
     LEDSpark.set(color.get());
   }
   
-  public void setStrobe(){
-    LEDSpark.set(Color.Strobe.get());
-  }
-
   public void set(double color) {
     LEDSpark.set(color);
   }
