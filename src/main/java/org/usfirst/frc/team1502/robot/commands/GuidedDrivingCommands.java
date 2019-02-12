@@ -24,6 +24,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar.Boundaries;
 
 public class GuidedDrivingCommands extends Command {
@@ -49,6 +50,7 @@ public class GuidedDrivingCommands extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.drivetrain);
+    requires(Robot.led);
     directionController = new PIDController(0.00479133, 1e-6, 0.5);
     camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
@@ -102,6 +104,7 @@ public class GuidedDrivingCommands extends Command {
     // }
     SmartDashboard.putNumber("Sonar volts", Robot.sonar.readSensor());
     SmartDashboard.putBoolean("Target detected", targetDetected);
+    SmartDashboard.putNumber("Target size", targetSize);
     /*double d = map(Robot.m_oi.rightJoystick.getThrottle(), 1, -1, 1e+1, 1e-1);
     SmartDashboard.putNumber("D", d);
     directionController.D = d;*/
@@ -112,13 +115,14 @@ public class GuidedDrivingCommands extends Command {
         directionController.input(error);
         double correction = directionController.getCorrection();
         SmartDashboard.putNumber("Correction", correction);
-        SmartDashboard.putNumber("Target size", targetSize);
         Robot.drivetrain.arcadeDrive(IDLE_SPEED * (1 - Robot.m_oi.rightJoystick.getY()), correction);
       }
-    }
+    } else targetLost();
 
     if (targetSize >= STOPPING_TARGET_SIZE) {
-      // make leds green
+      Robot.led.set(Color.Green);
+    } else {
+      Robot.led.set(Color.Yellow);
     }
     // Robot.sonar.check(place);
     // double cm = Robot.sonar.readSensor(); // gets distance from object
@@ -151,18 +155,22 @@ public class GuidedDrivingCommands extends Command {
     return false;
   }
 
+  void commandFinished() {
+    Robot.led.set(Color.Blue);
+    visionThread.interrupt();
+    targetLost();
+  }
+
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    visionThread.interrupt();
-    targetLost();
+    commandFinished();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    visionThread.interrupt();
-    targetLost();
+    commandFinished();
   }
 }

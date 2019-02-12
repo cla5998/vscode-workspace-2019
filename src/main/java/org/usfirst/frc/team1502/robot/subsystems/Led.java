@@ -20,7 +20,7 @@ public class Led extends Subsystem {
   Spark LEDSpark;
 
   public enum Color {
-    Red(.99), Green(.77), Strobe(.15);
+    Red(.99), Green(.77), Blue(.87), Yellow(.69), Magenta(0.57), White(0.93), Off(0.99), Strobe(.15);
     private double value;
 
     Color(double value) {
@@ -43,20 +43,16 @@ public class Led extends Subsystem {
     this.LEDSpark = LEDSpark;
   }
 
-  public void setRed() {
-    LEDSpark.set(Color.Red.get());
-  }
-  
-  public void setGreen() {
-    LEDSpark.set(Color.Green.get());
+  public void set(Color color) {
+    LEDSpark.set(color.get());
   }
   
   public void setStrobe(){
     LEDSpark.set(Color.Strobe.get());
   }
 
-  public void colorChange() {
-    current = current == Color.Red ? Color.Green : Color.Red;
+  public void set(double color) {
+    LEDSpark.set(color);
   }
 
   @Override

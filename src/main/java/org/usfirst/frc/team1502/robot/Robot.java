@@ -95,6 +95,7 @@ public class Robot extends TimedRobot {
 		lidar = new Lidar(I2C.Port.kOnboard, 0x1e);
 
 		led = new Led(RobotMap.BLINKIN_HUB);
+		Robot.led.set(Led.Color.Blue);
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
@@ -115,6 +116,8 @@ public class Robot extends TimedRobot {
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+
+		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
