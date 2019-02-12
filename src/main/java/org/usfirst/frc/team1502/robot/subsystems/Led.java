@@ -43,20 +43,16 @@ public class Led extends Subsystem {
     this.LEDSpark = LEDSpark;
   }
 
-  public void setRed() {
-    LEDSpark.set(Color.Red.get());
-  }
-  
-  public void setGreen() {
-    LEDSpark.set(Color.Green.get());
+  public void set(Color color) {
+    LEDSpark.set(color.get());
   }
   
   public void setStrobe(){
     LEDSpark.set(Color.Strobe.get());
   }
 
-  public void colorChange() {
-    current = current == Color.Red ? Color.Green : Color.Red;
+  public void set(double color) {
+    LEDSpark.set(color);
   }
 
   @Override
