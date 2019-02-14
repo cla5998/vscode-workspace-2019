@@ -11,12 +11,12 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class HorizontalDumbCommands extends Command {
+public class HorizontalSlideCommands extends Command {
   double speedInput = 0;
-  public HorizontalDumbCommands(double speed) {
+  public HorizontalSlideCommands(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.dumb);
+    requires(Robot.horizontalSlide);
     speedInput = speed;
   }
 
@@ -28,7 +28,7 @@ public class HorizontalDumbCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.dumb.setSpeed(speedInput);
+    Robot.horizontalSlide.setSpeed(speedInput);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,7 +40,7 @@ public class HorizontalDumbCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.dumb.setSpeed(0);
+    Robot.horizontalSlide.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

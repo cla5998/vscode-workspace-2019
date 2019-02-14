@@ -24,7 +24,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
-import org.usfirst.frc.team1502.robot.subsystems.HorizontalDumb;
+import org.usfirst.frc.team1502.robot.subsystems.HorizontalSlide;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.Led;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
@@ -57,7 +57,7 @@ public class Robot extends TimedRobot {
 	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
 
-	public static HorizontalDumb dumb = new HorizontalDumb(null);
+	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 
 	public static Led led = new Led(null);
 
@@ -103,7 +103,7 @@ public class Robot extends TimedRobot {
 		//this.safeDrivePID = new PIDController(P, I, D);
 		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
 		
-		dumb = new HorizontalDumb(RobotMap.HORIZ_SPARK);
+		horizontalSlide = new HorizontalSlide(RobotMap.HORIZ_SPARK);
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 

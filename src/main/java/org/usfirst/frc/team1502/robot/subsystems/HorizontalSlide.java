@@ -13,19 +13,18 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * Add your docs here.
  */
-public class HorizontalDumb extends Subsystem {
+public class HorizontalSlide extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  Spark slideMotor = null;
 
-  Spark dumbThing = null;
-
-  public HorizontalDumb(Spark dumb){
-    dumbThing = dumb;
+  public HorizontalSlide(Spark motor){
+    slideMotor = motor;
   }
 
   public void setSpeed(double speedInput) { 
     double speed = speedInput;
-    dumbThing.set(speed);
+    slideMotor.set(speed);
   }
 
   @Override

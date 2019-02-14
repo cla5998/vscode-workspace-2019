@@ -66,12 +66,12 @@ public class OI {
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
 	
 	public OI() {
-		x.whileHeld(new HorizontalDumbCommands(0));
+		x.whileHeld(new HorizontalSlideCommands(0));
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
 		//a.toggleWhenPressed(new LedInitCommands());
-		rb.whileHeld(new HorizontalDumbCommands(.3));
-		lb.whileHeld(new HorizontalDumbCommands(-.3));
+		rb.whileHeld(new HorizontalSlideCommands(.3));
+		lb.whileHeld(new HorizontalSlideCommands(-.3));
 		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 		nineRight.whileHeld(new LedInitCommands());
