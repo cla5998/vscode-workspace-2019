@@ -17,11 +17,11 @@ public class LinearSlideCommands extends Command {
 
   // String level;
   LinearSlide.Level level;
-
-  public LinearSlideCommands(LinearSlide.Level level) {
+  //LinearSlide.Level level
+  public LinearSlideCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    this.level = level;
+    //this.level = level;
     requires(Robot.slide);
   }
 

@@ -66,23 +66,24 @@ public class OI {
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
 	
 	public OI() {
-		x.whileHeld(new IntakeCommands());
+		x.whileHeld(new HorizontalDumbCommands(0));
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
 		//a.toggleWhenPressed(new LedInitCommands());
-		rb.whileHeld(new HorizontalSlideCommands(true));
-		lb.whileHeld(new HorizontalSlideCommands(false));
-		rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
-		leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
+		rb.whileHeld(new HorizontalDumbCommands(.3));
+		lb.whileHeld(new HorizontalDumbCommands(-.3));
+		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
+		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 		nineRight.whileHeld(new LedInitCommands());
-
+		leftDriveTrigger.whileHeld(new LinearSlideCommands());
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
 		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
 		back.whenPressed(new ToggleSlideCommands());
-		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
-		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
-		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+		
+		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
+		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
+		// dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
