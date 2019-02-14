@@ -8,14 +8,16 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LedInitCommands extends Command {
-  public LedInitCommands() {
+public class LinearSlideLocationCommands extends Command {
+  public LinearSlideLocationCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.slide);
   }
 
   // Called just before this Command runs the first time
@@ -26,7 +28,8 @@ public class LedInitCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   // Robot.led.set(Math.floor(Robot.m_oi.rightJoystick.getThrottle() * 100) / 100);
+    Robot.slide.move(LinearSlide.CARGO_MIDDLE);
+    SmartDashboard.putNumber("Enc value", Robot.enc.get());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,13 +41,12 @@ public class LedInitCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.led.set(Color.Blue);
+    Robot.slide.zero();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

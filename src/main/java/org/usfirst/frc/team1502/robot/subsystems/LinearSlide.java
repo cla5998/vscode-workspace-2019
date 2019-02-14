@@ -15,6 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * Add your docs here.
@@ -27,12 +28,12 @@ public class LinearSlide extends Subsystem {
   public LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
 
   public static final double GROUND = 0; // Constants for getDistance. These are how far it moves
-  public static final double HATCH_LOW = 0;
-  public static final double HATCH_MIDDLE = 0;
-  public static final double HATCH_HIGH = 0;
-  public static final double CARGO_LOW = 0;
-  public static final double CARGO_MIDDLE = 0;
-  public static final double CARGO_HIGH = 0;
+  public static final double HATCH_LOW = 98;
+  public static final double HATCH_MIDDLE = 100;
+  public static final double HATCH_HIGH = 154;
+  public static final double CARGO_LOW = 80;
+  public static final double CARGO_MIDDLE = 99;
+  public static final double CARGO_HIGH = 155 ;
 
   public enum Level {
     Ground, Low, Middle, High
@@ -48,23 +49,32 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input) {
-    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
-    if (Robot.enc.getDistance() < input) {
-      left.set(ControlMode.PercentOutput, 1); // these two moves could be wrong, will follow up with keppler to get the
-                                              // answer soon
-      right.set(ControlMode.PercentOutput, -1);
-    }
-    else if (Robot.enc.getDistance() > input) {
-      left.set(ControlMode.PercentOutput, -1);
-      right.set(ControlMode.PercentOutput, 1);
-    }
+    // Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
+    // if (Robot.enc.getDistance() < input) {
+    //   left.set(ControlMode.PercentOutput, -.25); // these two moves could be wrong, will follow up with keppler to get the
+    //                                           // answer soon
+    //   right.set(ControlMode.PercentOutput, .25);
+    // }
+    // else if (Robot.enc.getDistance() > input) {
+    //   left.set(ControlMode.PercentOutput, .25);
+    //   right.set(ControlMode.PercentOutput, -.25);
+    // }
+    SmartDashboard.putNumber("Enc value", 5/*Robot.enc.get()*/);
   }
+
   
   public void move() {
     double speed = Robot.m_oi.leftJoystick.getY();
     //Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
     left.set(ControlMode.PercentOutput, speed);
     right.set(ControlMode.PercentOutput, -speed);
+    SmartDashboard.putNumber("Enc value", Robot.enc.getDistance());
+    System.out.println(Robot.enc.getDistance());
+  }
+
+  public void zero() {
+    left.set(ControlMode.PercentOutput, 0);
+    right.set(ControlMode.PercentOutput, 0);
   }
   
   public double getDistance(Level level, LoadType load) {
