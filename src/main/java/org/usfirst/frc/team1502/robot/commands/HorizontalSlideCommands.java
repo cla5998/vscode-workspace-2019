@@ -12,12 +12,12 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class HorizontalSlideCommands extends Command {
-  double speedInput = 0;
-  public HorizontalSlideCommands(double speed) {
+  double speed = 0;
+  public HorizontalSlideCommands(double speedInput) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.horizontalSlide);
-    speedInput = speed;
+    speed = speedInput;
   }
 
   // Called just before this Command runs the first time
@@ -28,12 +28,14 @@ public class HorizontalSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.horizontalSlide.setSpeed(speedInput);
+    Robot.horizontalSlide.setSpeed(speed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    if (speed > 0 && !Robot.horizontalLimitSwitchHigh.get()) return true;
+    if (speed < 0 && !Robot.horizontalLimitSwitchLow.get()) return true;
     return false;
   }
 

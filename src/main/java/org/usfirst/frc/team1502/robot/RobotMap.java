@@ -48,6 +48,9 @@ public class RobotMap {
 	public static final int RIGHT_JOYSTICK = 1;
 	public static final int MANIP_JOYSTICK = 2;
 
+	public static final int LIMIT_SWITCH_LOW = 7;
+	public static final int LIMIT_SWITCH_HIGH = 8;
+
 	// Solenoids
 	// public static final Solenoid SOLENOID_1 = new Solenoid(11, 1);
 	// public static final Solenoid SOLENOID_2 = new Solenoid(11, 2);

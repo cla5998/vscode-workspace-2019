@@ -9,6 +9,7 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Spark;
@@ -56,6 +57,8 @@ public class Robot extends TimedRobot {
 	public static PlatformLift lift = new PlatformLift(null, null);
 	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
+	public static DigitalInput horizontalLimitSwitchHigh = new DigitalInput(RobotMap.LIMIT_SWITCH_HIGH);
+	public static DigitalInput horizontalLimitSwitchLow = new DigitalInput(RobotMap.LIMIT_SWITCH_LOW);
 
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 
