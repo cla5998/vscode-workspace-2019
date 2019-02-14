@@ -29,7 +29,6 @@ import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.Led;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
-import org.usfirst.frc.team1502.robot.subsystems.HorizontalSlide;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.opencv.core.MatOfPoint;
@@ -54,7 +53,6 @@ public class Robot extends TimedRobot {
 	public static HatchRelease hatchRelease = new HatchRelease(null, null, null);
 	// public static Vacuum vacuum = new Vacuum(null);
 	// public static Vacuum vacuum = new Vacuum(null, null);
-	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 	public static PlatformLift lift = new PlatformLift(null, null);
 	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
