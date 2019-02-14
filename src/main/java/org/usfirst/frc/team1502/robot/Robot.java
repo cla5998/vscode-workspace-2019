@@ -11,6 +11,7 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -25,6 +26,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
+import org.usfirst.frc.team1502.robot.subsystems.HorizontalDumb;
 import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.Led;
 import org.usfirst.frc.team1502.robot.subsystems.Lidar;
@@ -60,6 +62,8 @@ public class Robot extends TimedRobot {
 	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
 
+	public static HorizontalDumb dumb = new HorizontalDumb(null);
+
 	public static Led led = new Led(null);
 	public static Lidar lidar;
 
@@ -82,7 +86,7 @@ public class Robot extends TimedRobot {
 		drivetrain = new Drivetrain();
 
 		sonar = new Sonar(RobotMap.SONAR);
-		// intake = new Intake(RobotMap.INTAKE_SPARK);
+		//intake = new Intake(RobotMap.INTAKE_SPARK);
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
 		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK2);
@@ -94,20 +98,22 @@ public class Robot extends TimedRobot {
 
 		lidar = new Lidar(I2C.Port.kOnboard, 0x1e);
 
-		led = new Led(RobotMap.BLINKIN_HUB);
-		Robot.led.set(Led.Color.Blue);
+		// led = new Led(RobotMap.BLINKIN_HUB);
+		// Robot.led.set(Led.Color.Blue);
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK_LEFT, RobotMap.VACUUM_SPARK_RIGHT);
 		// //vacuum2 = new Vacuum(RobotMap.VACUUM_SPARK2);
-		horizontalSlide = new HorizontalSlide(RobotMap.HORIZ_SPARK);
+		//horizontalSlide = new HorizontalSlide(new Spark(RobotMap.HORIZ_SPARK));
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
 		//this.safeDrivePID = new PIDController(P, I, D);
 		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
 		
+		dumb = new HorizontalDumb(RobotMap.HORIZ_SPARK);
+
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 
 		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT),
@@ -117,7 +123,6 @@ public class Robot extends TimedRobot {
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 
-		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		

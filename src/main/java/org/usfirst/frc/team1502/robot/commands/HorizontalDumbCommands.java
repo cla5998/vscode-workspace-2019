@@ -10,19 +10,14 @@ package org.usfirst.frc.team1502.robot.commands;
 import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class HorizontalSlideCommands extends Command {
-  
-  boolean forward;
-  double speed = 1;
-  int i = 0;
-  int tickRate = 0;
-  public HorizontalSlideCommands(boolean forward) {
-    this.forward = forward;
+public class HorizontalDumbCommands extends Command {
+  double speedInput = 0;
+  public HorizontalDumbCommands(double speed) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.horizontalSlide);
+    requires(Robot.dumb);
+    speedInput = speed;
   }
 
   // Called just before this Command runs the first time
@@ -33,24 +28,7 @@ public class HorizontalSlideCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // tickRate++;
-    // SmartDashboard.putNumber("Tickrate", tickRate);
-    // SmartDashboard.putNumber("Speed", speed);
-    // if (i == 25 && speed > .4) {
-    //   SmartDashboard.putNumber("Tickrate in if statment", tickRate);      
-    //   // speed -= .1;
-    //   i = 0;
-    // }
-    // else{
-    //   i++;
-    // }
-    // if(forward == true) {
-    //   Robot.horizontalSlide.setSpeed(speed);
-    // }
-    // else {
-    //   Robot.horizontalSlide.setSpeed(-speed);
-    // }
-    Robot.horizontalSlide.setSpeed(-1);
+    Robot.dumb.setSpeed(speedInput);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -62,8 +40,7 @@ public class HorizontalSlideCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.horizontalSlide.setSpeed(0);
-    tickRate = 0;
+    Robot.dumb.setSpeed(0);
   }
 
   // Called when another command which requires one or more of the same
