@@ -44,11 +44,11 @@ public class Led extends Subsystem {
   }
 
   public void set(Color color) {
-    LEDSpark.set(color.get());
+    // LEDSpark.set(color.get());
   }
   
   public void set(double color) {
-    LEDSpark.set(color);
+    // LEDSpark.set(color);
   }
 
   @Override

@@ -47,7 +47,7 @@ public class OI {
 	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
 	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
 	//not final. this is a click to check the lift application
-	//Button y = new JoystickButton(manipJoystick, 4);
+	Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 5); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 6); //Horizontal Slide IN
 	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
@@ -66,6 +66,7 @@ public class OI {
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
 	
 	public OI() {
+		y.whileHeld(new LinearSlideLocationCommands());
 		x.whileHeld(new HorizontalDumbCommands(0));
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
@@ -74,7 +75,7 @@ public class OI {
 		lb.whileHeld(new HorizontalDumbCommands(-.3));
 		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
 		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
-		nineRight.whileHeld(new LedInitCommands());
+		//nineRight.whileHeld(new LedInitCommands());
 		leftDriveTrigger.whileHeld(new LinearSlideCommands());
 		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 

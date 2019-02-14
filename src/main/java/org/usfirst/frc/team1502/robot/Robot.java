@@ -121,7 +121,12 @@ public class Robot extends TimedRobot {
 		// linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
-		enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		enc = new Encoder(0, 1, false, Encoder.EncodingType.k1X);
+		enc.reset();
+		enc.setMaxPeriod(.1);
+		enc.setMinRate(10);
+		enc.setDistancePerPulse(5);
+		enc.setSamplesToAverage(7);
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
