@@ -81,10 +81,10 @@ public class OI {
 		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
 		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
 		back.whenPressed(new ToggleSlideCommands());
+		
 		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		// dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
-		nineRight.whileHeld(new LidarCommands());
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
