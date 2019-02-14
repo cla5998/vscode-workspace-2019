@@ -33,7 +33,7 @@ public class Drivetrain extends Subsystem {
 		leftFrontTalon = new TalonSRX(RobotMap.DRIVETRAIN_LEFT_FRONT_TALON);
 		leftBackTalon = new TalonSRX(RobotMap.DRIVETRAIN_LEFT_BACK_TALON);
 		rightFrontTalon = new TalonSRX(RobotMap.DRIVETRAIN_RIGHT_FRONT_TALON);
-		rightBackTalon = new TalonSRX(RobotMap.DRIVETRAIN_RIGHT_BACK_TALON); 
+		rightBackTalon = new TalonSRX(RobotMap.DRIVETRAIN_RIGHT_BACK_TALON);
 		
 		//Drive Systems
 		//arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);

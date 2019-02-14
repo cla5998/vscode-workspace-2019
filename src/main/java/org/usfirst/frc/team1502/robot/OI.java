@@ -83,7 +83,6 @@ public class OI {
 		dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
-		nineRight.whileHeld(new LidarCommands());
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
 		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
