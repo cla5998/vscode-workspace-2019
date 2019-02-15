@@ -66,15 +66,19 @@ public class LinearSlide extends Subsystem {
   public void move() {
     double speed = Robot.m_oi.leftJoystick.getY();
     //Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
-    left.set(ControlMode.PercentOutput, speed);
-    right.set(ControlMode.PercentOutput, -speed);
+    if (speed >= .08 || speed <= .08) {
+      left.set(ControlMode.PercentOutput, speed);
+      right.set(ControlMode.PercentOutput, -speed);
+    } else {
+      hold();
+    }
     SmartDashboard.putNumber("Enc value", Robot.enc.getDistance());
     System.out.println(Robot.enc.getDistance());
   }
 
-  public void zero() {
-    left.set(ControlMode.PercentOutput, 0);
-    right.set(ControlMode.PercentOutput, 0);
+  public void hold() {
+    left.set(ControlMode.PercentOutput, -0.16);
+    right.set(ControlMode.PercentOutput, 0.16);
   }
   
   public double getDistance(Level level, LoadType load) {

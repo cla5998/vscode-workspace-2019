@@ -210,6 +210,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putBoolean("low limit switch", Robot.horizontalLimitSwitchLow.get());
+		SmartDashboard.putBoolean("high limit switch", Robot.horizontalLimitSwitchHigh.get());
 	}
 
 	/**
