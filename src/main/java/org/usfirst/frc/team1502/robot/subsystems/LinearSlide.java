@@ -32,7 +32,7 @@ public class LinearSlide extends Subsystem {
   public static final double HATCH_MIDDLE = 100;
   public static final double HATCH_HIGH = 154;
   public static final double CARGO_LOW = 80;
-  public static final double CARGO_MIDDLE = 99;
+  public static final double CARGO_MIDDLE = 800;
   public static final double CARGO_HIGH = 155 ;
 
   public enum Level {
@@ -49,16 +49,16 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input) {
-    // Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
-    // if (Robot.enc.getDistance() < input) {
-    //   left.set(ControlMode.PercentOutput, -.25); // these two moves could be wrong, will follow up with keppler to get the
-    //                                           // answer soon
-    //   right.set(ControlMode.PercentOutput, .25);
-    // }
-    // else if (Robot.enc.getDistance() > input) {
-    //   left.set(ControlMode.PercentOutput, .25);
-    //   right.set(ControlMode.PercentOutput, -.25);
-    // }
+    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
+    if (Robot.enc.getDistance() < input) {
+      left.set(ControlMode.PercentOutput, -.25); // these two moves could be wrong, will follow up with keppler to get the
+                                              // answer soon
+      right.set(ControlMode.PercentOutput, .25);
+    }
+    else if (Robot.enc.getDistance() > input) {
+      left.set(ControlMode.PercentOutput, .25);
+      right.set(ControlMode.PercentOutput, -.25);
+    }
     SmartDashboard.putNumber("Enc value", 5/*Robot.enc.get()*/);
   }
 

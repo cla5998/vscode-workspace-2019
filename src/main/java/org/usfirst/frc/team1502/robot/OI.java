@@ -66,7 +66,7 @@ public class OI {
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
 	
 	public OI() {
-		y.whileHeld(new LinearSlideLocationCommands());
+		y.whileHeld(new LinearSlideLocationCommands(LinearSlide.CARGO_MIDDLE));
 		x.whileHeld(new HorizontalSlideCommands(0));
 		b.whenPressed(new HatchReleaseCommands());
 		//a.toggleWhenPressed(new VacuumCommands());
