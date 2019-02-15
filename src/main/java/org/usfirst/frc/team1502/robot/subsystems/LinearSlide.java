@@ -59,7 +59,7 @@ public class LinearSlide extends Subsystem {
     //   left.set(ControlMode.PercentOutput, .25);
     //   right.set(ControlMode.PercentOutput, -.25);
     // }
-    SmartDashboard.putNumber("Enc value", 5/*Robot.enc.get()*/);
+    SmartDashboard.putNumber("Enc value", 5);
   }
 
   

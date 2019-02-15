@@ -33,9 +33,9 @@ public class HorizontalSlideCommands extends Command {
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
-  protected boolean isFinished() {
-    if (speed > 0 && !Robot.horizontalLimitSwitchHigh.get()) return true;
-    if (speed < 0 && !Robot.horizontalLimitSwitchLow.get()) return true;
+  protected boolean isFinished() { // Limit switches output true by default and false when pressed in
+    if (speed > 0 && Robot.horizontalLimitSwitchHigh.get()) return true;
+    if (speed < 0 && Robot.horizontalLimitSwitchLow.get()) return true;
     return false;
   }
 
