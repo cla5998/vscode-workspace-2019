@@ -41,7 +41,7 @@ public class LinearSlideLocationCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.slide.zero();
+    Robot.slide.hold();
   }
 
   // Called when another command which requires one or more of the same
