@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Spark;
 
 /**
@@ -24,10 +25,10 @@ public class RobotMap {
 	// public static int rightMotor = 2;
 
 	// Talons
-	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 8;
-	public static final int DRIVETRAIN_LEFT_BACK_TALON = 9;
-	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 10;
-	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 11;
+	public static final int DRIVETRAIN_LEFT_FRONT_TALON = 3;
+	public static final int DRIVETRAIN_LEFT_BACK_TALON = 4;
+	public static final int DRIVETRAIN_RIGHT_FRONT_TALON = 5;
+	public static final int DRIVETRAIN_RIGHT_BACK_TALON = 6;
 	// public static final int VACUUM_TALON = 5;
 
 	// public static final int PLATFORM_TALON_LEFT = 6;
@@ -35,10 +36,7 @@ public class RobotMap {
 	// public static final int LINEAR_SLIDE_TALON_LEFT = 8;
 	// public static final int LINEAR_SLIDE_TALON_RIGHT = 9;
 
-	//public static final int VACUUM_TALON = 5;
-
-	public static final int PLATFORM_TALON_LEFT = 6;
-	public static final int PLATFORM_TALON_RIGHT = 7;
+	public static final int VACUUM_VICTOR = 7;
 
 	public static final int LINEAR_SLIDE_TALON_LEFT = 1;
 	public static final int LINEAR_SLIDE_TALON_RIGHT = 2;
@@ -52,7 +50,9 @@ public class RobotMap {
 	public static final int LIMIT_SWITCH_HIGH = 8;
 
 	// Solenoids
-	// public static final Solenoid SOLENOID_1 = new Solenoid(11, 1);
+	public static final int SOLENOID_FORWARD = 0;
+	public static final int SOLENOID_REVERSE = 1;
+
 	// public static final Solenoid SOLENOID_2 = new Solenoid(11, 2);
 	// public static final Solenoid SOLENOID_3 = new Solenoid(11, 3);
 
@@ -67,12 +67,14 @@ public class RobotMap {
 	// public static final Spark VACUUM_SPARK2 = new Spark(5);
 	// public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
 	// public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
-	public static final Spark HORIZ_SPARK = new Spark(0);
-
+	public static final Spark HORIZ_SPARK = new Spark(4);
+	
+	public static final int PLATFORM_SPARK_LEFT = 1;
+	public static final int PLATFORM_SPARK_RIGHT = 0;
 	public static final AnalogInput SONAR = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port
-	// number and the module. For example you with a rangefinder:
+	// number and the module. For example you with `	a rangefinder:
 	// public static int rangefinderPort = 1;
 	// public static int rangefinderModule = 1;
 }

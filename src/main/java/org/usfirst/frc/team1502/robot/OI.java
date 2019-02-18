@@ -46,7 +46,6 @@ public class OI {
 	Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
 	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
 	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
-	//not final. this is a click to check the lift application
 	Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 5); //Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 6); //Horizontal Slide IN
@@ -56,30 +55,28 @@ public class OI {
 	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
 
-	Button guidedDrivingButton = new JoystickButton(rightJoystick, 1);
+	Button guidedDrivingButton = new JoystickButton(rightJoystick, 2);
 	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
 	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
+	Button start = new JoystickButton(manipJoystick, 8);
 	Button nineRight = new JoystickButton(rightJoystick, 9);
 	/*Drive Joysticks*/
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
 	
 	public OI() {
-		y.whileHeld(new LinearSlideLocationCommands(LinearSlide.CARGO_MIDDLE));
-		x.whileHeld(new HorizontalSlideCommands(0));
-		b.whenPressed(new HatchReleaseCommands());
-		//a.toggleWhenPressed(new VacuumCommands());
-		//a.toggleWhenPressed(new LedInitCommands());
+		y.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High, LinearSlide.load)));
+		x.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Middle, LinearSlide.load)));
+		b.whileHeld(new HatchReleaseCommands());
+		//a.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low, LinearSlide.load)));
+		start.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground, LinearSlide.load)));
+		a.whileHeld(new VacuumCommands());
 		rb.whileHeld(new HorizontalSlideCommands(.3));
 		lb.whileHeld(new HorizontalSlideCommands(-.3));
-		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
-		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
 		//nineRight.whileHeld(new LedInitCommands());
-		leftDriveTrigger.whileHeld(new LinearSlideCommands());
-		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
-		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
+		leftDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.DOWN));
+		rightDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.UP));
 		back.whenPressed(new ToggleSlideCommands());
 		
 		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));

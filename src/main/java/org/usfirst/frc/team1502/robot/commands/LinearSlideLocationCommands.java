@@ -33,13 +33,12 @@ public class LinearSlideLocationCommands extends Command {
   @Override
   protected void execute() {
     Robot.slide.move(position);
-    SmartDashboard.putNumber("Enc value", Robot.enc.get());
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.slide.centered;
   }
 
   // Called once after isFinished returns true
@@ -52,5 +51,6 @@ public class LinearSlideLocationCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }

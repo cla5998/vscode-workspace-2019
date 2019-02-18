@@ -10,6 +10,7 @@ package org.usfirst.frc.team1502.robot;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Spark;
@@ -22,6 +23,7 @@ import edu.wpi.first.wpilibj.vision.VisionThread;
 // import edu.wpi.first.vision.VisionRunner;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team1502.robot.subsystems.HatchRelease;
@@ -31,6 +33,7 @@ import org.usfirst.frc.team1502.robot.subsystems.Led;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
+import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
@@ -51,8 +54,7 @@ public class Robot extends TimedRobot {
 	// null);
 	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
 	public static Intake intake = new Intake(null);
-	public static HatchRelease hatchRelease = new HatchRelease(null, null, null);
-	// public static Vacuum vacuum = new Vacuum(null);
+	public static Vacuum vacuum = new Vacuum(null);
 	// public static Vacuum vacuum = new Vacuum(null, null);
 	public static PlatformLift lift = new PlatformLift(null, null);
 	public static Sonar sonar;
@@ -64,6 +66,8 @@ public class Robot extends TimedRobot {
 
 	public static Led led = new Led(null);
 
+	public static HatchRelease solenoid;
+
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -71,7 +75,6 @@ public class Robot extends TimedRobot {
 		// networkTable = NetworkTable.getTable("GRIP/test");
 	}
 
-	public static Encoder enc;
 
 	/**
 	 * This function is run when the robot is first started up and should be used
@@ -91,13 +94,13 @@ public class Robot extends TimedRobot {
 		// lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT), new
 		// TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		// sonar = new Sonar(RobotMap.SONAR_SPARK);
-
+		solenoid = new HatchRelease(new DoubleSolenoid(11, RobotMap.SOLENOID_FORWARD, RobotMap.SOLENOID_REVERSE));
 		// led = new Led(RobotMap.BLINKIN_HUB);
 		// Robot.led.set(Led.Color.Blue);
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		// chooser.addObject("My Auto", new MyAutoCommand());
-		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK_LEFT, RobotMap.VACUUM_SPARK_RIGHT);
+		vacuum = new Vacuum(new VictorSPX(RobotMap.VACUUM_VICTOR));
 		// //vacuum2 = new Vacuum(RobotMap.VACUUM_SPARK2);
 		//horizontalSlide = new HorizontalSlide(new Spark(RobotMap.HORIZ_SPARK));
 
@@ -110,18 +113,12 @@ public class Robot extends TimedRobot {
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 
-		lift = new PlatformLift(new TalonSRX(RobotMap.PLATFORM_TALON_LEFT),
-				new TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
+		lift = new PlatformLift(new Spark(RobotMap.PLATFORM_SPARK_LEFT), new Spark(RobotMap.PLATFORM_SPARK_RIGHT));
+		Robot.lift.setSpeed(-.2);
 		// linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
-		enc = new Encoder(0, 1, false, Encoder.EncodingType.k1X);
-		enc.reset();
-		enc.setMaxPeriod(.1);
-		enc.setMinRate(10);
-		enc.setDistancePerPulse(5);
-		enc.setSamplesToAverage(7);
-
+		slide.startPos = slide.left.getSelectedSensorPosition();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		

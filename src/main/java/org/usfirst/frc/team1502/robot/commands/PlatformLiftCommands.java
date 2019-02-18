@@ -12,8 +12,19 @@ import org.usfirst.frc.team1502.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class PlatformLiftCommands extends Command {
-  boolean dir; //True = Up; False = Down
-  public PlatformLiftCommands(boolean direction) {
+  Direction dir; //True = Up; False = Down
+  public static final double UP_SPEED = 0.7, DOWN_SPEED = -0.2;
+  static final int EXECUTE_CALLS_PER_SECOND = 50;
+  static final double SECONDS_TO_FULL_POWER = 2;
+  public enum Direction {
+    UP, DOWN
+  };
+
+  double targetSpeed = 0;
+
+  double currentSpeed = 0;
+
+  public PlatformLiftCommands(Direction direction) {
     this.dir = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -23,17 +34,20 @@ public class PlatformLiftCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    targetSpeed = dir == Direction.UP ? UP_SPEED : DOWN_SPEED;
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if(dir == true){
-      Robot.lift.setSpeed(1);
+    double speedIncrement = 1 / SECONDS_TO_FULL_POWER / EXECUTE_CALLS_PER_SECOND;
+    if (targetSpeed < currentSpeed) {
+      currentSpeed -= Math.min(speedIncrement, currentSpeed - targetSpeed);
     }
-    else if(dir == false){
-      Robot.lift.setSpeed(-1);
+    if (targetSpeed > currentSpeed) {
+      currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
     }
+    Robot.lift.setSpeed(currentSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()

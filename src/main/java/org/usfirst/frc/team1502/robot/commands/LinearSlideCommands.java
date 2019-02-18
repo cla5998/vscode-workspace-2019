@@ -35,7 +35,6 @@ public class LinearSlideCommands extends Command {
   protected void execute() {
     //Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
     Robot.slide.move();
-    SmartDashboard.putNumber("Enc value", Robot.enc.get());
     //Robot.slide.move(Robot.slide.getDistance2(level, Robot.slide.load));
   }
   

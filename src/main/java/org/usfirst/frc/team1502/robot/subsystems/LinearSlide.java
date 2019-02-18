@@ -23,23 +23,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class LinearSlide extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  TalonSRX left;
-  TalonSRX right;
-  public LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
+  public TalonSRX left; //Left Slide Motor
+  public TalonSRX right; //Right Slide Motor
+  public double startPos; //Encoder Start Position
+  public boolean centered = false; //Is the slide at the target?
+  public static LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
 
   public static final double GROUND = 0; // Constants for getDistance. These are how far it moves
-  public static final double HATCH_LOW = 98;
-  public static final double HATCH_MIDDLE = 100;
-  public static final double HATCH_HIGH = 154;
+  public static final double HATCH_LOW = 3000;
+  public static final double HATCH_MIDDLE = 12200;
+  public static final double HATCH_HIGH = 20000;
   public static final double CARGO_LOW = 80;
   public static final double CARGO_MIDDLE = 800;
   public static final double CARGO_HIGH = 155 ;
 
-  public enum Level {
+  public static enum Level {
     Ground, Low, Middle, High
   };
 
-  public enum LoadType {
+  public static enum LoadType {
     Hatch, Cargo
   };
 
@@ -49,36 +51,41 @@ public class LinearSlide extends Subsystem {
   }
 
   public void move(double input) {
-    Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
-    if (Robot.enc.getDistance() < input) {
-      left.set(ControlMode.PercentOutput, -.25); // these two moves could be wrong, will follow up with keppler to get the
-                                              // answer soon
-      right.set(ControlMode.PercentOutput, .25);
+    double target = startPos + input;
+    if (left.getSelectedSensorPosition() < target - 30) {
+      left.set(ControlMode.PercentOutput, -.4);
+      right.set(ControlMode.PercentOutput, .4);
+      centered = false;
     }
-    else if (Robot.enc.getDistance() > input) {
-      left.set(ControlMode.PercentOutput, .25);
-      right.set(ControlMode.PercentOutput, -.25);
+    else if (left.getSelectedSensorPosition() > target + 30) {
+      left.set(ControlMode.PercentOutput, .1);
+      right.set(ControlMode.PercentOutput, -.1);
+      centered = false;
+    } else {
+      hold();
+      centered = true;
     }
-    SmartDashboard.putNumber("Enc value", 5/*Robot.enc.get()*/);
+    SmartDashboard.putNumber("Enc value", left.getSelectedSensorPosition());
+    System.out.println(startPos);
+    System.out.println(target);
   }
 
   
   public void move() {
     double speed = Robot.m_oi.leftJoystick.getY();
-    //Robot.enc.setDistancePerPulse(1); // this needs to be tested, but obviously cant
     if (speed >= .08 || speed <= .08) {
       left.set(ControlMode.PercentOutput, speed);
       right.set(ControlMode.PercentOutput, -speed);
     } else {
       hold();
     }
-    SmartDashboard.putNumber("Enc value", Robot.enc.getDistance());
-    System.out.println(Robot.enc.getDistance());
+    SmartDashboard.putNumber("Enc value", left.getSelectedSensorPosition());
+    System.out.println(left.getSelectedSensorPosition());
   }
 
   public void hold() {
-    left.set(ControlMode.PercentOutput, -0.16);
-    right.set(ControlMode.PercentOutput, 0.16);
+    left.set(ControlMode.PercentOutput, -0.13);
+    right.set(ControlMode.PercentOutput, 0.13);
   }
   
   public double getDistance(Level level, LoadType load) {
@@ -104,7 +111,8 @@ public class LinearSlide extends Subsystem {
     default:
       return 0.0; // Needed because there are return statements inside the cases. wont happen
     }
-  } 
+  }
+
 
   public void toggleChange() {
     load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;

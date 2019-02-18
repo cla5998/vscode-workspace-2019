@@ -7,7 +7,9 @@
 
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -17,26 +19,18 @@ public class HatchRelease extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Solenoid solenoid1 = null;
-  Solenoid solenoid2 = null;
-  Solenoid solenoid3 = null;
+  DoubleSolenoid solenoid = null;
 
-  public HatchRelease(Solenoid one, Solenoid two,  Solenoid three) {
-    solenoid1 = one;
-    solenoid2 = two;
-    solenoid3 = three;
+  public HatchRelease(DoubleSolenoid one) {
+    solenoid = one;
   }
 
   public void push() {
-    solenoid1.set(true);
-    solenoid2.set(true);
-    solenoid3.set(true);
+    solenoid.set(Value.kForward);
   }
 
   public void pull() {
-    solenoid1.set(false);
-    solenoid2.set(false);
-    solenoid3.set(false);
+    solenoid.set(Value.kReverse);
   }
 
   @Override
