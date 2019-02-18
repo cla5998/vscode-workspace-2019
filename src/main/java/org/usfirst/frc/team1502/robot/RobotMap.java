@@ -46,6 +46,7 @@ public class RobotMap {
 	public static final int RIGHT_JOYSTICK = 1;
 	public static final int MANIP_JOYSTICK = 2;
 
+	
 	public static final int LIMIT_SWITCH_LOW = 7;
 	public static final int LIMIT_SWITCH_HIGH = 8;
 
@@ -53,25 +54,13 @@ public class RobotMap {
 	public static final int SOLENOID_FORWARD = 0;
 	public static final int SOLENOID_REVERSE = 1;
 
-	// public static final Solenoid SOLENOID_2 = new Solenoid(11, 2);
-	// public static final Solenoid SOLENOID_3 = new Solenoid(11, 3);
-
-	// public static final int ARM_SOLENOID_OPEN = 0;
-	// public static final int ARM_SOLENOID_CLOSE = 1;
-
-	//PWM
-	//public static final Spark INTAKE_SPARK = new Spark(0);
-	// public static final Spark RACK_SPARK = new Spark(1);
-	//public static final Spark BLINKIN_HUB = new Spark(1);
-	// public static final Spark VACUUM_SPARK1 = new Spark(4);
-	// public static final Spark VACUUM_SPARK2 = new Spark(5);
-	// public static final Spark VACUUM_SPARK_LEFT = new Spark(4);
-	// public static final Spark VACUUM_SPARK_RIGHT = new Spark(5);
-	public static final Spark HORIZ_SPARK = new Spark(4);
-	
+	//PWM	
+	public static final Spark BLINKIN_HUB = new Spark(0);
 	public static final int PLATFORM_SPARK_LEFT = 1;
-	public static final int PLATFORM_SPARK_RIGHT = 0;
-	public static final AnalogInput SONAR = new AnalogInput(3);
+	public static final int PLATFORM_SPARK_RIGHT = 2;
+	public static final Spark HORIZ_SPARK = new Spark(3);
+	public static final int INTAKE_SPARK = 4;
+	// public static final AnalogInput SONAR = new AnalogInput(3);
 
 	// If you are using multiple modules, make sure to define both the port
 	// number and the module. For example you with `	a rangefinder:

@@ -7,6 +7,9 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import java.awt.Color;
+
+import org.usfirst.frc.team1502.robot.DPadButton.Direction;
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
@@ -20,7 +23,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
+
 	/**
 	 * 
 	 */
@@ -29,7 +32,6 @@ public class OI {
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
 
-	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -42,49 +44,61 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	/*X-Box Controller*/
-	Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
-	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
-	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
+	/* X-Box Controller */
+	Button a = new JoystickButton(manipJoystick, 1); // Toggle Succ - OFF Default
+	Button b = new JoystickButton(manipJoystick, 2); // Extend & Retract Hatch Release
+	Button x = new JoystickButton(manipJoystick, 3); // Intake IN - Hold
 	Button y = new JoystickButton(manipJoystick, 4);
-	Button rb = new JoystickButton(manipJoystick, 5); //Horizontal Slide OUT
-	Button lb = new JoystickButton(manipJoystick, 6); //Horizontal Slide IN
-	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
+	Button rb = new JoystickButton(manipJoystick, 5); // Horizontal Slide OUT
+	Button lb = new JoystickButton(manipJoystick, 6); // Horizontal Slide IN
+	Button idk = new JoystickButton(manipJoystick, 4);// sonar platform. numbers undefined.
 
-	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
-	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
+	Button dpLeft = new JoystickButton(manipJoystick, 5); // placeholder numbers
+	Button dpRight = new JoystickButton(manipJoystick, 6);// linear slides. numbers undefined
 	Button dpDown = new JoystickButton(manipJoystick, 7);
 
 	Button guidedDrivingButton = new JoystickButton(rightJoystick, 2);
-	//Button dpUp = new JoystickButton(manipJoystick, 8);
 
-	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
+	Button dpUp = new DPadButton(manipJoystick, Direction.Up);
+
+	Button back = new JoystickButton(manipJoystick, 7); // linear slide toggle switch.
 	Button start = new JoystickButton(manipJoystick, 8);
 	Button nineRight = new JoystickButton(rightJoystick, 9);
-	/*Drive Joysticks*/
-	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
-	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
-	
+	/* Drive Joysticks */
+	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); // Climb UP
+	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); // Climb DOWN
+
+	Button leftSeven = new JoystickButton(leftJoystick, 7);
+
 	public OI() {
 		y.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High, LinearSlide.load)));
 		x.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Middle, LinearSlide.load)));
 		b.whileHeld(new HatchReleaseCommands());
-		//a.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low, LinearSlide.load)));
-		start.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground, LinearSlide.load)));
+		// a.whenPressed(new
+		// LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low,
+		// LinearSlide.load)));
+	 	start.whenPressed(
+				new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground, LinearSlide.load)));
 		a.whileHeld(new VacuumCommands());
 		rb.whileHeld(new HorizontalSlideCommands(.3));
 		lb.whileHeld(new HorizontalSlideCommands(-.3));
-		//nineRight.whileHeld(new LedInitCommands());
+		// nineRight.whileHeld(new LedInitCommands());
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.DOWN));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.UP));
 		back.whenPressed(new ToggleSlideCommands());
-		
+
+		System.out.println();
+
+		leftSeven.whileHeld(new LedInitCommands());
+
+		dpUp.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High, LinearSlide.load)));
+
 		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
 		// dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
-		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
+		// dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

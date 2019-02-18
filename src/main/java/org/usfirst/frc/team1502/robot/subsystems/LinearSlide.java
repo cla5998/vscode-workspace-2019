@@ -28,6 +28,9 @@ public class LinearSlide extends Subsystem {
   public double startPos; //Encoder Start Position
   public boolean centered = false; //Is the slide at the target?
   public static LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
+  public int holdThreshold = 18000;
+
+  public boolean switched = false;
 
   public static final double GROUND = 0; // Constants for getDistance. These are how far it moves
   public static final double HATCH_LOW = 3000;
@@ -35,7 +38,7 @@ public class LinearSlide extends Subsystem {
   public static final double HATCH_HIGH = 20000;
   public static final double CARGO_LOW = 80;
   public static final double CARGO_MIDDLE = 800;
-  public static final double CARGO_HIGH = 155 ;
+  public static final double CARGO_HIGH = 21000;
 
   public static enum Level {
     Ground, Low, Middle, High
@@ -84,8 +87,13 @@ public class LinearSlide extends Subsystem {
   }
 
   public void hold() {
-    left.set(ControlMode.PercentOutput, -0.13);
-    right.set(ControlMode.PercentOutput, 0.13);
+    if (left.getSelectedSensorPosition() < holdThreshold) {
+      left.set(ControlMode.PercentOutput, -0.13);
+      right.set(ControlMode.PercentOutput, 0.13);
+    }  else {
+      left.set(ControlMode.PercentOutput, -0.16);
+      right.set(ControlMode.PercentOutput, 0.16);
+    }
   }
   
   public double getDistance(Level level, LoadType load) {
@@ -113,9 +121,16 @@ public class LinearSlide extends Subsystem {
     }
   }
 
-
   public void toggleChange() {
-    load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;
+    if (load == LoadType.Hatch) {
+      load = LoadType.Cargo;
+      System.out.println("Cargo");
+      switched = true;
+    } else {
+      load = LoadType.Hatch;
+      System.out.println("Hatch");
+      switched = true;
+    }
     // load2 = load2 == Hatch ? Cargo : Hatch;
   } //if load type is hatch, then its cargo, else its changes to cargo
   

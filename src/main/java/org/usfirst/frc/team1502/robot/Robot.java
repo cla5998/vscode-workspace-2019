@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
 		// enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		drivetrain = new Drivetrain();
 
-		sonar = new Sonar(RobotMap.SONAR);
+		//sonar = new Sonar(RobotMap.SONAR);
 		//intake = new Intake(RobotMap.INTAKE_SPARK);
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
@@ -106,7 +106,6 @@ public class Robot extends TimedRobot {
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
-		//this.safeDrivePID = new PIDController(P, I, D);
 		// horizontalSlide = new HorizontalSlide(RobotMap.RACK_SPARK);
 		
 		horizontalSlide = new HorizontalSlide(RobotMap.HORIZ_SPARK);
