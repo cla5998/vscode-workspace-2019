@@ -24,10 +24,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-	/**
-	 * 
-	 */
-
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
@@ -71,14 +67,14 @@ public class OI {
 	Button leftSeven = new JoystickButton(leftJoystick, 7);
 
 	public OI() {
-		y.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High, LinearSlide.load)));
-		x.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Middle, LinearSlide.load)));
+		y.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
+		x.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Middle));
 		b.whileHeld(new HatchReleaseCommands());
 		// a.whenPressed(new
-		// LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low,
+		// LinearSlideLocationCommands((LinearSlide.Level.Low,
 		// LinearSlide.load)));
 	 	start.whenPressed(
-				new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground, LinearSlide.load)));
+				new LinearSlideLocationCommands(LinearSlide.Level.Ground));
 		a.whileHeld(new VacuumCommands());
 		rb.whileHeld(new HorizontalSlideCommands(.3));
 		lb.whileHeld(new HorizontalSlideCommands(-.3));
@@ -91,7 +87,7 @@ public class OI {
 
 		leftSeven.whileHeld(new LedInitCommands());
 
-		dpUp.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High, LinearSlide.load)));
+		dpUp.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
 
 		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
 		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));

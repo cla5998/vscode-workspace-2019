@@ -53,6 +53,10 @@ public class LinearSlide extends Subsystem {
     this.right = right;
   }
 
+  public void move(Level level) {
+    move(getDistance(level, load));
+  }
+
   public void move(double input) {
     double target = startPos + input;
     if (left.getSelectedSensorPosition() < target - 30) {
@@ -71,19 +75,6 @@ public class LinearSlide extends Subsystem {
     SmartDashboard.putNumber("Enc value", left.getSelectedSensorPosition());
     System.out.println(startPos);
     System.out.println(target);
-  }
-
-  
-  public void move() {
-    double speed = Robot.m_oi.leftJoystick.getY();
-    if (speed >= .08 || speed <= .08) {
-      left.set(ControlMode.PercentOutput, speed);
-      right.set(ControlMode.PercentOutput, -speed);
-    } else {
-      hold();
-    }
-    SmartDashboard.putNumber("Enc value", left.getSelectedSensorPosition());
-    System.out.println(left.getSelectedSensorPosition());
   }
 
   public void hold() {
@@ -125,12 +116,11 @@ public class LinearSlide extends Subsystem {
     if (load == LoadType.Hatch) {
       load = LoadType.Cargo;
       System.out.println("Cargo");
-      switched = true;
     } else {
       load = LoadType.Hatch;
       System.out.println("Hatch");
-      switched = true;
     }
+    switched = true;
     // load2 = load2 == Hatch ? Cargo : Hatch;
   } //if load type is hatch, then its cargo, else its changes to cargo
   
