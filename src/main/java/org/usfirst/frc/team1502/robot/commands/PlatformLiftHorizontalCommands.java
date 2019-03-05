@@ -11,20 +11,20 @@ import org.usfirst.frc.team1502.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class PlatformLiftCommands extends Command {
+public class PlatformLiftHorizontalCommands extends Command {
   Direction dir; //True = Up; False = Down
-  public static final double UP_SPEED = 0.7, DOWN_SPEED = -0.2;
+  public static final double BACK_SPEED = 0.2, FORWARD_SPEED = -0.2;
   static final int EXECUTE_CALLS_PER_SECOND = 50;
   static final double SECONDS_TO_FULL_POWER = 2;
   public enum Direction {
-    UP, DOWN
+    BACK, FORWARD
   };
 
   double targetSpeed = 0;
 
   double currentSpeed = 0;
 
-  public PlatformLiftCommands(Direction direction) {
+  public PlatformLiftHorizontalCommands(Direction direction) {
     this.dir = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -34,11 +34,11 @@ public class PlatformLiftCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // if (dir == Direction.UP) {
-    //   targetSpeed = UP_SPEED;
-    // } else {
-    //   targetSpeed = DOWN_SPEED;
-    // }
+    if (dir == Direction.BACK) {
+      targetSpeed = BACK_SPEED;
+    } else {
+      targetSpeed = FORWARD_SPEED;
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -51,7 +51,7 @@ public class PlatformLiftCommands extends Command {
     // if (targetSpeed > currentSpeed) {
     //   currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
     // }
-    Robot.lift.setSpeed(1);
+    Robot.lift.setHorizontalSpeed(targetSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,7 +63,7 @@ public class PlatformLiftCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.setSpeed(0);
+    Robot.lift.setHorizontalSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

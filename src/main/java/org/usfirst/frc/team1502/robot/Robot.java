@@ -113,8 +113,8 @@ public class Robot extends TimedRobot {
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 
-		lift = new PlatformLift(new Spark(RobotMap.PLATFORM_SPARK_LEFT), new Spark(RobotMap.PLATFORM_SPARK_RIGHT));
-		Robot.lift.setSpeed(-.2);
+		lift = new PlatformLift(new Spark(RobotMap.PLATFORM_SPARK_VERTICAL), new Spark(RobotMap.PLATFORM_SPARK_HORIZONTAL));
+		//Robot.lift.setVerticalSpeed(-.2);
 		// linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));

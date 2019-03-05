@@ -20,17 +20,20 @@ public class PlatformLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Spark left;
-  Spark right;
+  Spark vertical;
+  Spark horizontal;
 
-  public PlatformLift(Spark left, Spark right) {
-    this.left = left;
-    this.right = right;
+  public PlatformLift(Spark vertical, Spark horizontal) {
+    this.vertical = vertical;
+    this.horizontal = horizontal;
   }
 
-  public void setSpeed(double speed){
-    left.set(speed);
-    right.set(-speed);
+  public void setVerticalSpeed(double speed) {
+    vertical.set(speed);
+  }
+
+  public void setHorizontalSpeed(double speed) {
+    horizontal.set(speed);
   }
 
   @Override

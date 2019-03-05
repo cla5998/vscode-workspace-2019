@@ -55,24 +55,30 @@ public class OI {
 	Button back = new JoystickButton(manipJoystick, 7); // linear slide toggle switch.
 	Button start = new JoystickButton(manipJoystick, 8);
 	
-	Button nineRight = new JoystickButton(rightJoystick, 9);
 	/* Drive Joysticks */
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); // Climb UP
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); // Climb DOWN
-
-	Button manipRButton = new JoystickButton(manipJoystick, 10);
+	Button rightHorizontalButton = new JoystickButton(rightJoystick, 3); // Climb FORWARD
+	Button leftHorizontalButton = new JoystickButton(leftJoystick, 3); // Climb BACK
 
 	public OI() {
-		a.toggleWhenPressed(new VacuumCommands());
-		x.whileHeld(new IntakeCommands());
-		b.whileHeld(new HatchReleaseCommands());
+		a.toggleWhenPressed(new VacuumCommands()); //Succ
+		x.whileHeld(new IntakeCommands()); //Intake In
+		b.whileHeld(new HatchReleaseCommands()); //Hatch Pistons
 
+		//Horizontal Slide
 		rb.whileHeld(new HorizontalSlideCommands(.4));
 		lb.whileHeld(new HorizontalSlideCommands(-.4));
 
-		leftDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.DOWN));
-		rightDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.UP));
+		//Climb Vertical
+		leftDriveTrigger.whileHeld(new PlatformLiftVerticalCommands(PlatformLiftVerticalCommands.Direction.DOWN));
+		rightDriveTrigger.whileHeld(new PlatformLiftVerticalCommands(PlatformLiftVerticalCommands.Direction.UP));
 		
+		//Climb Horizontal
+		leftHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.BACK));
+		rightHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.FORWARD));
+
+
 		//Linear Slide
 		start.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ship)); //Cargo Ship Port
 		back.whenPressed(new ToggleSlideCommands());
@@ -81,7 +87,7 @@ public class OI {
 		dpUp.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
 		dpRight.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ground));
 
-		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
+		guidedDrivingButton.whileHeld(new GuidedDrivingCommands()); //Vision Tracking Button
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS
