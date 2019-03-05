@@ -27,24 +27,26 @@ public class LinearSlide extends Subsystem {
   public TalonSRX right; //Right Slide Motor
   public double startPos; //Encoder Start Position
   public boolean centered = false; //Is the slide at the target?
-  public static LoadType load = LoadType.Hatch; // Default linear slide position is hatch, because of this
+  public LoadType load = LoadType.Hatch; // Default linear slide position is hatch;
   public int holdThreshold = 18000;
+  public int highHoldThreshold = 21000;
 
   public boolean switched = false;
 
   public static final double GROUND = 0; // Constants for getDistance. These are how far it moves
-  public static final double HATCH_LOW = 3000;
-  public static final double HATCH_MIDDLE = 12200;
-  public static final double HATCH_HIGH = 20000;
-  public static final double CARGO_LOW = 80;
-  public static final double CARGO_MIDDLE = 800;
-  public static final double CARGO_HIGH = 21000;
+  public static final double HATCH_LOW = 6713;
+  public static final double HATCH_MIDDLE = 15421;
+  public static final double HATCH_HIGH = 23702;
+  public static final double CARGO_LOW = 9951;
+  public static final double CARGO_MIDDLE = 17498;
+  public static final double CARGO_HIGH = 23426;
+  public static final double CARGO_SHIP_PORT = 15000;
 
   public static enum Level {
-    Ground, Low, Middle, High
+    Ground, Low, Middle, High, Ship
   };
 
-  public static enum LoadType {
+  public enum LoadType {
     Hatch, Cargo
   };
 
@@ -59,14 +61,14 @@ public class LinearSlide extends Subsystem {
 
   public void move(double input) {
     double target = startPos + input;
-    if (left.getSelectedSensorPosition() < target - 30) {
-      left.set(ControlMode.PercentOutput, -.4);
-      right.set(ControlMode.PercentOutput, .4);
+    if (left.getSelectedSensorPosition() < target - 40) {
+      left.set(ControlMode.PercentOutput, -.50);
+      right.set(ControlMode.PercentOutput, .50);
       centered = false;
     }
-    else if (left.getSelectedSensorPosition() > target + 30) {
-      left.set(ControlMode.PercentOutput, .1);
-      right.set(ControlMode.PercentOutput, -.1);
+    else if (left.getSelectedSensorPosition() > target + 40) {
+      left.set(ControlMode.PercentOutput, .15);
+      right.set(ControlMode.PercentOutput, -.15);
       centered = false;
     } else {
       hold();
@@ -79,12 +81,19 @@ public class LinearSlide extends Subsystem {
 
   public void hold() {
     if (left.getSelectedSensorPosition() < holdThreshold) {
-      left.set(ControlMode.PercentOutput, -0.13);
-      right.set(ControlMode.PercentOutput, 0.13);
-    }  else {
-      left.set(ControlMode.PercentOutput, -0.16);
-      right.set(ControlMode.PercentOutput, 0.16);
+      left.set(ControlMode.PercentOutput, -0.14);
+      right.set(ControlMode.PercentOutput, 0.14);
+    } else if (left.getSelectedSensorPosition() < highHoldThreshold) {
+      left.set(ControlMode.PercentOutput, -0.23);
+      right.set(ControlMode.PercentOutput, 0.23);
+    } else {
+      left.set(ControlMode.PercentOutput, -0.28);
+      right.set(ControlMode.PercentOutput, 0.28);
     }
+  }
+
+  public double getDistance(Level level) {
+    return getDistance(level, load);
   }
   
   public double getDistance(Level level, LoadType load) {
@@ -107,8 +116,10 @@ public class LinearSlide extends Subsystem {
         return HATCH_HIGH;
       if (load == LoadType.Cargo)
         return CARGO_HIGH;
+    case Ship:
+      return CARGO_SHIP_PORT;      
     default:
-      return 0.0; // Needed because there are return statements inside the cases. wont happen
+      return 0.0;
     }
   }
 

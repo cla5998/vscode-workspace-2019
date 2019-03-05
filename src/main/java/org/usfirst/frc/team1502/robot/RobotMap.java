@@ -56,8 +56,8 @@ public class RobotMap {
 
 	//PWM	
 	public static final Spark BLINKIN_HUB = new Spark(0);
-	public static final int PLATFORM_SPARK_LEFT = 1;
-	public static final int PLATFORM_SPARK_RIGHT = 2;
+	public static final int PLATFORM_SPARK_VERTICAL = 1;
+	public static final int PLATFORM_SPARK_HORIZONTAL = 2;
 	public static final Spark HORIZ_SPARK = new Spark(3);
 	public static final int INTAKE_SPARK = 4;
 	// public static final AnalogInput SONAR = new AnalogInput(3);

@@ -21,12 +21,12 @@ public class LedInitCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.led.set(Color.Red);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.led.set(Color.Blue);
   }
 
   // Make this return true when this Command no longer needs to run execute()
