@@ -49,7 +49,6 @@ public class OI {
 	Button y = new JoystickButton(manipJoystick, 4);
 	Button rb = new JoystickButton(manipJoystick, 5); // Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 6); // Horizontal Slide IN
-	Button idk = new JoystickButton(manipJoystick, 4);// sonar platform. numbers undefined.
 
 	Button guidedDrivingButton = new JoystickButton(rightJoystick, 2);
 
@@ -57,8 +56,8 @@ public class OI {
 	Button dpLeft = new DPadButton(manipJoystick, Direction.Left);
 	Button dpDown = new DPadButton(manipJoystick, Direction.Down);
 	Button dpRight = new DPadButton(manipJoystick, Direction.Right);
-
 	Button back = new JoystickButton(manipJoystick, 7); // linear slide toggle switch.
+
 	Button start = new JoystickButton(manipJoystick, 8);
 	Button nineRight = new JoystickButton(rightJoystick, 9);
 	/* Drive Joysticks */
