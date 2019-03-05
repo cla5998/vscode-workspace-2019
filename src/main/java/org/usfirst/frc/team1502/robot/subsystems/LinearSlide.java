@@ -89,14 +89,14 @@ public class LinearSlide extends Subsystem {
 
   public void hold() {
     if (left.getSelectedSensorPosition() < holdThreshold) {
-      left.set(ControlMode.PercentOutput, -0.14);
-      right.set(ControlMode.PercentOutput, 0.14);
+      left.set(ControlMode.PercentOutput, -0.19);
+      right.set(ControlMode.PercentOutput, 0.19);
     } else if (left.getSelectedSensorPosition() < highHoldThreshold) {
-      left.set(ControlMode.PercentOutput, -0.23);
-      right.set(ControlMode.PercentOutput, 0.23);
-    } else {
       left.set(ControlMode.PercentOutput, -0.28);
       right.set(ControlMode.PercentOutput, 0.28);
+    } else {
+      left.set(ControlMode.PercentOutput, -0.33);
+      right.set(ControlMode.PercentOutput, 0.33);
     }
   }
 
