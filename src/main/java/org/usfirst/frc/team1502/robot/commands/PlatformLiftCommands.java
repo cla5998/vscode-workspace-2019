@@ -34,20 +34,24 @@ public class PlatformLiftCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    targetSpeed = dir == Direction.UP ? UP_SPEED : DOWN_SPEED;
+    // if (dir == Direction.UP) {
+    //   targetSpeed = UP_SPEED;
+    // } else {
+    //   targetSpeed = DOWN_SPEED;
+    // }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    double speedIncrement = 1 / SECONDS_TO_FULL_POWER / EXECUTE_CALLS_PER_SECOND;
-    if (targetSpeed < currentSpeed) {
-      currentSpeed -= Math.min(speedIncrement, currentSpeed - targetSpeed);
-    }
-    if (targetSpeed > currentSpeed) {
-      currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
-    }
-    Robot.lift.setSpeed(currentSpeed);
+    // double speedIncrement = 1 / SECONDS_TO_FULL_POWER / EXECUTE_CALLS_PER_SECOND;
+    // if (targetSpeed < currentSpeed) {
+    //   currentSpeed -= Math.min(speedIncrement, currentSpeed - targetSpeed);
+    // }
+    // if (targetSpeed > currentSpeed) {
+    //   currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
+    // }
+    Robot.lift.setSpeed(1);
   }
 
   // Make this return true when this Command no longer needs to run execute()

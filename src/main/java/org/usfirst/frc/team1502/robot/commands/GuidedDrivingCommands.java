@@ -54,12 +54,12 @@ public class GuidedDrivingCommands extends Command {
     directionController = new PIDController(0.00479133, 1e-6, 0.5);
     camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
-    camera.setExposureManual(20);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    camera.setExposureManual(20);
     visionThread = new VisionThread(camera, new GripPipeline(), (pipeline) -> {
       ArrayList<MatOfPoint> contours = pipeline.filterContoursOutput();
       targetWasDetectedLastCycle = targetDetected;
@@ -102,7 +102,7 @@ public class GuidedDrivingCommands extends Command {
     // distanceController.input(Robot.sonar.readSensor() - TARGET_VALUE);
     // double motorSpeed = distanceController.getCorrection();
     // }
-    SmartDashboard.putNumber("Sonar volts", Robot.sonar.readSensor());
+    //.putNumber("Sonar volts", Robot.sonar.readSensor());
     SmartDashboard.putBoolean("Target detected", targetDetected);
     SmartDashboard.putNumber("Target size", targetSize);
     /*double d = map(Robot.m_oi.rightJoystick.getThrottle(), 1, -1, 1e+1, 1e-1);
@@ -156,9 +156,11 @@ public class GuidedDrivingCommands extends Command {
   }
 
   void commandFinished() {
+    System.out.println("Guided driving commands finished");
     Robot.led.set(Color.Blue);
     visionThread.interrupt();
     targetLost();
+    camera.setExposureAuto();
   }
 
   // Called once after isFinished returns true

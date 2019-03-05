@@ -34,6 +34,7 @@ import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide.LoadType;
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.opencv.core.MatOfPoint;
 import org.opencv.core.Rect;
@@ -86,7 +87,7 @@ public class Robot extends TimedRobot {
 		drivetrain = new Drivetrain();
 
 		//sonar = new Sonar(RobotMap.SONAR);
-		//intake = new Intake(RobotMap.INTAKE_SPARK);
+		intake = new Intake(new Spark(RobotMap.INTAKE_SPARK));
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
 		// RobotMap.SOLENOID_3);
 		// vacuum = new Vacuum(RobotMap.VACUUM_SPARK2);
@@ -95,7 +96,7 @@ public class Robot extends TimedRobot {
 		// TalonSRX(RobotMap.PLATFORM_TALON_RIGHT));
 		// sonar = new Sonar(RobotMap.SONAR_SPARK);
 		solenoid = new HatchRelease(new DoubleSolenoid(11, RobotMap.SOLENOID_FORWARD, RobotMap.SOLENOID_REVERSE));
-		// led = new Led(RobotMap.BLINKIN_HUB);
+		led = new Led(RobotMap.BLINKIN_HUB);
 		// Robot.led.set(Led.Color.Blue);
 		// slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT), new
 		// TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
@@ -118,6 +119,7 @@ public class Robot extends TimedRobot {
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		slide.startPos = slide.left.getSelectedSensorPosition();
+		slide.load = LoadType.Hatch;
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
@@ -132,6 +134,7 @@ public class Robot extends TimedRobot {
 		// System.out.println();
 		// Timer.delay(1);
 		// }
+
 		m_oi = new OI();
 	}
 
@@ -142,7 +145,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void disabledInit() {
-		led.set(Led.Color.Strobe);
+		led.set(Led.Color.Red);
 	}
 
 	@Override
@@ -206,8 +209,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putBoolean("low limit switch", Robot.horizontalLimitSwitchLow.get());
-		SmartDashboard.putBoolean("high limit switch", Robot.horizontalLimitSwitchHigh.get());
 	}
 
 	/**
