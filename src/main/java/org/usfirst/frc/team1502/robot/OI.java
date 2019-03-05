@@ -22,10 +22,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI {
 
-	/**
-	 * 
-	 */
-
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
@@ -57,8 +53,8 @@ public class OI {
 	Button dpDown = new DPadButton(manipJoystick, Direction.Down);
 	Button dpRight = new DPadButton(manipJoystick, Direction.Right);
 	Button back = new JoystickButton(manipJoystick, 7); // linear slide toggle switch.
-
 	Button start = new JoystickButton(manipJoystick, 8);
+	
 	Button nineRight = new JoystickButton(rightJoystick, 9);
 	/* Drive Joysticks */
 	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); // Climb UP
@@ -67,31 +63,25 @@ public class OI {
 	Button manipRButton = new JoystickButton(manipJoystick, 10);
 
 	public OI() {
-		y.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High)));
+		a.toggleWhenPressed(new VacuumCommands());
 		x.whileHeld(new IntakeCommands());
 		b.whileHeld(new HatchReleaseCommands());
-		// a.whenPressed(new
-		// LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low,
-		// LinearSlide.load)));
-	 	start.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground)));
-		a.whileHeld(new VacuumCommands());
+
 		rb.whileHeld(new HorizontalSlideCommands(.4));
 		lb.whileHeld(new HorizontalSlideCommands(-.4));
-		// nineRight.whileHeld(new LedInitCommands());
+
 		leftDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.DOWN));
 		rightDriveTrigger.whileHeld(new PlatformLiftCommands(PlatformLiftCommands.Direction.UP));
 		
 		//Linear Slide
+		start.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ship)); //Cargo Ship Port
 		back.whenPressed(new ToggleSlideCommands());
-		dpDown.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Low)));
-		dpLeft.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Middle)));
-		dpUp.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.High)));
-		dpRight.whenPressed(new LinearSlideLocationCommands(Robot.slide.getDistance(LinearSlide.Level.Ground)));
-
+		dpDown.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Low));
+		dpLeft.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Middle));
+		dpUp.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
+		dpRight.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ground));
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
-
-		manipRButton.whileHeld(new LinearSlideCommands());
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

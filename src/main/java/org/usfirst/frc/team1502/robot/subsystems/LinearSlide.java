@@ -40,9 +40,10 @@ public class LinearSlide extends Subsystem {
   public static final double CARGO_LOW = 9951;
   public static final double CARGO_MIDDLE = 17498;
   public static final double CARGO_HIGH = 23426;
+  public static final double CARGO_SHIP_PORT = 15000;
 
   public static enum Level {
-    Ground, Low, Middle, High
+    Ground, Low, Middle, High, Ship
   };
 
   public enum LoadType {
@@ -54,16 +55,20 @@ public class LinearSlide extends Subsystem {
     this.right = right;
   }
 
+  public void move(Level level) {
+    move(getDistance(level, load));
+  }
+
   public void move(double input) {
     double target = startPos + input;
-    if (left.getSelectedSensorPosition() < target - 30) {
-      left.set(ControlMode.PercentOutput, -.45);
-      right.set(ControlMode.PercentOutput, .45);
+    if (left.getSelectedSensorPosition() < target - 40) {
+      left.set(ControlMode.PercentOutput, -.50);
+      right.set(ControlMode.PercentOutput, .50);
       centered = false;
     }
-    else if (left.getSelectedSensorPosition() > target + 30) {
-      left.set(ControlMode.PercentOutput, .1);
-      right.set(ControlMode.PercentOutput, -.1);
+    else if (left.getSelectedSensorPosition() > target + 40) {
+      left.set(ControlMode.PercentOutput, .15);
+      right.set(ControlMode.PercentOutput, -.15);
       centered = false;
     } else {
       hold();
@@ -74,29 +79,16 @@ public class LinearSlide extends Subsystem {
     System.out.println(target);
   }
 
-  
-  public void move() {
-    double speed = Robot.m_oi.leftJoystick.getY();
-    if (speed >= .08 || speed <= .08) {
-      left.set(ControlMode.PercentOutput, speed);
-      right.set(ControlMode.PercentOutput, -speed);
-    } else {
-      hold();
-    }
-    SmartDashboard.putNumber("Enc value", left.getSelectedSensorPosition());
-    System.out.println(left.getSelectedSensorPosition());
-  }
-
   public void hold() {
     if (left.getSelectedSensorPosition() < holdThreshold) {
-      left.set(ControlMode.PercentOutput, -0.19);
-      right.set(ControlMode.PercentOutput, 0.19);
+      left.set(ControlMode.PercentOutput, -0.14);
+      right.set(ControlMode.PercentOutput, 0.14);
     } else if (left.getSelectedSensorPosition() < highHoldThreshold) {
+      left.set(ControlMode.PercentOutput, -0.23);
+      right.set(ControlMode.PercentOutput, 0.23);
+    } else {
       left.set(ControlMode.PercentOutput, -0.28);
       right.set(ControlMode.PercentOutput, 0.28);
-    } else {
-      left.set(ControlMode.PercentOutput, -0.33);
-      right.set(ControlMode.PercentOutput, 0.33);
     }
   }
 
@@ -124,24 +116,23 @@ public class LinearSlide extends Subsystem {
         return HATCH_HIGH;
       if (load == LoadType.Cargo)
         return CARGO_HIGH;
+    case Ship:
+      return CARGO_SHIP_PORT;      
     default:
       return 0.0;
     }
   }
 
   public void toggleChange() {
-    // if (load == LoadType.Hatch) {
-    //   load = LoadType.Cargo;
-    //   System.out.println("Cargo");
-    //   switched = true;
-    // } else {
-    //   load = LoadType.Hatch;
-    //   System.out.println("Hatch");
-    //   switched = true;
-    // }
-    load = load == LoadType.Hatch ? LoadType.Cargo : LoadType.Hatch;
-    System.out.println(load);
+    if (load == LoadType.Hatch) {
+      load = LoadType.Cargo;
+      System.out.println("Cargo");
+    } else {
+      load = LoadType.Hatch;
+      System.out.println("Hatch");
+    }
     switched = true;
+    // load2 = load2 == Hatch ? Cargo : Hatch;
   } //if load type is hatch, then its cargo, else its changes to cargo
   
   // public static Map<Level, Double> Cargo = new EnumMap<Level, Double>(Level.class) {
