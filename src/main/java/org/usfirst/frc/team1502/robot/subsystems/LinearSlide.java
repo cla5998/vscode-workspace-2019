@@ -13,6 +13,7 @@ import java.util.Map;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,8 +39,8 @@ public class LinearSlide extends Subsystem {
   public static final double HATCH_MIDDLE = 15421;
   public static final double HATCH_HIGH = 23702;
   public static final double CARGO_LOW = 9951;
-  public static final double CARGO_MIDDLE = 17498;
-  public static final double CARGO_HIGH = 23426;
+  public static final double CARGO_MIDDLE = 17898;
+  public static final double CARGO_HIGH = 25926;
   public static final double CARGO_SHIP_PORT = 15000;
 
   public static enum Level {
@@ -84,8 +85,8 @@ public class LinearSlide extends Subsystem {
       left.set(ControlMode.PercentOutput, -0.14);
       right.set(ControlMode.PercentOutput, 0.14);
     } else if (left.getSelectedSensorPosition() < highHoldThreshold) {
-      left.set(ControlMode.PercentOutput, -0.23);
-      right.set(ControlMode.PercentOutput, 0.23);
+      left.set(ControlMode.PercentOutput, -0.21);
+      right.set(ControlMode.PercentOutput, 0.21);
     } else {
       left.set(ControlMode.PercentOutput, -0.28);
       right.set(ControlMode.PercentOutput, 0.28);
@@ -127,9 +128,11 @@ public class LinearSlide extends Subsystem {
     if (load == LoadType.Hatch) {
       load = LoadType.Cargo;
       System.out.println("Cargo");
+      Robot.led.set(Color.Orange);
     } else {
       load = LoadType.Hatch;
       System.out.println("Hatch");
+      Robot.led.set(Color.Blue);
     }
     switched = true;
     // load2 = load2 == Hatch ? Cargo : Hatch;

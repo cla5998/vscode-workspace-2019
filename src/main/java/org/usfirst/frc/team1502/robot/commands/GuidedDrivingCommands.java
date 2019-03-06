@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.vision.VisionThread;
 
 import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide.LoadType;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar.Boundaries;
 
 public class GuidedDrivingCommands extends Command {
@@ -58,11 +59,13 @@ public class GuidedDrivingCommands extends Command {
 
   // Called just before this Command runs the first time
   @Override
+  @SuppressWarnings("deprecation")
   protected void initialize() {
     camera.setExposureManual(20);
     visionThread = new VisionThread(camera, new GripPipeline(), (pipeline) -> {
       ArrayList<MatOfPoint> contours = pipeline.filterContoursOutput();
       targetWasDetectedLastCycle = targetDetected;
+      SmartDashboard.putNumber("Contours detected", contours.size());
       if (contours.size() == 2) {
         targetDetected = true;
         Rect r1 = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
@@ -157,7 +160,13 @@ public class GuidedDrivingCommands extends Command {
 
   void commandFinished() {
     System.out.println("Guided driving commands finished");
-    Robot.led.set(Color.Blue);
+    
+    if (Robot.slide.load == LoadType.Hatch) {
+			Robot.led.set(Color.Blue);
+		} else {
+			Robot.led.set(Color.Orange);
+    }
+    
     visionThread.interrupt();
     targetLost();
     camera.setExposureAuto();

@@ -34,6 +34,7 @@ import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
+import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide.LoadType;
 import org.usfirst.frc.team1502.robot.subsystems.ArcadeDrive;
 import org.opencv.core.MatOfPoint;
@@ -120,6 +121,13 @@ public class Robot extends TimedRobot {
 				new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_RIGHT));
 		slide.startPos = slide.left.getSelectedSensorPosition();
 		slide.load = LoadType.Hatch;
+
+		if (slide.load == LinearSlide.LoadType.Hatch) {
+			led.set(Color.Blue);
+		} else {
+			led.set(Color.Orange);
+		}
+
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		
@@ -209,11 +217,6 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if (slide.load == LinearSlide.LoadType.Hatch) {
-			led.set(Led.Color.Blue);
-		} else {
-			led.set(Led.Color.Orange);
-		}
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class ArcadeCommands extends Command {
     protected void execute() {
     	//Set Drive Values - Cubic Control
     	double rotateSpeed = Drivetrain.expRate(Robot.m_oi.leftJoystick.getX(), 3);
-    	double moveSpeed = -Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 3);
+    	double moveSpeed = Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 3);
     	
     	Robot.drivetrain.arcadeDrive(moveSpeed, rotateSpeed);
     }
