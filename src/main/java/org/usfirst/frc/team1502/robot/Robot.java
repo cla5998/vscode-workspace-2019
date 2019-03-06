@@ -209,6 +209,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		if (slide.load == LinearSlide.LoadType.Hatch) {
+			led.set(Led.Color.Blue);
+		} else {
+			led.set(Led.Color.Orange);
+		}
 	}
 
 	/**

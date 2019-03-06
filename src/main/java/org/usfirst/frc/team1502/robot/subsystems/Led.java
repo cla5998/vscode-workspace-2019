@@ -20,7 +20,7 @@ public class Led extends Subsystem {
   Spark ledSpark;
 
   public enum Color {
-    Red(.99), Green(.77), Blue(.87), Yellow(.69), Magenta(0.57), White(0.93), Off(0.99), Strobe(.15);
+    Red(.99), Green(.77), Blue(.87), Orange(.65), Yellow(.69), Magenta(0.57), White(0.93), Off(0.99), Strobe(.15);
     private double value;
 
     Color(double value) {
