@@ -51,7 +51,7 @@ public class PlatformLiftVerticalCommands extends Command {
     // if (targetSpeed > currentSpeed) {
     //   currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
     // }
-    Robot.lift.setVerticalSpeed(targetSpeed);
+    Robot.lift.movePlatformLiftVerticle(targetSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,7 +63,7 @@ public class PlatformLiftVerticalCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.setVerticalSpeed(0);
+    Robot.lift.movePlatformLiftVerticle(0);
   }
 
   // Called when another command which requires one or more of the same
