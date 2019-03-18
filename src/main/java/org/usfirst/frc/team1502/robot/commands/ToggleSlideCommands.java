@@ -8,8 +8,10 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ToggleSlideCommands extends Command {
   public ToggleSlideCommands() {
@@ -31,7 +33,12 @@ public class ToggleSlideCommands extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    if (Robot.slide.switched) {
+      Robot.slide.switched = false;
+      return true;
+    } else {
+      return false;
+    }
   }
 
   // Called once after isFinished returns true

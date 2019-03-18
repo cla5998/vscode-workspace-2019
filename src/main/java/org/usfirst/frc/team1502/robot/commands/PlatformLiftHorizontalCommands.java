@@ -8,38 +8,51 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
-import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LinearSlideCommands extends Command {
+public class PlatformLiftHorizontalCommands extends Command {
+  Direction dir; //True = Up; False = Down
+  public static final double BACK_SPEED = 0.2, FORWARD_SPEED = -0.2;
+  static final int EXECUTE_CALLS_PER_SECOND = 50;
+  static final double SECONDS_TO_FULL_POWER = 2;
+  public enum Direction {
+    BACK, FORWARD
+  };
 
-  // String level;
-  LinearSlide.Level level;
-  //LinearSlide.Level level
-  public LinearSlideCommands() {
+  double targetSpeed = 0;
+
+  double currentSpeed = 0;
+
+  public PlatformLiftHorizontalCommands(Direction direction) {
+    this.dir = direction;
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //this.level = level;
-    requires(Robot.slide);
+    requires (Robot.lift);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    if (dir == Direction.BACK) {
+      targetSpeed = BACK_SPEED;
+    } else {
+      targetSpeed = FORWARD_SPEED;
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.slide.move(Robot.slide.getDistance(level, Robot.slide.load));
-    Robot.slide.move();
-    SmartDashboard.putNumber("Enc value", Robot.enc.get());
-    //Robot.slide.move(Robot.slide.getDistance2(level, Robot.slide.load));
+    // double speedIncrement = 1 / SECONDS_TO_FULL_POWER / EXECUTE_CALLS_PER_SECOND;
+    // if (targetSpeed < currentSpeed) {
+    //   currentSpeed -= Math.min(speedIncrement, currentSpeed - targetSpeed);
+    // }
+    // if (targetSpeed > currentSpeed) {
+    //   currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
+    // }
+    Robot.lift.setHorizontalSpeed(targetSpeed);
   }
-  
-
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
@@ -50,7 +63,7 @@ public class LinearSlideCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.slide.hold();
+    Robot.lift.setHorizontalSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

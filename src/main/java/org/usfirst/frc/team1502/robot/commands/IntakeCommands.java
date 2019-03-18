@@ -27,7 +27,7 @@ public class IntakeCommands extends Command {
   protected void execute() {
     //double intakeSpeed = Robot.m_oi.manipJoystick.getRawAxis(2); // Set Intake Speed = Manip Left Trigger
 
-    Robot.intake.setSpeed(.5);
+    Robot.intake.setSpeed(.6);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,7 @@ package org.usfirst.frc.team1502.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,17 +20,20 @@ public class PlatformLift extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  TalonSRX left;
-  TalonSRX right;
+  Spark vertical;
+  Spark horizontal;
 
-  public PlatformLift(TalonSRX left, TalonSRX right) {
-    this.left = left;
-    this.right = right;
+  public PlatformLift(Spark vertical, Spark horizontal) {
+    this.vertical = vertical;
+    this.horizontal = horizontal;
   }
 
-  public void setSpeed(double speed){
-    left.set(ControlMode.PercentOutput, speed);
-    right.set(ControlMode.PercentOutput, -speed);
+  public void setVerticalSpeed(double speed) {
+    vertical.set(speed);
+  }
+
+  public void setHorizontalSpeed(double speed) {
+    horizontal.set(speed);
   }
 
   @Override

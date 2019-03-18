@@ -1,5 +1,6 @@
 package org.usfirst.frc.team1502.robot.subsystems;
 
+import org.usfirst.frc.team1502.robot.Robot;
 import org.usfirst.frc.team1502.robot.RobotMap;
 import org.usfirst.frc.team1502.robot.commands.ArcadeCommands;
 
@@ -39,10 +40,6 @@ public class Drivetrain extends Subsystem {
 		//arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
 		arcadeDrive = new ArcadeDrive(leftFrontTalon, leftBackTalon, rightFrontTalon, rightBackTalon);
 	}
-	
-	// public void arcadeDrive(double moveSpeed, double rotateSpeed) {
-	// 	arcadeDrive.move(moveSpeed, rotateSpeed);
-	// }
 	
 	public void arcadeDrive(double moveSpeed, double rotateSpeed) {
 		arcadeDrive.move(moveSpeed, rotateSpeed);

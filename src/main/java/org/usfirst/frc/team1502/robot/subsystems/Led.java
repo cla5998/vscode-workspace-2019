@@ -17,10 +17,10 @@ public class Led extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  Spark LEDSpark;
+  Spark ledSpark;
 
   public enum Color {
-    Red(.99), Green(.77), Blue(.87), Yellow(.69), Magenta(0.57), White(0.93), Off(0.99), Strobe(.15);
+    Red(.99), Green(.77), Blue(.87), Orange(.65), Yellow(.69), Magenta(0.57), White(0.93), Off(0.99), Strobe(.15);
     private double value;
 
     Color(double value) {
@@ -39,12 +39,12 @@ public class Led extends Subsystem {
   // put(Color.Green, .77);
   // }};
 
-  public Led(Spark LEDSpark) {
-    this.LEDSpark = LEDSpark;
+  public Led(Spark ledSpark) {
+    this.ledSpark = ledSpark;
   }
 
   public void set(Color color) {
-    // LEDSpark.set(color.get());
+    ledSpark.set(color.get());
   }
   
   public void set(double color) {

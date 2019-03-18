@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team1502.robot;
 
+import org.usfirst.frc.team1502.robot.DPadButton.Direction;
 import org.usfirst.frc.team1502.robot.commands.*;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
@@ -20,16 +21,11 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
-	/**
-	 * 
-	 */
 
 	public Joystick leftJoystick = new Joystick(RobotMap.LEFT_JOYSTICK);
 	public Joystick rightJoystick = new Joystick(RobotMap.RIGHT_JOYSTICK);
 	public XboxController manipJoystick = new XboxController(RobotMap.MANIP_JOYSTICK);
 
-	
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a
 	//// joystick.
@@ -42,52 +38,56 @@ public class OI {
 	// by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
-	/*X-Box Controller*/
-	Button a = new JoystickButton(manipJoystick, 1); //Toggle Succ - OFF Default
-	Button b = new JoystickButton(manipJoystick, 2); //Extend & Retract Hatch Release
-	Button x = new JoystickButton(manipJoystick, 3); //Intake IN - Hold
-	//not final. this is a click to check the lift application
+	/* X-Box Controller */
+	Button a = new JoystickButton(manipJoystick, 1); // Toggle Succ - OFF Default
+	Button b = new JoystickButton(manipJoystick, 2); // Extend & Retract Hatch Release
+	Button x = new JoystickButton(manipJoystick, 3); // Intake IN - Hold
 	Button y = new JoystickButton(manipJoystick, 4);
-	Button rb = new JoystickButton(manipJoystick, 5); //Horizontal Slide OUT
-	Button lb = new JoystickButton(manipJoystick, 6); //Horizontal Slide IN
-	Button idk = new JoystickButton(manipJoystick, 4);//sonar platform. numbers undefined.
+	Button rb = new JoystickButton(manipJoystick, 5); // Horizontal Slide OUT
+	Button lb = new JoystickButton(manipJoystick, 6); // Horizontal Slide IN
 
-	Button dpLeft = new JoystickButton(manipJoystick, 5);	//placeholder numbers
-	Button dpRight = new JoystickButton(manipJoystick, 6);//linear slides. numbers undefined
-	Button dpDown = new JoystickButton(manipJoystick, 7);
+	Button guidedDrivingButton = new JoystickButton(rightJoystick, 2);
 
-	Button guidedDrivingButton = new JoystickButton(rightJoystick, 1);
-	//Button dpUp = new JoystickButton(manipJoystick, 8);
-
-	Button back = new JoystickButton(manipJoystick, 7); //linear slide toggle switch.
-	Button nineRight = new JoystickButton(rightJoystick, 9);
-	/*Drive Joysticks*/
-	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); //Climb UP
-	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); //Climb DOWN
+	Button dpUp = new DPadButton(manipJoystick, Direction.Up);
+	Button dpLeft = new DPadButton(manipJoystick, Direction.Left);
+	Button dpDown = new DPadButton(manipJoystick, Direction.Down);
+	Button dpRight = new DPadButton(manipJoystick, Direction.Right);
+	Button back = new JoystickButton(manipJoystick, 7); // linear slide toggle switch.
+	Button start = new JoystickButton(manipJoystick, 8);
 	
-	public OI() {
-		y.whileHeld(new LinearSlideLocationCommands());
-		x.whileHeld(new HorizontalSlideCommands(0));
-		b.whenPressed(new HatchReleaseCommands());
-		//a.toggleWhenPressed(new VacuumCommands());
-		//a.toggleWhenPressed(new LedInitCommands());
-		rb.whileHeld(new HorizontalSlideCommands(.3));
-		lb.whileHeld(new HorizontalSlideCommands(-.3));
-		// rightDriveTrigger.whileHeld(new PlatformLiftCommands(true));
-		// leftDriveTrigger.whileHeld(new PlatformLiftCommands(false));
-		//nineRight.whileHeld(new LedInitCommands());
-		leftDriveTrigger.whileHeld(new LinearSlideCommands());
-		//IDk is a placeholder name because i dont know what the key i set that to is, hence the name.
-		// idk.toggleWhenPressed(new SonarCommands(Sonar.PlatForm)); // commented out because sonar nullpointerexception when not plugged in 
-		//back.whenPressed(Robot.sonar.softStopToggle()); im so unrationally mad that this doesnt work
-		back.whenPressed(new ToggleSlideCommands());
-		
-		// dpLeft.whenPressed(new LinearSlideCommands(LinearSlide.Level.Ground));
-		// dpRight.whenPressed(new LinearSlideCommands(LinearSlide.Level.Low));
-		// dpDown.whenPressed(new LinearSlideCommands(LinearSlide.Level.Middle));
+	/* Drive Joysticks */
+	Button rightDriveTrigger = new JoystickButton(rightJoystick, 1); // Climb UP
+	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); // Climb DOWN
+	Button rightHorizontalButton = new JoystickButton(rightJoystick, 3); // Climb FORWARD
+	Button leftHorizontalButton = new JoystickButton(leftJoystick, 3); // Climb BACK
 
-		guidedDrivingButton.whileHeld(new GuidedDrivingCommands());
-		//dpUp.whenPressed(new LinearSlideCommands(LinearSlide.Level.High));
+	public OI() {
+		a.toggleWhenPressed(new VacuumCommands()); //Succ
+		x.whileHeld(new IntakeCommands()); //Intake In
+		b.whileHeld(new HatchReleaseCommands()); //Hatch Pistons
+
+		//Horizontal Slide
+		rb.whileHeld(new HorizontalSlideCommands(.4));
+		lb.whileHeld(new HorizontalSlideCommands(-.4));
+
+		//Climb Vertical
+		leftDriveTrigger.whileHeld(new PlatformLiftVerticalCommands(PlatformLiftVerticalCommands.Direction.DOWN));
+		rightDriveTrigger.whileHeld(new PlatformLiftVerticalCommands(PlatformLiftVerticalCommands.Direction.UP));
+		
+		//Climb Horizontal
+		leftHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.BACK));
+		rightHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.FORWARD));
+
+
+		//Linear Slide
+		start.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ship)); //Cargo Ship Port
+		back.whenPressed(new ToggleSlideCommands());
+		dpDown.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Low));
+		dpLeft.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Middle));
+		dpUp.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
+		dpRight.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ground));
+
+		guidedDrivingButton.whileHeld(new GuidedDrivingCommands()); //Vision Tracking Button
 	}
 
 	//// TRIGGERING COMMANDS WITH BUTTONS

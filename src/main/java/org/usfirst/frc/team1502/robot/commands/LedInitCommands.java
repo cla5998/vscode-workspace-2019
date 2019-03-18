@@ -21,12 +21,12 @@ public class LedInitCommands extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.led.set(Color.Red);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-   // Robot.led.set(Math.floor(Robot.m_oi.rightJoystick.getThrottle() * 100) / 100);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,7 +38,7 @@ public class LedInitCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.led.set(Color.Blue);
+    Robot.led.set(Color.Off);
   }
 
   // Called when another command which requires one or more of the same

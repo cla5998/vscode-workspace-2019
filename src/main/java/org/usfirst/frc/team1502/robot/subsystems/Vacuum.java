@@ -8,6 +8,9 @@
 package org.usfirst.frc.team1502.robot.subsystems;
 
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -18,8 +21,7 @@ public class Vacuum extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   
-  Spark vacuumLeft = null;
-  Spark vacuumRight = null;
+  VictorSPX vacuum = null;
   double speed = 0;
 
   @Override
@@ -28,15 +30,13 @@ public class Vacuum extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public Vacuum(Spark vacuumLeft, Spark vacuumRight) { 
-    this.vacuumLeft = vacuumLeft;
-    this.vacuumRight = vacuumRight;
+  public Vacuum(VictorSPX vacuum) { 
+    this.vacuum = vacuum;
   }
     
   public void setSpeed(double speed) {
      this.speed = speed;
-     vacuumLeft.set(speed);
-     vacuumRight.set(speed);
+     vacuum.set(ControlMode.PercentOutput, speed);
   }
 
 }

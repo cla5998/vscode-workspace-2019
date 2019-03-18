@@ -14,9 +14,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LinearSlideLocationCommands extends Command {
-  public LinearSlideLocationCommands() {
+
+  LinearSlide.Level level;
+
+  public LinearSlideLocationCommands(LinearSlide.Level level) {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    this.level = level;
     requires(Robot.slide);
   }
 
@@ -28,14 +32,13 @@ public class LinearSlideLocationCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.slide.move(LinearSlide.CARGO_MIDDLE);
-    SmartDashboard.putNumber("Enc value", Robot.enc.get());
+    Robot.slide.move(level);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return Robot.slide.centered;
   }
 
   // Called once after isFinished returns true
@@ -48,5 +51,6 @@ public class LinearSlideLocationCommands extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    end();
   }
 }
