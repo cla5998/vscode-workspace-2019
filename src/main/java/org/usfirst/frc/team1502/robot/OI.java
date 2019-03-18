@@ -13,6 +13,7 @@ import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -42,9 +43,13 @@ public class OI {
 	Button a = new JoystickButton(manipJoystick, 1); // Toggle Succ - OFF Default
 	Button b = new JoystickButton(manipJoystick, 2); // Extend & Retract Hatch Release
 	Button x = new JoystickButton(manipJoystick, 3); // Intake IN - Hold
-	Button y = new JoystickButton(manipJoystick, 4);
+	Button y = new JoystickButton(manipJoystick, 4); // Set linear slide to pushing intake height
 	Button rb = new JoystickButton(manipJoystick, 5); // Horizontal Slide OUT
 	Button lb = new JoystickButton(manipJoystick, 6); // Horizontal Slide IN
+	Button leftManipTrigger = new Trigger(manipJoystick, Hand.kLeft, 0.1);
+	Button rightManipTrigger = new Trigger(manipJoystick, Hand.kRight, 0.1);
+
+	Button manipStickLeftClick = new JoystickButton(manipJoystick, 9);
 
 	Button guidedDrivingButton = new JoystickButton(rightJoystick, 2);
 
@@ -60,6 +65,7 @@ public class OI {
 	Button leftDriveTrigger = new JoystickButton(leftJoystick, 1); // Climb DOWN
 	Button rightHorizontalButton = new JoystickButton(rightJoystick, 3); // Climb FORWARD
 	Button leftHorizontalButton = new JoystickButton(leftJoystick, 3); // Climb BACK
+	Button compressorButton = new JoystickButton(rightJoystick, 7);
 
 	public OI() {
 		a.toggleWhenPressed(new VacuumCommands()); //Succ
@@ -67,8 +73,8 @@ public class OI {
 		b.whileHeld(new HatchReleaseCommands()); //Hatch Pistons
 
 		//Horizontal Slide
-		rb.whileHeld(new HorizontalSlideCommands(.4));
-		lb.whileHeld(new HorizontalSlideCommands(-.4));
+		rb.whileHeld(new HorizontalSlideCommands(.6));
+		lb.whileHeld(new HorizontalSlideCommands(-.6));
 
 		//Climb Vertical
 		leftDriveTrigger.whileHeld(new PlatformLiftVerticalCommands(PlatformLiftVerticalCommands.Direction.DOWN));
@@ -78,14 +84,20 @@ public class OI {
 		leftHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.BACK));
 		rightHorizontalButton.whileHeld(new PlatformLiftHorizontalCommands(PlatformLiftHorizontalCommands.Direction.FORWARD));
 
+		compressorButton.whileHeld(new CompressorCommands());
 
-		//Linear Slide
+		//Linear Slide -- Automatic
 		start.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ship)); //Cargo Ship Port
 		back.whenPressed(new ToggleSlideCommands());
 		dpDown.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Low));
 		dpLeft.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Middle));
 		dpUp.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.High));
 		dpRight.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.Ground));
+		y.whenPressed(new LinearSlideLocationCommands(LinearSlide.Level.IntakePush, 0.3));
+		//Linear Slide -- Manual
+		// manipStickLeftClick.whileHeld(new LinearSlideManualCommands());
+		leftManipTrigger.whileHeld(new LinearSlideManualCommands());
+		rightManipTrigger.whileHeld(new LinearSlideManualCommands());
 
 		guidedDrivingButton.whileHeld(new GuidedDrivingCommands()); //Vision Tracking Button
 	}

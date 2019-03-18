@@ -9,10 +9,12 @@ package org.usfirst.frc.team1502.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.cameraserver.CameraServer;
+import org.usfirst.frc.team1502.robot.subsystems.CompressorSubsystem;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -70,8 +72,10 @@ public class Robot extends TimedRobot {
 
 	public static HatchRelease solenoid;
 
+	public static CompressorSubsystem compressor;
+
 	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	SendableChooser<Command> m_chooser = new SendableChooser<Command>();
 
 	public Robot() {
 		// networkTable = NetworkTable.getTable("GRIP/test");
@@ -86,6 +90,8 @@ public class Robot extends TimedRobot {
 	public void robotInit() {
 		// enc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
 		drivetrain = new Drivetrain();
+
+		compressor = new CompressorSubsystem(11);
 
 		//sonar = new Sonar(RobotMap.SONAR);
 		intake = new Intake(new Spark(RobotMap.INTAKE_SPARK));
@@ -130,18 +136,6 @@ public class Robot extends TimedRobot {
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
-		
-		// NetworkTable test code
-		// double[] defaultValue = new double[0];
-		// while (true) {
-		// double[] areas = networkTable.getNumberArray("area", defaultValue);
-		// System.out.println("areas: ");
-		// for (double area: areas) {
-		// System.out.print(area + " ");
-		// }
-		// System.out.println();
-		// Timer.delay(1);
-		// }
 
 		m_oi = new OI();
 	}
@@ -177,6 +171,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		compressor.stop();
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -202,6 +197,7 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
+		compressor.stop();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

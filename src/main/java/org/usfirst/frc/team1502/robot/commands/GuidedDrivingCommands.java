@@ -39,7 +39,7 @@ public class GuidedDrivingCommands extends Command {
   final Object imgLock = new Object(); // Synchronizes access to the data being simultaneously updated with each image
                                        // acquisition pass and the code that's processing the coordinates and steering
                                        // the robot.
-  static final double IDLE_SPEED = 0.15;
+  static final double IDLE_SPEED = -0.15;
   int targetCenterX, targetSize;
   boolean targetDetected = false, targetWasDetectedLastCycle = false;
 
@@ -52,7 +52,7 @@ public class GuidedDrivingCommands extends Command {
     // eg. requires(chassis);
     requires(Robot.drivetrain);
     requires(Robot.led);
-    directionController = new PIDController(0.00479133, 1e-6, 0.5);
+    directionController = new PIDController(0.00579133, 1e-6, 0.5);
     camera = CameraServer.getInstance().startAutomaticCapture();
     camera.setResolution(IMG_WIDTH, IMG_HEIGHT);
   }

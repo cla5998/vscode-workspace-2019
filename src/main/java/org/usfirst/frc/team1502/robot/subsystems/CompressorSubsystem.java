@@ -6,43 +6,35 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team1502.robot.subsystems;
+import edu.wpi.first.wpilibj.Compressor;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * Add your docs here.
  */
-public class HatchRelease extends Subsystem {
+public class CompressorSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  DoubleSolenoid solenoid = null;
+  public int id;
+  public Compressor compressor;
 
-  public HatchRelease(DoubleSolenoid one) {
-    solenoid = one;
+  public CompressorSubsystem(int id) {
+    compressor = new Compressor(id);
   }
 
-  public void push() {
-    solenoid.set(Value.kForward);
-
+  public void run() {
+    compressor.start();
   }
 
-  public void pull() {
-    solenoid.set(Value.kReverse);
-  }
-
-  public void off() {
-    solenoid.set(Value.kOff);
+  public void stop() {
+    compressor.stop();
   }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-
-
   }
 }

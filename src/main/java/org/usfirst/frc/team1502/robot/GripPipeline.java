@@ -1,12 +1,22 @@
 package org.usfirst.frc.team1502.robot;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.HashMap;
 
 import edu.wpi.first.wpilibj.vision.VisionPipeline;
 
 import org.opencv.core.*;
+import org.opencv.core.Core.*;
+import org.opencv.features2d.FeatureDetector;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
+import org.opencv.objdetect.*;
 
 /**
 * GripPipeline class.
@@ -33,9 +43,9 @@ public class GripPipeline implements VisionPipeline {
 	@Override	public void process(Mat source0) {
 		// Step HSV_Threshold0:
 		Mat hsvThresholdInput = source0;
-		double[] hsvThresholdHue = {56.654676258992815, 86.31399317406145};
-		double[] hsvThresholdSaturation = {167.4010791366906, 255.0};
-		double[] hsvThresholdValue = {165.10791366906474, 255.0};
+		double[] hsvThresholdHue = {63.129496402877706, 93.99317406143346};
+		double[] hsvThresholdSaturation = {133.00359712230215, 255.0};
+		double[] hsvThresholdValue = {213.2643884892086, 255.0};
 		hsvThreshold(hsvThresholdInput, hsvThresholdHue, hsvThresholdSaturation, hsvThresholdValue, hsvThresholdOutput);
 
 		// Step Blur0:
@@ -51,7 +61,7 @@ public class GripPipeline implements VisionPipeline {
 
 		// Step Filter_Contours0:
 		ArrayList<MatOfPoint> filterContoursContours = findContoursOutput;
-		double filterContoursMinArea = 16.0;
+		double filterContoursMinArea = 17.0;
 		double filterContoursMinPerimeter = 0.0;
 		double filterContoursMinWidth = 0.0;
 		double filterContoursMaxWidth = 1000.0;

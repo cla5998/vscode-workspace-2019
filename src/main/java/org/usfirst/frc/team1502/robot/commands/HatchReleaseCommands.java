@@ -9,6 +9,7 @@ package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class HatchReleaseCommands extends Command {
@@ -26,7 +27,7 @@ public class HatchReleaseCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.solenoid.push();
+    Robot.solenoid.pull();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,7 +39,7 @@ public class HatchReleaseCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.solenoid.pull();
+    Robot.solenoid.push();
   }
 
   // Called when another command which requires one or more of the same

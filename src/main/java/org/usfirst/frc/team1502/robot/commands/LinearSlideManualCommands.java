@@ -9,15 +9,17 @@ package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class VacuumCommands extends Command {
-  public VacuumCommands() {
+public class LinearSlideManualCommands extends Command {
+  public LinearSlideManualCommands() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    //requires (Robot.vacuum);
+    requires(Robot.slide);
   }
+
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -26,8 +28,17 @@ public class VacuumCommands extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.vacuum.setSpeed(1);
-    SmartDashboard.putString("Succ", "On");
+    double manipRT = Robot.m_oi.manipJoystick.getTriggerAxis(Hand.kRight);
+    double manipLT = Robot.m_oi.manipJoystick.getTriggerAxis(Hand.kLeft);
+    SmartDashboard.putNumber("manipLT", manipLT);
+    SmartDashboard.putNumber("manipRT", manipRT);
+    if (manipRT > .1) {
+			Robot.slide.moveBy(manipRT);
+		} else if (manipLT > .1) {
+			Robot.slide.moveBy(-manipLT);
+		} else {
+			Robot.slide.hold();
+		}
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -39,8 +50,7 @@ public class VacuumCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.vacuum.setSpeed(0);
-    SmartDashboard.putString("Succ", "Off");
+    Robot.slide.hold();
   }
 
   // Called when another command which requires one or more of the same
