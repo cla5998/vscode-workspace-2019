@@ -6,6 +6,9 @@
 /*----------------------------------------------------------------------------*/
 
 package org.usfirst.frc.team1502.robot.subsystems;
+
+import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.Compressor;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,6 +22,7 @@ public class CompressorSubsystem extends Subsystem {
 
   public int id;
   public Compressor compressor;
+  public boolean on = true;
 
   public CompressorSubsystem(int id) {
     compressor = new Compressor(id);
@@ -26,10 +30,12 @@ public class CompressorSubsystem extends Subsystem {
 
   public void run() {
     compressor.start();
+    Robot.hatch.close();
   }
 
   public void stop() {
     compressor.stop();
+    Robot.hatch.open();
   }
 
   @Override

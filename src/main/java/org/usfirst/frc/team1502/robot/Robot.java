@@ -65,7 +65,7 @@ public class Robot extends TimedRobot {
 	public static LinearSlide slide = new LinearSlide(null, null);
 	public static DigitalInput horizontalLimitSwitchHigh = new DigitalInput(RobotMap.LIMIT_SWITCH_HIGH);
 	public static DigitalInput horizontalLimitSwitchLow = new DigitalInput(RobotMap.LIMIT_SWITCH_LOW);
-
+	public static HatchRelease hatch = new HatchRelease(null);
 	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
 
 	public static Led led = new Led(null);

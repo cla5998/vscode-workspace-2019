@@ -21,16 +21,15 @@ public class HatchRelease extends Subsystem {
 
   DoubleSolenoid solenoid = null;
 
-  public HatchRelease(DoubleSolenoid one) {
-    solenoid = one;
+  public HatchRelease(DoubleSolenoid solenoid) {
+    this.solenoid = solenoid;
   }
 
-  public void push() {
+  public void open() {
     solenoid.set(Value.kForward);
-
   }
 
-  public void pull() {
+  public void close() {
     solenoid.set(Value.kReverse);
   }
 

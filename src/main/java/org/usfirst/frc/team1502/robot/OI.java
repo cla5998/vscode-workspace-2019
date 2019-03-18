@@ -70,7 +70,7 @@ public class OI {
 	public OI() {
 		a.toggleWhenPressed(new VacuumCommands()); //Succ
 		x.whileHeld(new IntakeCommands()); //Intake In
-		b.whileHeld(new HatchReleaseCommands()); //Hatch Pistons
+		b.toggleWhenPressed(new CompressorCommands()); //Hatch Pistons
 
 		//Horizontal Slide
 		rb.whileHeld(new HorizontalSlideCommands(.6));
