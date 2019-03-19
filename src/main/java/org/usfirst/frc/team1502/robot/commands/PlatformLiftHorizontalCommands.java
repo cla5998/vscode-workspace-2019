@@ -51,7 +51,7 @@ public class PlatformLiftHorizontalCommands extends Command {
     // if (targetSpeed > currentSpeed) {
     //   currentSpeed += Math.min(speedIncrement, targetSpeed - currentSpeed);
     // }
-    Robot.lift.movePlatformLiftHorizontal(targetSpeed);
+    Robot.lift.setHorizontalSpeed(targetSpeed);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,7 +63,7 @@ public class PlatformLiftHorizontalCommands extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.lift.movePlatformLiftHorizontal(0);
+    Robot.lift.setHorizontalSpeed(0);
   }
 
   // Called when another command which requires one or more of the same

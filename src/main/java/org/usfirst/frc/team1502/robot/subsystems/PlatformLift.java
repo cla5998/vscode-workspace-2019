@@ -44,11 +44,6 @@ public class PlatformLift extends Subsystem {
     else setVerticalSpeed(0);
   }
 
-  public void movePlatformLiftHorizontal(double speed) {
-    if (check()) setHorizontalSpeed(speed);
-    else setHorizontalSpeed(0);
-  }
-
   public void setVerticalSpeed(double speed) {
     vertical.set(speed);
   }
