@@ -11,6 +11,8 @@ package org.usfirst.frc.team1502.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import org.usfirst.frc.team1502.robot.Robot;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -37,6 +39,7 @@ public class Vacuum extends Subsystem {
   public void setSpeed(double speed) {
      this.speed = speed;
      vacuum.set(ControlMode.PercentOutput, speed);
+     Robot.r.setRight(speed);
   }
 
 }

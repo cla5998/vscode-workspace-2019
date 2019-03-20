@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -72,6 +73,8 @@ public class Robot extends TimedRobot {
 
 	public static HatchRelease solenoid;
 
+	public static Rumbler r;
+
 	public static CompressorSubsystem compressor;
 
 	Command m_autonomousCommand;
@@ -93,6 +96,8 @@ public class Robot extends TimedRobot {
 
 		compressor = new CompressorSubsystem(11);
 
+		r = new Rumbler(new XboxController(RobotMap.MANIP_JOYSTICK));
+		
 		//sonar = new Sonar(RobotMap.SONAR);
 		intake = new Intake(new Spark(RobotMap.INTAKE_SPARK));
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2,
@@ -133,6 +138,9 @@ public class Robot extends TimedRobot {
 		} else {
 			led.set(Color.Orange);
 		}
+		
+		compressor.run();
+		solenoid.close();
 
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
@@ -148,6 +156,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void disabledInit() {
 		led.set(Led.Color.Red);
+		r.setBoth(0);
 	}
 
 	@Override
@@ -171,7 +180,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-		compressor.stop();
+		compressor.run();
+		solenoid.close();
 		m_autonomousCommand = m_chooser.getSelected();
 
 		/*
@@ -197,7 +207,8 @@ public class Robot extends TimedRobot {
 
 	@Override
 	public void teleopInit() {
-		compressor.stop();
+		compressor.run();
+		solenoid.close();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove

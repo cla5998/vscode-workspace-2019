@@ -8,6 +8,7 @@
 package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.Rumbler;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -28,6 +29,7 @@ public class VacuumCommands extends Command {
   protected void execute() {
     Robot.vacuum.setSpeed(1);
     SmartDashboard.putString("Succ", "On");
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

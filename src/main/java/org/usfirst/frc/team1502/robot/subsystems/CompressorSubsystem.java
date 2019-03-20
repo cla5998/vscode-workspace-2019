@@ -30,12 +30,14 @@ public class CompressorSubsystem extends Subsystem {
 
   public void run() {
     compressor.start();
-    Robot.hatch.close();
+    Robot.solenoid.close();
+    Robot.r.setLeft(1);
   }
 
   public void stop() {
     compressor.stop();
-    Robot.hatch.open();
+    Robot.solenoid.open();
+    Robot.r.setLeft(0);
   }
 
   @Override

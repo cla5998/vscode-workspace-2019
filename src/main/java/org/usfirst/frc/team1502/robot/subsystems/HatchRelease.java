@@ -26,11 +26,11 @@ public class HatchRelease extends Subsystem {
   }
 
   public void open() {
-    solenoid.set(Value.kForward);
+    solenoid.set(Value.kReverse);
   }
 
   public void close() {
-    solenoid.set(Value.kReverse);
+    solenoid.set(Value.kForward);
   }
 
   public void off() {
