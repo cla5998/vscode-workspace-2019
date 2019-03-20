@@ -10,6 +10,9 @@ package org.usfirst.frc.team1502.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import org.usfirst.frc.team1502.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -22,10 +25,23 @@ public class PlatformLift extends Subsystem {
 
   Spark vertical;
   Spark horizontal;
+  DigitalInput limitSwitchHigh;
+  DigitalInput limitSwitchLow;
 
-  public PlatformLift(Spark vertical, Spark horizontal) {
+  public PlatformLift(Spark vertical, Spark horizontal, int LIMIT_HIGH, int LIMIT_LOW) {
+    limitSwitchHigh = new DigitalInput(LIMIT_HIGH);
+    limitSwitchLow = new DigitalInput(LIMIT_LOW);
     this.vertical = vertical;
     this.horizontal = horizontal;
+  }
+
+  public boolean check() {
+    return limitSwitchHigh.get();
+  }
+
+  public void movePlatformLiftVerticle(double speed) {
+    if (check()) setVerticalSpeed(speed);
+    else setVerticalSpeed(0);
   }
 
   public void setVerticalSpeed(double speed) {

@@ -61,7 +61,7 @@ public class Robot extends TimedRobot {
 	public static Intake intake = new Intake(null);
 	public static Vacuum vacuum = new Vacuum(null);
 	// public static Vacuum vacuum = new Vacuum(null, null);
-	public static PlatformLift lift = new PlatformLift(null, null);
+	public static PlatformLift lift = new PlatformLift(null, null, 0, 0);
 	public static Sonar sonar;
 	public static LinearSlide slide = new LinearSlide(null, null);
 	public static DigitalInput horizontalLimitSwitchHigh = new DigitalInput(RobotMap.LIMIT_SWITCH_HIGH);
@@ -125,7 +125,7 @@ public class Robot extends TimedRobot {
 
 		// hatchRelease = new HatchRelease(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2, RobotMap.SOLENOID_3);
 
-		lift = new PlatformLift(new Spark(RobotMap.PLATFORM_SPARK_VERTICAL), new Spark(RobotMap.PLATFORM_SPARK_HORIZONTAL));
+		lift = new PlatformLift(new Spark(RobotMap.PLATFORM_SPARK_VERTICAL), new Spark(RobotMap.PLATFORM_SPARK_HORIZONTAL), RobotMap.LIMIT_SWITCH_HIGH, RobotMap.LIMIT_SWITCH_LOW);
 		//Robot.lift.setVerticalSpeed(-.2);
 		// linear slide objects
 		slide = new LinearSlide(new TalonSRX(RobotMap.LINEAR_SLIDE_TALON_LEFT),
