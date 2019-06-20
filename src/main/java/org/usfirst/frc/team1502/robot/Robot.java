@@ -35,6 +35,7 @@ import org.usfirst.frc.team1502.robot.subsystems.Intake;
 import org.usfirst.frc.team1502.robot.subsystems.Led;
 import org.usfirst.frc.team1502.robot.subsystems.LinearSlide;
 import org.usfirst.frc.team1502.robot.subsystems.PlatformLift;
+import org.usfirst.frc.team1502.robot.subsystems.RoboticArm;
 import org.usfirst.frc.team1502.robot.subsystems.Sonar;
 import org.usfirst.frc.team1502.robot.subsystems.Vacuum;
 import org.usfirst.frc.team1502.robot.subsystems.Led.Color;
@@ -58,7 +59,7 @@ public class Robot extends TimedRobot {
 	// public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null,
 	// null);
 	public static ArcadeDrive m_arcadeDrive = new ArcadeDrive(null, null, null, null);
-	public static Intake intake = new Intake(null);
+	public static Intake intake;
 	public static Vacuum vacuum = new Vacuum(null);
 	// public static Vacuum vacuum = new Vacuum(null, null);
 	public static PlatformLift lift = new PlatformLift(null, null, 0, 0);
@@ -66,9 +67,9 @@ public class Robot extends TimedRobot {
 	public static LinearSlide slide = new LinearSlide(null, null);
 	public static DigitalInput horizontalLimitSwitchHigh = new DigitalInput(RobotMap.LIMIT_SWITCH_HIGH);
 	public static DigitalInput horizontalLimitSwitchLow = new DigitalInput(RobotMap.LIMIT_SWITCH_LOW);
-	public static HatchRelease hatch = new HatchRelease(null);
-	public static HorizontalSlide horizontalSlide = new HorizontalSlide(null);
-
+	public static HatchRelease hatch;
+	public static HorizontalSlide horizontalSlide;
+	public static RoboticArm arm;
 	public static Led led = new Led(null);
 
 	public static HatchRelease solenoid;
@@ -97,6 +98,7 @@ public class Robot extends TimedRobot {
 		compressor = new CompressorSubsystem(11);
 
 		r = new Rumbler(new XboxController(RobotMap.MANIP_JOYSTICK));
+		arm = new RoboticArm(30, 20);
 		
 		//sonar = new Sonar(RobotMap.SONAR);
 		intake = new Intake(new Spark(RobotMap.INTAKE_SPARK));

@@ -1,6 +1,7 @@
-package main.java.org.usfirst.frc.team1502.robot.commands;
+package org.usfirst.frc.team1502.robot.commands;
 
 import org.usfirst.frc.team1502.robot.Robot;
+import org.usfirst.frc.team1502.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,7 +18,10 @@ public class RobotArmCommands extends Command {
 
     @Override
     protected void execute() {
-        int[] distMoved = {Robot.arm.expRate(Robot.m_oi.rightJoystick.getX()), Robot.arm.expRate(Robot.m_oi.rightJoystick.gety())};
+        double[] distMoved = {
+            Drivetrain.expRate(Robot.m_oi.rightJoystick.getX(), 2),
+            Drivetrain.expRate(Robot.m_oi.rightJoystick.getY(), 2)
+        };
         Robot.arm.bringTo(distMoved);
     }
 
